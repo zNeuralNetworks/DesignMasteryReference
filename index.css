@@ -1,0 +1,336 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Inter, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-slate-50: var(--slate-50);
+  --color-slate-100: var(--slate-100);
+  --color-slate-200: var(--slate-200);
+  --color-slate-300: var(--slate-300);
+  --color-slate-400: var(--slate-400);
+  --color-slate-500: var(--slate-500);
+  --color-slate-600: var(--slate-600);
+  --color-slate-700: var(--slate-700);
+  --color-slate-800: var(--slate-800);
+  --color-slate-900: var(--slate-900);
+  --color-slate-950: var(--slate-950);
+
+  --color-primary-50: var(--primary-50);
+  --color-primary-100: var(--primary-100);
+  --color-primary-200: var(--primary-200);
+  --color-primary-300: var(--primary-300);
+  --color-primary-400: var(--primary-400);
+  --color-primary-500: var(--primary-500);
+  --color-primary-600: var(--primary-600);
+  --color-primary-700: var(--primary-700);
+  --color-primary-800: var(--primary-800);
+  --color-primary-900: var(--primary-900);
+  --color-primary-950: var(--primary-950);
+
+  /* Semantic tokens — use these in components for theme compatibility */
+  --color-surface:       var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-border:        var(--border);
+  --color-fg:            var(--fg);
+  --color-fg-muted:      var(--fg-muted);
+  --color-fg-faint:      var(--fg-faint);
+  --color-accent:        var(--accent);
+  --color-accent-bg:     var(--accent-bg);
+
+  --animate-fade-in: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-slide-up: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  @keyframes slideUp {
+    0% { transform: translateY(6px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+}
+
+:root {
+  /* Apple Neutral Scale — maps to "slate" across the app */
+  --slate-50:  #F5F5F7;
+  --slate-100: #E8E8ED;
+  --slate-200: #D2D2D7;
+  --slate-300: #B7B7BD;
+  --slate-400: #8E8E93;
+  --slate-500: #6E6E73;
+  --slate-600: #48484A;
+  --slate-700: #3A3A3C;
+  --slate-800: #2C2C2E;
+  --slate-900: #1D1D1F;
+  --slate-950: #000000;
+
+  /* Apple Blue — maps to "primary" across the app */
+  --primary-50:  #F0F7FF;
+  --primary-100: #DCE9FF;
+  --primary-200: #B4CFFF;
+  --primary-300: #7AAFFA;
+  --primary-400: #3E8FEF;
+  --primary-500: #007AFF;
+  --primary-600: #0071E3;
+  --primary-700: #005EC9;
+  --primary-800: #004AA8;
+  --primary-900: #003580;
+  --primary-950: #001A40;
+
+  /* Semantic tokens — reference these in themes, consume via Tailwind utilities */
+  --surface:       var(--slate-50);
+  --surface-raised: #ffffff;
+  --border:        var(--slate-200);
+  --fg:            var(--slate-900);
+  --fg-muted:      var(--slate-500);
+  --fg-faint:      var(--slate-400);
+  --accent:        var(--primary-600);
+  --accent-bg:     var(--primary-50);
+}
+
+/* Bioluminescent Theme (Deep Navy & Cyan) */
+.theme-bioluminescent {
+  --slate-50:  #f0f9ff;
+  --slate-100: #e0f2fe;
+  --slate-200: #bae6fd;
+  --slate-300: #7dd3fc;
+  --slate-400: #38bdf8;
+  --slate-500: #0ea5e9;
+  --slate-600: #0284c7;
+  --slate-700: #0f172a;
+  --slate-800: #080c18;
+  --slate-900: #050810;
+  --slate-950: #020305;
+
+  --primary-50:  #ecfeff;
+  --primary-100: #cffafe;
+  --primary-200: #a5f3fc;
+  --primary-300: #67e8f9;
+  --primary-400: #22d3ee;
+  --primary-500: #06b6d4;
+  --primary-600: #0891b2;
+  --primary-700: #0e7490;
+  --primary-800: #155e75;
+  --primary-900: #164e63;
+  --primary-950: #083344;
+
+  --surface:        #050810;
+  --surface-raised: #0a1628;
+  --border:         #0f2540;
+  --fg:             #e0f2fe;
+  --fg-muted:       #7dd3fc;
+  --fg-faint:       #38bdf8;
+  --accent:         #06b6d4;
+  --accent-bg:      #0f2540;
+}
+
+/* Swiss Polarity (Neo-Brutalism) */
+.theme-swiss {
+  --slate-50:  #ffffff;
+  --slate-100: #f5f5f5;
+  --slate-200: #e5e5e5;
+  --slate-300: #d4d4d4;
+  --slate-400: #a3a3a3;
+  --slate-500: #737373;
+  --slate-600: #525252;
+  --slate-700: #404040;
+  --slate-800: #262626;
+  --slate-900: #171717;
+  --slate-950: #0a0a0a;
+
+  --primary-50:  #fef2f2;
+  --primary-100: #fee2e2;
+  --primary-200: #fecaca;
+  --primary-300: #fca5a5;
+  --primary-400: #f87171;
+  --primary-500: #ef4444;
+  --primary-600: #dc2626;
+  --primary-700: #b91c1c;
+  --primary-800: #991b1b;
+  --primary-900: #7f1d1d;
+  --primary-950: #450a0a;
+
+  --surface:        #ffffff;
+  --surface-raised: #ffffff;
+  --border:         #171717;
+  --accent:         #dc2626;
+  --accent-bg:      #fef2f2;
+}
+
+.theme-swiss * {
+  border-radius: 0 !important;
+}
+
+/* Operator Console (Phosphor Terminal) */
+.theme-operator-console {
+  --surface:        #0d1117;
+  --surface-raised: #161b22;
+  --border:         #30363d;
+  --fg:             #e6edf3;
+  --fg-muted:       #8b949e;
+  --fg-faint:       #6e7681;
+  --accent:         #f59e0b;
+  --accent-bg:      rgba(245, 158, 11, 0.12);
+}
+
+.theme-operator-console * {
+  border-radius: 0 !important;
+  font-family: "JetBrains Mono", ui-monospace, monospace !important;
+}
+
+/* Quiet Luxury (Warm Editorial) */
+.theme-quiet-luxury {
+  --surface:        #faf7f2;
+  --surface-raised: #ffffff;
+  --border:         #e7e5e4;
+  --fg:             #1a1611;
+  --fg-muted:       #78716c;
+  --fg-faint:       #a8a29e;
+  --accent:         #c2714f;
+  --accent-bg:      rgba(194, 113, 79, 0.08);
+}
+
+/* System Atlas (Cool Reference) */
+.theme-system-atlas {
+  --surface:        #fafafa;
+  --surface-raised: #ffffff;
+  --border:         #e4e4e7;
+  --fg:             #18181b;
+  --fg-muted:       #71717a;
+  --fg-faint:       #a1a1aa;
+  --accent:         #2563eb;
+  --accent-bg:      rgba(37, 99, 235, 0.06);
+}
+
+/* Technical Blueprint (Engineering Draft) */
+.theme-technical-blueprint {
+  --surface:        #002855;
+  --surface-raised: #003366;
+  --border:         rgba(255, 255, 255, 0.15);
+  --fg:             #ffffff;
+  --fg-muted:       #9ec8ff;
+  --fg-faint:       rgba(255, 255, 255, 0.35);
+  --accent:         #9ec8ff;
+  --accent-bg:      rgba(158, 200, 255, 0.1);
+}
+
+.theme-technical-blueprint body {
+  background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+body {
+  background-color: var(--slate-50);
+  color: var(--slate-900);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.dark body {
+  background-color: var(--slate-950);
+  color: var(--slate-50);
+}
+
+/* Scrollbar — subtle, Apple-like */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--slate-300);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--slate-400);
+}
+
+/* Utility: hide scrollbar while preserving scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Print Optimization */
+@media print {
+  @page {
+    margin: 1.5cm;
+    size: A4;
+  }
+
+  body, #root > div {
+    background-color: white !important;
+    color: #1e293b !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+
+  .min-h-screen {
+    min-height: 0 !important;
+    height: auto !important;
+    background-color: white !important;
+  }
+
+  .no-print, nav, footer, button, .interactive-demo-container, .scrollbar-hide, .sticky, header .flex {
+    display: none !important;
+  }
+
+  .print-content {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: none !important;
+    display: block !important;
+  }
+
+  h1 { font-size: 24pt !important; margin-bottom: 0.5cm !important; line-height: 1.2 !important; color: #0f172a !important; }
+  h2 { font-size: 18pt !important; margin-top: 1cm !important; margin-bottom: 0.5cm !important; color: #0f172a !important; break-after: avoid; }
+  h3 { font-size: 14pt !important; margin-top: 0.8cm !important; margin-bottom: 0.3cm !important; color: #334155 !important; break-after: avoid; }
+  p, li { font-size: 11pt !important; color: #334155 !important; margin-bottom: 0.3cm !important; orphans: 3; widows: 3; }
+
+  a { text-decoration: none !important; color: #0071E3 !important; font-weight: 500; }
+
+  pre, code {
+    background-color: #f1f5f9 !important;
+    color: #0f172a !important;
+    border: 1px solid #e2e8f0 !important;
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    font-size: 9pt !important;
+    break-inside: avoid;
+  }
+
+  .print-break-before { break-before: page; page-break-before: always; }
+  .print-break-after { break-after: page; page-break-after: always; }
+  .print-avoid-break { break-inside: avoid; page-break-inside: avoid; }
+
+  .static-visual-container {
+    display: block !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin: 1cm 0;
+    border: 1px solid #cbd5e1;
+  }
+
+  .print-footer {
+    display: flex !important;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 0.2cm;
+    justify-content: space-between;
+    font-size: 9pt;
+    color: #94a3b8;
+  }
+}
