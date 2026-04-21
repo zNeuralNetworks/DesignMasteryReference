@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DesignMastery Reference — Code Graph</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', monospace; overflow: hidden; }
+
+  #canvas { width: 100vw; height: 100vh; }
+
+  /* Tooltip */
+  #tooltip {
+    position: fixed; pointer-events: none; opacity: 0;
+    background: rgba(22,27,34,0.97); border: 1px solid #30363d;
+    border-radius: 10px; padding: 12px 16px; max-width: 320px;
+    font-size: 12px; line-height: 1.6; z-index: 100;
+    transition: opacity 0.15s;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  }
+  #tooltip h3 { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+  #tooltip .badge { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 10px; font-weight: 600; margin-bottom: 8px; }
+  #tooltip .section-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: #6e7681; margin-top: 8px; margin-bottom: 3px; }
+  #tooltip .dep { color: #8b949e; font-size: 11px; padding: 1px 0; }
+  #tooltip .dep span { color: #e6edf3; }
+
+  /* Panel */
+  #panel {
+    position: fixed; top: 16px; left: 16px; z-index: 50;
+    background: rgba(22,27,34,0.95); border: 1px solid #30363d;
+    border-radius: 12px; padding: 16px; width: 220px;
+    backdrop-filter: blur(12px);
+  }
+  #panel h2 { font-size: 13px; font-weight: 700; margin-bottom: 2px; color: #e6edf3; }
+  #panel p  { font-size: 11px; color: #6e7681; margin-bottom: 14px; }
+
+  .legend-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 11px; color: #8b949e; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+  #stats { margin-top: 14px; padding-top: 14px; border-top: 1px solid #21262d; }
+  .stat { display: flex; justify-content: space-between; font-size: 11px; color: #6e7681; margin-bottom: 4px; }
+  .stat span { color: #e6edf3; font-weight: 600; }
+
+  #controls { margin-top: 14px; padding-top: 14px; border-top: 1px solid #21262d; }
+  #controls p { font-size: 10px; color: #6e7681; line-height: 1.6; margin-bottom: 0; }
+
+  /* Search */
+  #search-wrap { margin-top: 14px; padding-top: 14px; border-top: 1px solid #21262d; }
+  #search { width: 100%; background: #161b22; border: 1px solid #30363d; color: #e6edf3;
+    border-radius: 6px; padding: 6px 10px; font-size: 11px; outline: none; }
+  #search:focus { border-color: #58a6ff; }
+  #search::placeholder { color: #484f58; }
+
+  /* SVG elements */
+  .node circle { cursor: pointer; stroke-width: 1.5; transition: r 0.15s; }
+  .node text { pointer-events: none; user-select: none; }
+  .link { stroke-opacity: 0.35; }
+  .link.highlighted { stroke-opacity: 0.9 !important; }
+  .node.dimmed circle { opacity: 0.18; }
+  .node.dimmed text { opacity: 0.1; }
+  .link.dimmed { stroke-opacity: 0.04 !important; }
+  .node.focused circle { stroke-width: 2.5; }
+
+  #reset-btn {
+    display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    background: #21262d; border: 1px solid #30363d; color: #e6edf3;
+    padding: 8px 20px; border-radius: 999px; font-size: 12px; cursor: pointer;
+    z-index: 50; transition: background 0.15s;
+  }
+  #reset-btn:hover { background: #30363d; }
+</style>
+</head>
+<body>
+<svg id="canvas"></svg>
+
+<div id="tooltip"></div>
+
+<div id="panel">
+  <h2>DesignMastery Reference</h2>
+  <p>Module dependency graph</p>
+
+  <div id="legend">
+    <div class="legend-row"><div class="legend-dot" style="background:#58a6ff"></div>Entry points</div>
+    <div class="legend-row"><div class="legend-dot" style="background:#3fb950"></div>Components</div>
+    <div class="legend-row"><div class="legend-dot" style="background:#d2a8ff"></div>Contexts</div>
+    <div class="legend-row"><div class="legend-dot" style="background:#ffa657"></div>Data layer</div>
+    <div class="legend-row"><div class="legend-dot" style="background:#26c4c1"></div>Features / Reference</div>
+    <div class="legend-row"><div class="legend-dot" style="background:#f778ba"></div>Features / Demos</div>
+    <div class="legend-row"><div class="legend-dot" style="background:#ff7b72"></div>Features / Admin</div>
+    <div class="legend-row"><div class="legend-dot" style="background:#e3b341"></div>Features / Diagnostics</div>
+    <div class="legend-row"><div class="legend-dot" style="background:#6e7681"></div>Types / Config</div>
+    <div class="legend-row"><div class="legend-dot" style="background:#484f58"></div>Data entries (group)</div>
+  </div>
+
+  <div id="stats">
+    <div class="stat">Modules <span id="stat-nodes">—</span></div>
+    <div class="stat">Dependencies <span id="stat-edges">—</span></div>
+    <div class="stat">External pkgs <span id="stat-pkgs">—</span></div>
+  </div>
+
+  <div id="search-wrap">
+    <input id="search" type="text" placeholder="Search module…">
+  </div>
+
+  <div id="controls">
+    <p>Scroll · zoom&nbsp;&nbsp;Drag · pan<br>Click node · explore deps<br>Shift+click · pin/unpin</p>
+  </div>
+</div>
+
+<button id="reset-btn">↺ Reset selection</button>
+
+<script>
+// ── Data ─────────────────────────────────────────────────────────────────────
+const LAYERS = {
+  entry:       { color: '#58a6ff', label: 'Entry points' },
+  component:   { color: '#3fb950', label: 'Components' },
+  context:     { color: '#d2a8ff', label: 'Contexts' },
+  data:        { color: '#ffa657', label: 'Data layer' },
+  refFeature:  { color: '#26c4c1', label: 'Features / Reference' },
+  demoFeature: { color: '#f778ba', label: 'Features / Demos' },
+  adminFeature:{ color: '#ff7b72', label: 'Features / Admin' },
+  diagFeature: { color: '#e3b341', label: 'Features / Diagnostics' },
+  config:      { color: '#6e7681', label: 'Types / Config' },
+  entries:     { color: '#484f58', label: 'Data entries (group)' },
+};
+
+const NODES = [
+  // Entry
+  { id: 'main.tsx',            layer: 'entry',       label: 'main.tsx',               ext: ['react','react-dom/client'] },
+  { id: 'App.tsx',             layer: 'entry',       label: 'App.tsx',                ext: ['react','react-router-dom','lucide-react'] },
+  // Config / types
+  { id: 'types.ts',            layer: 'config',      label: 'types.ts',               ext: [] },
+  { id: 'vite.config.ts',      layer: 'config',      label: 'vite.config.ts',         ext: ['vite','@vitejs/plugin-react','@tailwindcss/vite','path'] },
+  { id: 'index.css',           layer: 'config',      label: 'index.css',              ext: [] },
+  // Components
+  { id: 'Layout.tsx',          layer: 'component',   label: 'Layout.tsx',             ext: ['react','react-router-dom','lucide-react'] },
+  { id: 'Annotation.tsx',      layer: 'component',   label: 'Annotation.tsx',         ext: ['react','react-router-dom'] },
+  { id: 'Tooltip.tsx',         layer: 'component',   label: 'Tooltip.tsx',            ext: ['react'] },
+  // Contexts
+  { id: 'ThemeContext.tsx',     layer: 'context',     label: 'ThemeContext.tsx',       ext: ['react'] },
+  { id: 'AnnotationContext.tsx',layer: 'context',     label: 'AnnotationContext.tsx',  ext: ['react'] },
+  // Data
+  { id: 'data/index.ts',       layer: 'data',        label: 'data/index.ts',          ext: [] },
+  { id: 'data/fixGuides.ts',   layer: 'data',        label: 'data/fixGuides.ts',      ext: [] },
+  { id: 'data/validateEntries.ts',layer:'data',      label: 'data/validateEntries.ts',ext: [] },
+  { id: 'data/entries/*.ts',   layer: 'entries',     label: 'data/entries/\n(121 files)',ext:[] },
+  // Reference features
+  { id: 'ReferenceLibrary.tsx',layer: 'refFeature',  label: 'ReferenceLibrary.tsx',   ext: ['react','react-router-dom','lucide-react'] },
+  { id: 'ReferenceViewer.tsx', layer: 'refFeature',  label: 'ReferenceViewer.tsx',    ext: ['react','react-router-dom','framer-motion','lucide-react'] },
+  { id: 'referenceIndex.ts',   layer: 'refFeature',  label: 'referenceIndex.ts',      ext: [] },
+  { id: 'ReferenceCommandPalette.tsx',layer:'refFeature',label:'ReferenceCommandPalette.tsx',ext:['react','react-router-dom','lucide-react'] },
+  { id: 'ComparisonPage.tsx',  layer: 'refFeature',  label: 'ComparisonPage.tsx',     ext: ['react','react-router-dom','framer-motion','lucide-react'] },
+  { id: 'ComparisonTable.tsx', layer: 'refFeature',  label: 'ComparisonTable.tsx',    ext: ['react','lucide-react'] },
+  { id: 'AboutPage.tsx',       layer: 'refFeature',  label: 'AboutPage.tsx',          ext: ['react','framer-motion','lucide-react'] },
+  { id: 'EbookGenerator.tsx',  layer: 'refFeature',  label: 'EbookGenerator.tsx',     ext: ['react','react-router-dom','lucide-react'] },
+  // Demo features
+  { id: 'InteractiveDemos.tsx',layer: 'demoFeature', label: 'InteractiveDemos.tsx',   ext: ['react','framer-motion','lucide-react'] },
+  { id: 'StaticVisuals.tsx',   layer: 'demoFeature', label: 'StaticVisuals.tsx',      ext: ['react','lucide-react'] },
+  // Admin
+  { id: 'AdminDashboard.tsx',  layer: 'adminFeature',label: 'AdminDashboard.tsx',     ext: ['react','framer-motion','lucide-react','react-router-dom'] },
+  // Diagnostics
+  { id: 'TestRunner.tsx',      layer: 'diagFeature', label: 'TestRunner.tsx',         ext: ['react','react-dom/client','react-router-dom','lucide-react'] },
+  // Scripts
+  { id: 'scripts/validate-entries.ts',layer:'config',label:'scripts/validate-entries.ts',ext:[] },
+  { id: 'migrate-entries.ts',  layer: 'config',      label: 'migrate-entries.ts',     ext: ['fs','path'] },
+];
+
+const EDGES = [
+  // main → App
+  { source: 'main.tsx', target: 'App.tsx' },
+  // App → routes
+  { source: 'App.tsx', target: 'Layout.tsx' },
+  { source: 'App.tsx', target: 'ReferenceLibrary.tsx' },
+  { source: 'App.tsx', target: 'ReferenceViewer.tsx' },
+  { source: 'App.tsx', target: 'AboutPage.tsx' },
+  { source: 'App.tsx', target: 'ComparisonPage.tsx' },
+  { source: 'App.tsx', target: 'EbookGenerator.tsx' },
+  { source: 'App.tsx', target: 'AdminDashboard.tsx' },
+  { source: 'App.tsx', target: 'TestRunner.tsx' },
+  // Layout → sub-components
+  { source: 'Layout.tsx', target: 'AnnotationContext.tsx' },
+  { source: 'Layout.tsx', target: 'Annotation.tsx' },
+  { source: 'Layout.tsx', target: 'ThemeContext.tsx' },
+  { source: 'Layout.tsx', target: 'Tooltip.tsx' },
+  // Annotation → context
+  { source: 'Annotation.tsx', target: 'AnnotationContext.tsx' },
+  // Data layer
+  { source: 'data/index.ts', target: 'data/entries/*.ts' },
+  { source: 'data/validateEntries.ts', target: 'types.ts' },
+  // ReferenceLibrary
+  { source: 'ReferenceLibrary.tsx', target: 'data/index.ts' },
+  { source: 'ReferenceLibrary.tsx', target: 'data/fixGuides.ts' },
+  { source: 'ReferenceLibrary.tsx', target: 'types.ts' },
+  { source: 'ReferenceLibrary.tsx', target: 'referenceIndex.ts' },
+  { source: 'ReferenceLibrary.tsx', target: 'ReferenceCommandPalette.tsx' },
+  { source: 'ReferenceLibrary.tsx', target: 'Annotation.tsx' },
+  { source: 'ReferenceLibrary.tsx', target: 'Tooltip.tsx' },
+  { source: 'ReferenceLibrary.tsx', target: 'ThemeContext.tsx' },
+  { source: 'ReferenceLibrary.tsx', target: 'StaticVisuals.tsx' },
+  // ReferenceViewer
+  { source: 'ReferenceViewer.tsx', target: 'data/index.ts' },
+  { source: 'ReferenceViewer.tsx', target: 'InteractiveDemos.tsx' },
+  { source: 'ReferenceViewer.tsx', target: 'types.ts' },
+  // referenceIndex
+  { source: 'referenceIndex.ts', target: 'types.ts' },
+  // ReferenceCommandPalette
+  { source: 'ReferenceCommandPalette.tsx', target: 'data/index.ts' },
+  { source: 'ReferenceCommandPalette.tsx', target: 'data/fixGuides.ts' },
+  { source: 'ReferenceCommandPalette.tsx', target: 'referenceIndex.ts' },
+  { source: 'ReferenceCommandPalette.tsx', target: 'types.ts' },
+  // ComparisonPage
+  { source: 'ComparisonPage.tsx', target: 'data/index.ts' },
+  { source: 'ComparisonPage.tsx', target: 'ComparisonTable.tsx' },
+  // ComparisonTable
+  { source: 'ComparisonTable.tsx', target: 'types.ts' },
+  // EbookGenerator
+  { source: 'EbookGenerator.tsx', target: 'data/index.ts' },
+  { source: 'EbookGenerator.tsx', target: 'StaticVisuals.tsx' },
+  // AdminDashboard
+  { source: 'AdminDashboard.tsx', target: 'data/index.ts' },
+  // TestRunner
+  { source: 'TestRunner.tsx', target: 'ReferenceLibrary.tsx' },
+  { source: 'TestRunner.tsx', target: 'ReferenceViewer.tsx' },
+  { source: 'TestRunner.tsx', target: 'StaticVisuals.tsx' },
+  { source: 'TestRunner.tsx', target: 'data/index.ts' },
+  { source: 'TestRunner.tsx', target: 'data/validateEntries.ts' },
+  { source: 'TestRunner.tsx', target: 'types.ts' },
+  // scripts
+  { source: 'scripts/validate-entries.ts', target: 'data/index.ts' },
+  { source: 'scripts/validate-entries.ts', target: 'data/validateEntries.ts' },
+  // entries
+  { source: 'data/entries/*.ts', target: 'types.ts' },
+];
+
+// ── Setup ─────────────────────────────────────────────────────────────────────
+const svg    = d3.select('#canvas');
+const tooltip= document.getElementById('tooltip');
+const resetBtn=document.getElementById('reset-btn');
+const searchEl=document.getElementById('search');
+
+let W = window.innerWidth, H = window.innerHeight;
+svg.attr('width', W).attr('height', H);
+
+// Stats
+document.getElementById('stat-nodes').textContent = NODES.length;
+document.getElementById('stat-edges').textContent = EDGES.length;
+const pkgSet = new Set(NODES.flatMap(n => n.ext));
+document.getElementById('stat-pkgs').textContent = pkgSet.size;
+
+// Container for zoom
+const g = svg.append('g');
+
+// Zoom
+const zoom = d3.zoom()
+  .scaleExtent([0.3, 3])
+  .on('zoom', e => g.attr('transform', e.transform));
+svg.call(zoom);
+
+// Arrow marker
+const defs = svg.append('defs');
+function addMarker(id, color, opacity=0.6) {
+  defs.append('marker')
+    .attr('id', id)
+    .attr('viewBox', '0 -4 10 8')
+    .attr('refX', 18).attr('refY', 0)
+    .attr('markerWidth', 6).attr('markerHeight', 6)
+    .attr('orient', 'auto')
+    .append('path')
+      .attr('d', 'M0,-4L10,0L0,4')
+      .attr('fill', color)
+      .attr('fill-opacity', opacity);
+}
+addMarker('arrow',     '#58a6ff');
+addMarker('arrow-dim', '#58a6ff', 0.1);
+addMarker('arrow-hi',  '#f0f6fc', 0.95);
+
+// ── Simulation ────────────────────────────────────────────────────────────────
+const nodeById = Object.fromEntries(NODES.map(n => [n.id, n]));
+
+// Build adjacency for degree sizing
+const degree = {};
+NODES.forEach(n => degree[n.id] = 0);
+EDGES.forEach(e => { degree[e.source] = (degree[e.source]||0)+1; degree[e.target] = (degree[e.target]||0)+1; });
+
+function nodeRadius(d) {
+  const base = d.layer === 'entries' ? 22 : 10;
+  return base + Math.sqrt(degree[d.id] || 0) * 2.5;
+}
+
+const simulation = d3.forceSimulation(NODES)
+  .force('link', d3.forceLink(EDGES).id(d => d.id).distance(d => {
+    const s = d.source.layer || d.source, t = d.target.layer || d.target;
+    return 90;
+  }).strength(0.4))
+  .force('charge', d3.forceManyBody().strength(-320))
+  .force('center', d3.forceCenter(W / 2, H / 2))
+  .force('collide', d3.forceCollide(d => nodeRadius(d) + 14))
+  .force('x', d3.forceX(W/2).strength(0.04))
+  .force('y', d3.forceY(H/2).strength(0.04));
+
+// ── Render links ─────────────────────────────────────────────────────────────
+const linkGroup = g.append('g');
+const linkEls = linkGroup.selectAll('line')
+  .data(EDGES).enter().append('line')
+  .attr('class', 'link')
+  .attr('stroke', '#58a6ff')
+  .attr('stroke-width', 1)
+  .attr('marker-end', 'url(#arrow)');
+
+// ── Render nodes ─────────────────────────────────────────────────────────────
+const nodeGroup = g.append('g');
+const nodeEls = nodeGroup.selectAll('.node')
+  .data(NODES).enter().append('g')
+  .attr('class', 'node')
+  .call(d3.drag()
+    .on('start', (e, d) => {
+      if (!e.active) simulation.alphaTarget(0.3).restart();
+      d.fx = d.x; d.fy = d.y;
+    })
+    .on('drag', (e, d) => { d.fx = e.x; d.fy = e.y; })
+    .on('end', (e, d) => {
+      if (!e.active) simulation.alphaTarget(0);
+      if (!d.pinned) { d.fx = null; d.fy = null; }
+    })
+  )
+  .on('click', handleNodeClick)
+  .on('mouseover', handleMouseOver)
+  .on('mouseleave', handleMouseLeave);
+
+nodeEls.append('circle')
+  .attr('r', d => nodeRadius(d))
+  .attr('fill', d => LAYERS[d.layer].color + '22')
+  .attr('stroke', d => LAYERS[d.layer].color);
+
+// Labels
+nodeEls.append('text')
+  .attr('text-anchor', 'middle')
+  .attr('dy', d => nodeRadius(d) + 13)
+  .attr('fill', '#8b949e')
+  .attr('font-size', d => d.layer === 'entries' ? '11px' : '10px')
+  .each(function(d) {
+    const lines = d.label.split('\n');
+    const el = d3.select(this);
+    el.text('');
+    lines.forEach((line, i) => {
+      el.append('tspan')
+        .attr('x', 0)
+        .attr('dy', i === 0 ? 0 : 13)
+        .text(line);
+    });
+  });
+
+// Layer icon in node center
+nodeEls.append('text')
+  .attr('text-anchor', 'middle')
+  .attr('dominant-baseline', 'central')
+  .attr('fill', d => LAYERS[d.layer].color)
+  .attr('font-size', d => Math.max(10, nodeRadius(d) * 0.7) + 'px')
+  .attr('pointer-events', 'none')
+  .text(d => {
+    const icons = {
+      entry: '⚡', component: '◈', context: '◎', data: '◉',
+      refFeature: '⬡', demoFeature: '▷', adminFeature: '⬢',
+      diagFeature: '◇', config: '⬟', entries: '≡'
+    };
+    return icons[d.layer] || '●';
+  });
+
+// ── Tick ──────────────────────────────────────────────────────────────────────
+simulation.on('tick', () => {
+  linkEls
+    .attr('x1', d => d.source.x).attr('y1', d => d.source.y)
+    .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+  nodeEls.attr('transform', d => `translate(${d.x},${d.y})`);
+});
+
+// ── Interaction ───────────────────────────────────────────────────────────────
+let selectedId = null;
+
+function getNeighbors(id) {
+  const neighbors = new Set([id]);
+  EDGES.forEach(e => {
+    const s = typeof e.source === 'object' ? e.source.id : e.source;
+    const t = typeof e.target === 'object' ? e.target.id : e.target;
+    if (s === id) neighbors.add(t);
+    if (t === id) neighbors.add(s);
+  });
+  return neighbors;
+}
+
+function getEdgeIds(id) {
+  return new Set(EDGES.filter(e => {
+    const s = typeof e.source === 'object' ? e.source.id : e.source;
+    const t = typeof e.target === 'object' ? e.target.id : e.target;
+    return s === id || t === id;
+  }).map((_, i) => i));
+}
+
+function handleNodeClick(event, d) {
+  event.stopPropagation();
+
+  if (event.shiftKey) {
+    d.pinned = !d.pinned;
+    if (d.pinned) { d.fx = d.x; d.fy = d.y; }
+    else { d.fx = null; d.fy = null; }
+    d3.select(this).select('circle').attr('stroke-dasharray', d.pinned ? '4,2' : null);
+    return;
+  }
+
+  if (selectedId === d.id) {
+    clearSelection();
+    return;
+  }
+
+  selectedId = d.id;
+  const neighbors = getNeighbors(d.id);
+  const edgeIds = getEdgeIds(d.id);
+
+  nodeEls.classed('dimmed', n => !neighbors.has(n.id));
+  nodeEls.classed('focused', n => n.id === d.id);
+
+  linkEls
+    .classed('dimmed', (_, i) => !edgeIds.has(i))
+    .classed('highlighted', (_, i) => edgeIds.has(i))
+    .attr('marker-end', (_, i) => edgeIds.has(i) ? 'url(#arrow-hi)' : 'url(#arrow-dim)');
+
+  resetBtn.style.display = 'block';
+}
+
+function clearSelection() {
+  selectedId = null;
+  nodeEls.classed('dimmed', false).classed('focused', false);
+  linkEls.classed('dimmed', false).classed('highlighted', false)
+    .attr('marker-end', 'url(#arrow)');
+  resetBtn.style.display = 'none';
+}
+
+svg.on('click', clearSelection);
+resetBtn.addEventListener('click', clearSelection);
+
+function handleMouseOver(event, d) {
+  const imports  = EDGES.filter(e => (typeof e.source==='object'?e.source.id:e.source) === d.id).map(e => typeof e.target==='object'?e.target.id:e.target);
+  const importedBy = EDGES.filter(e => (typeof e.target==='object'?e.target.id:e.target) === d.id).map(e => typeof e.source==='object'?e.source.id:e.source);
+  const color = LAYERS[d.layer].color;
+
+  tooltip.innerHTML = `
+    <h3>${d.label.replace('\n', ' ')}</h3>
+    <span class="badge" style="background:${color}22;color:${color};border:1px solid ${color}55">${LAYERS[d.layer].label}</span>
+    ${importedBy.length ? `<div class="section-label">Imported by (${importedBy.length})</div>${importedBy.map(x=>`<div class="dep">→ <span>${x}</span></div>`).join('')}` : ''}
+    ${imports.length   ? `<div class="section-label">Imports (${imports.length})</div>${imports.map(x=>`<div class="dep">← <span>${x}</span></div>`).join('')}` : ''}
+    ${d.ext.length     ? `<div class="section-label">External packages</div>${d.ext.map(x=>`<div class="dep">📦 <span>${x}</span></div>`).join('')}` : ''}
+  `;
+  tooltip.style.opacity = 1;
+  moveTooltip(event);
+}
+
+function handleMouseLeave() {
+  tooltip.style.opacity = 0;
+}
+
+svg.on('mousemove', moveTooltip);
+function moveTooltip(e) {
+  if (!e) return;
+  let x = e.clientX + 16, y = e.clientY + 16;
+  if (x + 340 > W) x = e.clientX - 340;
+  if (y + 300 > H) y = e.clientY - 300;
+  tooltip.style.left = x + 'px';
+  tooltip.style.top  = y + 'px';
+}
+
+// ── Search ────────────────────────────────────────────────────────────────────
+searchEl.addEventListener('input', () => {
+  const q = searchEl.value.trim().toLowerCase();
+  if (!q) { clearSelection(); return; }
+
+  const matches = NODES.filter(n => n.id.toLowerCase().includes(q) || n.label.toLowerCase().includes(q));
+  if (!matches.length) return;
+
+  const matchIds = new Set(matches.map(n => n.id));
+  const allNeighbors = new Set();
+  matches.forEach(n => getNeighbors(n.id).forEach(id => allNeighbors.add(id)));
+
+  nodeEls.classed('dimmed', n => !allNeighbors.has(n.id));
+  nodeEls.classed('focused', n => matchIds.has(n.id));
+
+  const relevantEdges = new Set();
+  EDGES.forEach((e, i) => {
+    const s = typeof e.source==='object'?e.source.id:e.source;
+    const t = typeof e.target==='object'?e.target.id:e.target;
+    if (matchIds.has(s) || matchIds.has(t)) relevantEdges.add(i);
+  });
+  linkEls
+    .classed('dimmed', (_, i) => !relevantEdges.has(i))
+    .classed('highlighted', (_, i) => relevantEdges.has(i))
+    .attr('marker-end', (_, i) => relevantEdges.has(i) ? 'url(#arrow-hi)' : 'url(#arrow-dim)');
+
+  resetBtn.style.display = 'block';
+
+  // Pan to first match
+  const first = matches[0];
+  if (first.x && first.y) {
+    svg.transition().duration(500).call(
+      zoom.transform,
+      d3.zoomIdentity.translate(W/2 - first.x, H/2 - first.y).scale(1)
+    );
+  }
+});
+
+// ── Resize ────────────────────────────────────────────────────────────────────
+window.addEventListener('resize', () => {
+  W = window.innerWidth; H = window.innerHeight;
+  svg.attr('width', W).attr('height', H);
+  simulation.force('center', d3.forceCenter(W/2, H/2)).alpha(0.2).restart();
+});
+</script>
+</body>
+</html>
