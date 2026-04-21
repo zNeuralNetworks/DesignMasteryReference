@@ -1,0 +1,25 @@
+# Dependencies — reinstalled in the build stage
+node_modules/
+
+# Build output — produced inside the container
+dist/
+
+# Git history
+.git/
+.gitignore
+
+# Local env overrides
+.env
+.env.*
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Docs (not needed in image)
+docs/
+
+# CI/deploy config not needed inside image
+cloudbuild.yaml

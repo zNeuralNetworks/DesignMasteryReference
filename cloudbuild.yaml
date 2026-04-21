@@ -1,0 +1,78 @@
+# Cloud Build pipeline for DesignMastery Reference
+# Triggered on push to main — builds, pushes, and deploys to Cloud Run.
+#
+# Required substitution variables (set in Cloud Build trigger):
+#   _REGION        — e.g. us-central1
+#   _SERVICE_NAME  — e.g. design-mastery-reference
+#
+# $PROJECT_ID is injected automatically by Cloud Build.
+
+substitutions:
+  _REGION: us-central1
+  _SERVICE_NAME: design-mastery-reference
+
+steps:
+  # ── 1. Build the container image ─────────────────────────────────────────
+  - id: build
+    name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - --tag
+      - gcr.io/$PROJECT_ID/$_SERVICE_NAME:$COMMIT_SHA
+      - --tag
+      - gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest
+      - --cache-from
+      - gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest
+      - .
+
+  # ── 2. Push both tags to Container Registry ───────────────────────────────
+  - id: push-sha
+    name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - gcr.io/$PROJECT_ID/$_SERVICE_NAME:$COMMIT_SHA
+    waitFor: [build]
+
+  - id: push-latest
+    name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest
+    waitFor: [build]
+
+  # ── 3. Deploy to Cloud Run ────────────────────────────────────────────────
+  - id: deploy
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk:slim
+    entrypoint: gcloud
+    args:
+      - run
+      - deploy
+      - $_SERVICE_NAME
+      - --image
+      - gcr.io/$PROJECT_ID/$_SERVICE_NAME:$COMMIT_SHA
+      - --region
+      - $_REGION
+      - --platform
+      - managed
+      - --allow-unauthenticated
+      - --port
+      - "8080"
+      - --cpu
+      - "1"
+      - --memory
+      - 256Mi
+      - --min-instances
+      - "0"
+      - --max-instances
+      - "10"
+      - --quiet
+    waitFor: [push-sha]
+
+# Register the images built by this pipeline
+images:
+  - gcr.io/$PROJECT_ID/$_SERVICE_NAME:$COMMIT_SHA
+  - gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+  machineType: E2_HIGHCPU_8
