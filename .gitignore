@@ -43,3 +43,12 @@ logs/
 # Misc
 .cache/
 .temp/
+# Added by code-review-graph
+.code-review-graph/
+
+# AI / editor tool configs (local only)
+.claude/
+.cursor/
+.qoder/
+.mcp.json
+.opencode.json
