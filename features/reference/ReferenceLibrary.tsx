@@ -641,41 +641,8 @@ export const ReferenceLibrary = () => {
         </div>
         </Annotation>
 
-        {/* Intent filter row + Filters popover */}
-        <div className="flex items-center gap-2">
-          <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide pb-0.5 flex-1">
-            <span className="text-[11px] text-fg-faint font-medium whitespace-nowrap flex-shrink-0">
-              {mode === 'solve' ? 'Narrow:' : 'I want to:'}
-            </span>
-            {(mode === 'solve' ? ([
-              ['all',           'All',              null],
-              ['diagnose',      'Diagnose',         Stethoscope],
-              ['implement',     'Fix It',           Wrench],
-              ['choose',        'Compare',          GitFork],
-              ['evaluate-risk', 'Avoid Pitfalls',  TriangleAlert],
-            ] as [IntentFilter, string, React.ElementType | null][]) : ([
-              ['all',           'All',           null],
-              ['choose',        'Choose',        GitFork],
-              ['implement',     'Implement',     Wrench],
-              ['diagnose',      'Diagnose',      Stethoscope],
-              ['evaluate-risk', 'Evaluate Risk', TriangleAlert],
-              ['study',         'Study',         BookOpen],
-            ] as [IntentFilter, string, React.ElementType | null][])).map(([value, label, Icon]) => (
-              <button
-                key={value}
-                onClick={() => setIntentFilter(intentFilter === value ? 'all' : value)}
-                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-medium whitespace-nowrap flex-shrink-0 border transition-all ${
-                  intentFilter === value
-                    ? 'bg-fg text-surface border-fg shadow-sm'
-                    : 'bg-surface-raised text-fg-muted border-border hover:border-slate-300 hover:text-fg'
-                }`}
-              >
-                {Icon && <Icon size={11} />}
-                {label}
-              </button>
-            ))}
-          </div>
-
+        {/* Filters popover */}
+        <div className="flex justify-end">
           <Annotation
             title="Progressive Disclosure"
             body="Verdict and sort options are collapsed into a count-badged popover. The badge (1, 2) tells users active filters exist without opening the panel — information density without visual noise."
