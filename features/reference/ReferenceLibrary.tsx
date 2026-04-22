@@ -71,6 +71,13 @@ const DOMAIN_LABELS: Record<string, string> = {
   responsiveness: 'Responsive', data: 'Data', tokens: 'Tokens',
 };
 
+const SOLVE_DOMAIN_LABELS: Record<string, string> = {
+  All: 'All', layout: 'Layout', typography: 'Type', color: 'Color',
+  components: 'Components', interaction: 'Interaction', motion: 'Motion',
+  'visual-hierarchy': 'Hierarchy', psychology: 'UX Laws',
+  responsiveness: 'Mobile', data: 'Data', tokens: 'Tokens',
+};
+
 const FIX_COLORS: Record<string, { card: string; icon: string; badge: string }> = {
   violet:  { card: 'bg-violet-50 border-violet-100 hover:border-violet-300',    icon: 'text-violet-600',  badge: 'bg-violet-100 text-violet-700'  },
   blue:    { card: 'bg-blue-50 border-blue-100 hover:border-blue-300',          icon: 'text-blue-600',    badge: 'bg-blue-100 text-blue-700'    },
@@ -410,7 +417,9 @@ export const ReferenceLibrary = () => {
 
   useEffect(() => {
     localStorage.setItem('dmr-mode', mode);
-    if (mode === 'explore') setActiveFixGuide(null);
+    setActiveFixGuide(null);
+    setIntentFilter('all');
+    setActiveDomain('All');
   }, [mode]);
 
   if (!entries || !Array.isArray(entries)) {
@@ -612,7 +621,10 @@ export const ReferenceLibrary = () => {
           side="bottom"
           className="block"
         >
-        <div className="flex gap-1.5 overflow-x-auto scrollbar-hide mb-2.5 pb-0.5">
+        <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-hide mb-2.5 pb-0.5">
+          {mode === 'solve' && (
+            <span className="text-[11px] text-fg-faint font-medium whitespace-nowrap flex-shrink-0">Problem area:</span>
+          )}
           {domains.map(domain => (
             <button
               key={domain}
@@ -623,7 +635,7 @@ export const ReferenceLibrary = () => {
                   : 'bg-surface-raised text-fg-muted border border-border hover:border-fg/20 hover:text-fg'
               }`}
             >
-              {DOMAIN_LABELS[domain] ?? domain}
+              {(mode === 'solve' ? SOLVE_DOMAIN_LABELS : DOMAIN_LABELS)[domain] ?? domain}
             </button>
           ))}
         </div>
@@ -632,15 +644,23 @@ export const ReferenceLibrary = () => {
         {/* Intent filter row + Filters popover */}
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide pb-0.5 flex-1">
-            <span className="text-[11px] text-fg-faint font-medium whitespace-nowrap flex-shrink-0">I want to:</span>
-            {([
+            <span className="text-[11px] text-fg-faint font-medium whitespace-nowrap flex-shrink-0">
+              {mode === 'solve' ? 'Narrow:' : 'I want to:'}
+            </span>
+            {(mode === 'solve' ? ([
+              ['all',           'All',              null],
+              ['diagnose',      'Diagnose',         Stethoscope],
+              ['implement',     'Fix It',           Wrench],
+              ['choose',        'Compare',          GitFork],
+              ['evaluate-risk', 'Avoid Pitfalls',  TriangleAlert],
+            ] as [IntentFilter, string, React.ElementType | null][]) : ([
               ['all',           'All',           null],
               ['choose',        'Choose',        GitFork],
               ['implement',     'Implement',     Wrench],
               ['diagnose',      'Diagnose',      Stethoscope],
               ['evaluate-risk', 'Evaluate Risk', TriangleAlert],
               ['study',         'Study',         BookOpen],
-            ] as [IntentFilter, string, React.ElementType | null][]).map(([value, label, Icon]) => (
+            ] as [IntentFilter, string, React.ElementType | null][])).map(([value, label, Icon]) => (
               <button
                 key={value}
                 onClick={() => setIntentFilter(intentFilter === value ? 'all' : value)}
