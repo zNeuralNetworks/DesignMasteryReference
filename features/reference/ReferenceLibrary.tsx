@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import { entries } from '@/data/index';
 import { fixGuides, FixGuide } from '@/data/fixGuides';
-import { Domain, Format, Verdict, UseContext } from '@/types';
+import { Domain, Format, Verdict, UseContext, ReferenceEntry } from '@/types';
 import { filterReferenceEntries, QuickFilter, SortMode, IntentFilter } from '@/features/reference/referenceIndex';
 import { ReferenceCommandPalette } from '@/features/reference/ReferenceCommandPalette';
 import { Annotation } from '@/components/Annotation';
@@ -354,9 +354,48 @@ const ThemeGalleryRow = () => {
   );
 };
 
+// ── SolveCard ───────────────────────────────────────────────────────────────
+
+const SolveCard = ({ entry }: { entry: ReferenceEntry }) => (
+  <Link
+    to={`/reference/${entry.id}`}
+    className="group flex flex-col bg-surface-raised rounded-2xl p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_28px_rgba(0,0,0,0.11)] transition-all duration-300 hover:-translate-y-0.5"
+  >
+    <div className="flex items-center justify-between mb-2">
+      <VerdictBadge verdict={entry.verdict} />
+      <span className="text-[10px] text-fg-faint capitalize">{entry.domain} · {entry.format}</span>
+    </div>
+    <h3 className="font-semibold text-[14px] text-fg leading-snug mb-2 group-hover:text-accent transition-colors">
+      {entry.title.includes(':') ? entry.title.split(':')[1].trim() : entry.title}
+    </h3>
+    <p className="text-[12px] text-fg-muted leading-relaxed mb-3 line-clamp-2">{entry.quickTake}</p>
+    {entry.checklist && entry.checklist.length > 0 && (
+      <>
+        <div className="border-t border-border mb-3" />
+        <ul className="space-y-1.5 flex-1">
+          {entry.checklist.slice(0, 3).map((item, i) => (
+            <li key={i} className="flex items-start gap-1.5 text-[11px] text-fg-muted">
+              <span className="mt-0.5 text-emerald-500 flex-shrink-0">✓</span>
+              <span className="line-clamp-1">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </>
+    )}
+    <div className="mt-auto pt-3 flex items-center justify-end">
+      <span className="text-[11px] font-medium text-accent flex items-center gap-1 group-hover:gap-1.5 transition-all">
+        Apply <ArrowRight size={11} />
+      </span>
+    </div>
+  </Link>
+);
+
 // ── ReferenceLibrary ────────────────────────────────────────────────────────
 
 export const ReferenceLibrary = () => {
+  const [mode, setMode] = useState<'solve' | 'explore'>(() =>
+    (localStorage.getItem('dmr-mode') as 'solve' | 'explore') ?? 'solve'
+  );
   const [searchQuery, setSearchQuery]       = useState('');
   const [activeDomain, setActiveDomain]     = useState<Domain | 'All'>('All');
   const [activeFormat, setActiveFormat]     = useState<Format | 'All'>('All');
@@ -368,6 +407,11 @@ export const ReferenceLibrary = () => {
   const [activeFixGuide, setActiveFixGuide] = useState<FixGuide | null>(null);
   const [paletteOpen, setPaletteOpen]       = useState(false);
   const deferredSearchQuery = useDeferredValue(searchQuery);
+
+  useEffect(() => {
+    localStorage.setItem('dmr-mode', mode);
+    if (mode === 'explore') setActiveFixGuide(null);
+  }, [mode]);
 
   if (!entries || !Array.isArray(entries)) {
     return (
@@ -423,47 +467,71 @@ export const ReferenceLibrary = () => {
           </div>
         </Annotation>
 
-        {/* View toggle */}
-        <Annotation
-          title="Segmented Control"
-          body="The active pill uses bg-surface-raised + shadow-sm while the track stays bg-slate-100 — the shadow creates an elevation difference that communicates mutual exclusivity without a dropdown."
-          entryId="micro-interactions"
-          side="bottom"
-        >
+        <div className="flex items-center gap-3">
+          {/* Mode toggle */}
           <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl">
-            <Tooltip content="Grid view" side="bottom">
+            <Tooltip content="Find a fix fast — problem-first, action-shaped entries" side="bottom">
               <button
-                onClick={() => setViewMode('grid')}
-                className={`p-2 rounded-lg transition-all ${viewMode === 'grid' ? 'bg-surface-raised text-fg shadow-sm' : 'text-fg-faint hover:text-fg-muted'}`}
+                onClick={() => setMode('solve')}
+                className={`px-3 py-1.5 rounded-lg text-[12px] font-semibold transition-all ${mode === 'solve' ? 'bg-surface-raised text-fg shadow-sm' : 'text-fg-faint hover:text-fg-muted'}`}
               >
-                <LayoutGrid size={16} />
+                Solve
               </button>
             </Tooltip>
-            <Tooltip content="List view" side="bottom">
+            <Tooltip content="Browse patterns and build taste — visual, no pressure" side="bottom">
               <button
-                onClick={() => setViewMode('list')}
-                className={`p-2 rounded-lg transition-all ${viewMode === 'list' ? 'bg-surface-raised text-fg shadow-sm' : 'text-fg-faint hover:text-fg-muted'}`}
+                onClick={() => setMode('explore')}
+                className={`px-3 py-1.5 rounded-lg text-[12px] font-semibold transition-all ${mode === 'explore' ? 'bg-surface-raised text-fg shadow-sm' : 'text-fg-faint hover:text-fg-muted'}`}
               >
-                <List size={16} />
+                Explore
               </button>
             </Tooltip>
           </div>
-        </Annotation>
+
+          {/* View toggle */}
+          <Annotation
+            title="Segmented Control"
+            body="The active pill uses bg-surface-raised + shadow-sm while the track stays bg-slate-100 — the shadow creates an elevation difference that communicates mutual exclusivity without a dropdown."
+            entryId="micro-interactions"
+            side="bottom"
+          >
+            <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl">
+              <Tooltip content="Grid view" side="bottom">
+                <button
+                  onClick={() => setViewMode('grid')}
+                  className={`p-2 rounded-lg transition-all ${viewMode === 'grid' ? 'bg-surface-raised text-fg shadow-sm' : 'text-fg-faint hover:text-fg-muted'}`}
+                >
+                  <LayoutGrid size={16} />
+                </button>
+              </Tooltip>
+              <Tooltip content="List view" side="bottom">
+                <button
+                  onClick={() => setViewMode('list')}
+                  className={`p-2 rounded-lg transition-all ${viewMode === 'list' ? 'bg-surface-raised text-fg shadow-sm' : 'text-fg-faint hover:text-fg-muted'}`}
+                >
+                  <List size={16} />
+                </button>
+              </Tooltip>
+            </div>
+          </Annotation>
+        </div>
       </header>
 
-      {/* Theme gallery */}
-      <ThemeGalleryRow />
+      {/* Theme gallery — Explore mode only */}
+      {mode === 'explore' && <ThemeGalleryRow />}
 
-      {/* Fix guides */}
-      <Annotation
-        title="Diagnostic UX Pattern"
-        body="Fix guides route by symptom, not solution — 'feels cluttered' leads to gestalt-proximity without the user knowing the term. Reduces the expert knowledge barrier for the entire library."
-        entryId="progressive-disclosure"
-        side="bottom"
-        className="block"
-      >
-        <FixGuideRow activeGuideId={activeFixGuide?.id ?? null} onSelect={setActiveFixGuide} />
-      </Annotation>
+      {/* Fix guides — Solve mode only */}
+      {mode === 'solve' && (
+        <Annotation
+          title="Diagnostic UX Pattern"
+          body="Fix guides route by symptom, not solution — 'feels cluttered' leads to gestalt-proximity without the user knowing the term. Reduces the expert knowledge barrier for the entire library."
+          entryId="progressive-disclosure"
+          side="bottom"
+          className="block"
+        >
+          <FixGuideRow activeGuideId={activeFixGuide?.id ?? null} onSelect={setActiveFixGuide} />
+        </Annotation>
+      )}
 
       {/* Active fix guide checklist banner */}
       {activeFixGuide && (() => {
@@ -518,7 +586,11 @@ export const ReferenceLibrary = () => {
           >
             {searchQuery
               ? <span className="text-fg flex-1 truncate">{searchQuery}</span>
-              : <span className="text-fg-faint flex-1">Search patterns, principles, systems...</span>
+              : <span className="text-fg-faint flex-1">
+                  {mode === 'solve'
+                    ? "Describe the problem: 'spacing feels off', 'hierarchy unclear'..."
+                    : 'Search patterns, principles, systems...'}
+                </span>
             }
             <span className="text-[11px] text-fg-faint font-medium flex-shrink-0 ml-2">⌘K</span>
           </button>
@@ -627,36 +699,40 @@ export const ReferenceLibrary = () => {
             side="top"
             className="block"
           >
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          <div className={`grid gap-4 ${mode === 'solve' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' : 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'}`}>
             {filteredEntries.map((entry) => (
-              <Link
-                key={entry.id}
-                to={`/reference/${entry.id}`}
-                className="group flex flex-col bg-surface-raised rounded-2xl overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_28px_rgba(0,0,0,0.11)] transition-all duration-300 hover:-translate-y-0.5"
-              >
-                <div className="aspect-[4/3] bg-surface flex items-center justify-center overflow-hidden p-4 group-hover:bg-slate-100/60 transition-colors">
-                  <div className="w-full h-full flex items-center justify-center scale-95 group-hover:scale-100 transition-transform duration-500">
-                    <StaticVisual type={entry.interactiveComponent || entry.domain} />
-                  </div>
-                </div>
-                <div className="p-3 flex-1 flex flex-col">
-                  <VerdictBadge verdict={entry.verdict} />
-                  <h3 className="font-semibold text-[13px] text-fg mt-2 leading-snug line-clamp-2 group-hover:text-accent transition-colors">
-                    {entry.title.includes(':') ? entry.title.split(':')[1].trim() : entry.title}
-                  </h3>
-                  <div className="mt-auto pt-2.5 flex items-center justify-between">
-                    <span className="text-[10px] text-fg-faint capitalize">{entry.domain}</span>
-                    <div className="flex items-center gap-1">
-                      {entry.perfImpact === 'high' && (
-                        <Tooltip content="High performance cost" side="top">
-                          <Gauge size={10} className="text-rose-400 cursor-default" />
-                        </Tooltip>
-                      )}
-                      {entry.useContext.slice(0, 2).map(ctx => <ContextIcon key={ctx} context={ctx} />)}
+              mode === 'solve' ? (
+                <SolveCard key={entry.id} entry={entry} />
+              ) : (
+                <Link
+                  key={entry.id}
+                  to={`/reference/${entry.id}`}
+                  className="group flex flex-col bg-surface-raised rounded-2xl overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_28px_rgba(0,0,0,0.11)] transition-all duration-300 hover:-translate-y-0.5"
+                >
+                  <div className="aspect-[4/3] bg-surface flex items-center justify-center overflow-hidden p-4 group-hover:bg-slate-100/60 transition-colors">
+                    <div className="w-full h-full flex items-center justify-center scale-95 group-hover:scale-100 transition-transform duration-500">
+                      <StaticVisual type={entry.interactiveComponent || entry.domain} />
                     </div>
                   </div>
-                </div>
-              </Link>
+                  <div className="p-3 flex-1 flex flex-col">
+                    <VerdictBadge verdict={entry.verdict} />
+                    <h3 className="font-semibold text-[13px] text-fg mt-2 leading-snug line-clamp-2 group-hover:text-accent transition-colors">
+                      {entry.title.includes(':') ? entry.title.split(':')[1].trim() : entry.title}
+                    </h3>
+                    <div className="mt-auto pt-2.5 flex items-center justify-between">
+                      <span className="text-[10px] text-fg-faint capitalize">{entry.domain}</span>
+                      <div className="flex items-center gap-1">
+                        {entry.perfImpact === 'high' && (
+                          <Tooltip content="High performance cost" side="top">
+                            <Gauge size={10} className="text-rose-400 cursor-default" />
+                          </Tooltip>
+                        )}
+                        {entry.useContext.slice(0, 2).map(ctx => <ContextIcon key={ctx} context={ctx} />)}
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              )
             ))}
           </div>
           </Annotation>
