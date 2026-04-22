@@ -248,33 +248,31 @@ const FixGuideRow = ({
 }) => (
   <div className="mb-6">
     <p className="text-[11px] font-semibold text-fg-faint uppercase tracking-widest mb-3">Something feel off?</p>
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+    <div className="flex gap-2.5 overflow-x-auto scrollbar-hide pb-1">
       {fixGuides.map((guide) => {
         const Icon = FIX_ICONS[guide.icon] || Gauge;
         const c = FIX_COLORS[guide.color];
         const isActive = activeGuideId === guide.id;
+        const shortTitle = guide.title.replace('Fix ', '');
         return (
           <button
             key={guide.id}
             onClick={() => onSelect(isActive ? null : guide)}
-            className={`group text-left p-3.5 rounded-2xl border transition-all duration-200 hover:shadow-sm ${
-              isActive ? `${c.card} ring-2 ring-offset-1 shadow-sm` : c.card
+            className={`group flex-shrink-0 w-44 text-left p-3.5 rounded-2xl border transition-all duration-200 ${
+              isActive
+                ? `${c.card} ring-2 ring-offset-1 shadow-md`
+                : `${c.card} hover:shadow-md hover:-translate-y-0.5`
             }`}
           >
-            <div className={`w-7 h-7 rounded-lg flex items-center justify-center mb-2.5 ${c.badge}`}>
-              <Icon size={14} className={c.icon} />
+            <div className="flex items-center gap-2 mb-2.5">
+              <div className={`w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 ${c.badge}`}>
+                <Icon size={12} className={c.icon} />
+              </div>
+              <span className="text-[13px] font-bold text-fg leading-tight truncate">{shortTitle}</span>
             </div>
-            <p className="text-[13px] font-semibold text-fg leading-tight mb-1">{guide.title}</p>
-            <p className="text-[11px] text-fg-faint leading-snug">
-              {guide.problems.slice(0, 2).join(' · ')}
+            <p className="text-[11px] text-fg-faint leading-snug line-clamp-2">
+              {guide.problems.slice(0, 3).join(' · ')}
             </p>
-            {guide.problems.length > 2 && (
-              <p className="text-[10px] text-fg-faint mt-0.5">+{guide.problems.length - 2} more</p>
-            )}
-            <div className="mt-2.5 flex items-center gap-1 text-[10px] font-medium text-fg-faint group-hover:text-fg-muted transition-colors">
-              <span>{guide.relatedEntryIds.length} entries</span>
-              <ChevronRight size={9} />
-            </div>
           </button>
         );
       })}
