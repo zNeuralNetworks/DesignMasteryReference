@@ -72,12 +72,12 @@ const DOMAIN_LABELS: Record<string, string> = {
 };
 
 const FIX_COLORS: Record<string, { card: string; icon: string; badge: string }> = {
-  violet:  { card: 'bg-violet-50 border-violet-100 hover:border-violet-300',    icon: 'text-violet-600',  badge: 'bg-violet-100 text-violet-700'  },
-  blue:    { card: 'bg-blue-50 border-blue-100 hover:border-blue-300',          icon: 'text-blue-600',    badge: 'bg-blue-100 text-blue-700'    },
-  teal:    { card: 'bg-teal-50 border-teal-100 hover:border-teal-300',          icon: 'text-teal-600',    badge: 'bg-teal-100 text-teal-700'    },
-  amber:   { card: 'bg-amber-50 border-amber-100 hover:border-amber-300',       icon: 'text-amber-600',   badge: 'bg-amber-100 text-amber-700'   },
-  rose:    { card: 'bg-rose-50 border-rose-100 hover:border-rose-300',          icon: 'text-rose-600',    badge: 'bg-rose-100 text-rose-700'    },
-  emerald: { card: 'bg-emerald-50 border-emerald-100 hover:border-emerald-300', icon: 'text-emerald-600', badge: 'bg-emerald-100 text-emerald-700' },
+  violet:  { card: 'bg-violet-50/40 border-violet-100/60 hover:border-violet-200',    icon: 'text-violet-500',  badge: 'bg-violet-100/60 text-violet-600'  },
+  blue:    { card: 'bg-blue-50/40 border-blue-100/60 hover:border-blue-200',          icon: 'text-blue-500',    badge: 'bg-blue-100/60 text-blue-600'    },
+  teal:    { card: 'bg-teal-50/40 border-teal-100/60 hover:border-teal-200',          icon: 'text-teal-500',    badge: 'bg-teal-100/60 text-teal-600'    },
+  amber:   { card: 'bg-amber-50/40 border-amber-100/60 hover:border-amber-200',       icon: 'text-amber-500',   badge: 'bg-amber-100/60 text-amber-600'   },
+  rose:    { card: 'bg-rose-50/40 border-rose-100/60 hover:border-rose-200',          icon: 'text-rose-500',    badge: 'bg-rose-100/60 text-rose-600'    },
+  emerald: { card: 'bg-emerald-50/40 border-emerald-100/60 hover:border-emerald-200', icon: 'text-emerald-500', badge: 'bg-emerald-100/60 text-emerald-600' },
 };
 
 // ── FiltersPopover ──────────────────────────────────────────────────────────
@@ -241,36 +241,39 @@ const FixGuideRow = ({
 }) => (
   <div className="mb-6">
     <p className="text-[11px] font-semibold text-fg-faint uppercase tracking-widest mb-3">Something feel off?</p>
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-      {fixGuides.map((guide) => {
-        const Icon = FIX_ICONS[guide.icon] || Gauge;
-        const c = FIX_COLORS[guide.color];
-        const isActive = activeGuideId === guide.id;
-        return (
-          <button
-            key={guide.id}
-            onClick={() => onSelect(isActive ? null : guide)}
-            className={`group text-left p-3.5 rounded-2xl border transition-all duration-200 hover:shadow-sm ${
-              isActive ? `${c.card} ring-2 ring-offset-1 shadow-sm` : c.card
-            }`}
-          >
-            <div className={`w-7 h-7 rounded-lg flex items-center justify-center mb-2.5 ${c.badge}`}>
-              <Icon size={14} className={c.icon} />
-            </div>
-            <p className="text-[13px] font-semibold text-fg leading-tight mb-1">{guide.title}</p>
-            <p className="text-[11px] text-fg-faint leading-snug">
-              {guide.problems.slice(0, 2).join(' · ')}
-            </p>
-            {guide.problems.length > 2 && (
-              <p className="text-[10px] text-fg-faint mt-0.5">+{guide.problems.length - 2} more</p>
-            )}
-            <div className="mt-2.5 flex items-center gap-1 text-[10px] font-medium text-fg-faint group-hover:text-fg-muted transition-colors">
-              <span>{guide.relatedEntryIds.length} entries</span>
-              <ChevronRight size={9} />
-            </div>
-          </button>
-        );
-      })}
+    <div className="relative">
+      <div className="flex gap-3 overflow-x-auto scrollbar-hide pb-1">
+        {fixGuides.map((guide) => {
+          const Icon = FIX_ICONS[guide.icon] || Gauge;
+          const c = FIX_COLORS[guide.color];
+          const isActive = activeGuideId === guide.id;
+          return (
+            <button
+              key={guide.id}
+              onClick={() => onSelect(isActive ? null : guide)}
+              className={`group flex-shrink-0 w-48 text-left p-3.5 rounded-2xl border transition-all duration-200 hover:shadow-sm ${
+                isActive ? `${c.card} ring-2 ring-offset-1 shadow-sm` : c.card
+              }`}
+            >
+              <div className={`w-7 h-7 rounded-lg flex items-center justify-center mb-2.5 ${c.badge}`}>
+                <Icon size={14} className={c.icon} />
+              </div>
+              <p className="text-[13px] font-semibold text-fg leading-tight mb-1">{guide.title}</p>
+              <p className="text-[11px] text-fg-faint leading-snug">
+                {guide.problems.slice(0, 2).join(' · ')}
+              </p>
+              {guide.problems.length > 2 && (
+                <p className="text-[10px] text-fg-faint mt-0.5">+{guide.problems.length - 2} more</p>
+              )}
+              <div className="mt-2.5 flex items-center gap-1 text-[10px] font-medium text-fg-faint group-hover:text-fg-muted transition-colors">
+                <span>{guide.relatedEntryIds.length} entries</span>
+                <ChevronRight size={9} />
+              </div>
+            </button>
+          );
+        })}
+      </div>
+      <div className="pointer-events-none absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-surface to-transparent" />
     </div>
   </div>
 );
@@ -368,21 +371,8 @@ const SolveCard = ({ entry }: { entry: ReferenceEntry }) => (
     <h3 className="font-semibold text-[14px] text-fg leading-snug mb-2 group-hover:text-accent transition-colors">
       {entry.title.includes(':') ? entry.title.split(':')[1].trim() : entry.title}
     </h3>
-    <p className="text-[12px] text-fg-muted leading-relaxed mb-3 line-clamp-2">{entry.quickTake}</p>
-    {entry.checklist && entry.checklist.length > 0 && (
-      <>
-        <div className="border-t border-border mb-3" />
-        <ul className="space-y-1.5 flex-1">
-          {entry.checklist.slice(0, 3).map((item, i) => (
-            <li key={i} className="flex items-start gap-1.5 text-[11px] text-fg-muted">
-              <span className="mt-0.5 text-emerald-500 flex-shrink-0">✓</span>
-              <span className="line-clamp-1">{item}</span>
-            </li>
-          ))}
-        </ul>
-      </>
-    )}
-    <div className="mt-auto pt-3 flex items-center justify-end">
+    <p className="text-[12px] text-fg-muted leading-relaxed mb-3 line-clamp-1">{entry.quickTake}</p>
+    <div className="mt-auto pt-2 flex items-center justify-end">
       <span className="text-[11px] font-medium text-accent flex items-center gap-1 group-hover:gap-1.5 transition-all">
         Apply <ArrowRight size={11} />
       </span>
@@ -459,10 +449,12 @@ export const ReferenceLibrary = () => {
         >
           <div>
             <h1 className="text-[34px] font-bold tracking-tight text-fg leading-none mb-1.5">
-              Design Library
+              {mode === 'solve' ? 'Debug your UI' : 'Design Library'}
             </h1>
             <p className="text-[15px] text-fg-muted">
-              {filteredEntries.length} of {entries.length} references
+              {mode === 'solve'
+                ? `${filteredEntries.length} patterns · symptoms · fixes`
+                : `${filteredEntries.length} of ${entries.length} references`}
             </p>
           </div>
         </Annotation>
@@ -519,6 +511,21 @@ export const ReferenceLibrary = () => {
 
       {/* Theme gallery — Explore mode only */}
       {mode === 'explore' && <ThemeGalleryRow />}
+
+      {/* Hero search — Solve mode only, appears above Fix Guides */}
+      {mode === 'solve' && (
+        <button
+          type="button"
+          onClick={() => { setPaletteOpen(true); setActiveFixGuide(null); }}
+          className="w-full flex items-center gap-3 bg-surface-raised border border-border rounded-2xl px-4 py-3 mb-5 text-left shadow-sm hover:shadow-md hover:border-fg/20 transition-all"
+        >
+          <Search size={16} className="text-fg-faint flex-shrink-0" />
+          <span className="text-[15px] text-fg-faint flex-1">
+            Describe the problem: 'spacing feels off', 'hierarchy unclear'…
+          </span>
+          <kbd className="text-[11px] font-medium text-fg-faint bg-surface px-1.5 py-0.5 rounded border border-border flex-shrink-0">⌘K</kbd>
+        </button>
+      )}
 
       {/* Fix guides — Solve mode only */}
       {mode === 'solve' && (
@@ -612,6 +619,7 @@ export const ReferenceLibrary = () => {
           side="bottom"
           className="block"
         >
+        <p className="text-[10px] font-semibold uppercase tracking-widest text-fg-faint mb-1.5">Domain</p>
         <div className="flex gap-1.5 overflow-x-auto scrollbar-hide mb-2.5 pb-0.5">
           {domains.map(domain => (
             <button
@@ -630,6 +638,7 @@ export const ReferenceLibrary = () => {
         </Annotation>
 
         {/* Intent filter row + Filters popover */}
+        <p className="text-[10px] font-semibold uppercase tracking-widest text-fg-faint mb-1.5 mt-3">Intent</p>
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide pb-0.5 flex-1">
             <span className="text-[11px] text-fg-faint font-medium whitespace-nowrap flex-shrink-0">I want to:</span>
