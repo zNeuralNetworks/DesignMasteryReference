@@ -12,6 +12,23 @@ const perfWeight: Record<ReferenceEntry['perfImpact'], number> = {
 
 const joinText = (values: string[] = []) => values.join(' ');
 
+const PREFIX_PATTERNS: Array<[RegExp, IntentFilter]> = [
+  [/^fix\s+/i,          'diagnose'],
+  [/^!/,                'diagnose'],
+  [/^impl\s+/i,         'implement'],
+  [/^>/,                'implement'],
+  [/^(avoid|risk)\s+/i, 'evaluate-risk'],
+];
+
+const parseQueryPrefix = (query: string): { intent: IntentFilter | null; stripped: string } => {
+  for (const [pattern, intent] of PREFIX_PATTERNS) {
+    if (pattern.test(query)) {
+      return { intent, stripped: query.replace(pattern, '').trimStart() };
+    }
+  }
+  return { intent: null, stripped: query };
+};
+
 export const getReferenceSearchText = (entry: ReferenceEntry) => [
   entry.title,
   entry.description,
@@ -87,12 +104,14 @@ export const filterReferenceEntries = ({
   sortMode: SortMode;
 }) => {
   const normalizedQuery = query.trim().toLowerCase();
+  const { intent: prefixIntent, stripped: strippedQuery } = parseQueryPrefix(normalizedQuery);
+  const effectiveIntent = prefixIntent ?? intentFilter;
   const filtered = entries.filter((entry) => {
-    const matchesSearch = !normalizedQuery || getReferenceSearchText(entry).includes(normalizedQuery);
+    const matchesSearch = !strippedQuery || getReferenceSearchText(entry).includes(strippedQuery);
     const matchesDomain = domain === 'All' || entry.domain === domain;
     const matchesFormat = format === 'All' || entry.format === format;
     const matchesVerdict = verdict === 'All' || entry.verdict === verdict;
-    return matchesSearch && matchesDomain && matchesFormat && matchesVerdict && matchesQuickFilter(entry, quickFilter) && matchesIntentFilter(entry, intentFilter);
+    return matchesSearch && matchesDomain && matchesFormat && matchesVerdict && matchesQuickFilter(entry, quickFilter) && matchesIntentFilter(entry, effectiveIntent);
   });
 
   return sortReferenceEntries(filtered, sortMode);
