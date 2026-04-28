@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Sparkles, CheckCircle2, AlertCircle, Info, Code, Lightbulb, Zap, ShieldAlert, Layers, ShieldCheck, Ban, Smartphone, Monitor, LayoutGrid, Settings as SettingsIcon, FileText, Cloud, Gauge, Accessibility, ArrowRight, Scale } from 'lucide-react';
+import { ArrowLeft, Sparkles, CheckCircle2, AlertCircle, Info, Code, Lightbulb, Zap, ShieldAlert, Layers, ShieldCheck, Ban, Smartphone, Monitor, LayoutGrid, Settings as SettingsIcon, FileText, Cloud, Gauge, Accessibility, ArrowRight, Scale, Copy, Check } from 'lucide-react';
 import { entries } from '@/data/index';
 import * as Demos from '@/features/demos/InteractiveDemos';
 import { ReferenceEntry, Verdict, UseContext } from '@/types';
@@ -82,7 +82,15 @@ const SpecSummary = ({ entry }: { entry: ReferenceEntry }) => {
 
 export const ReferenceViewer = () => {
   const { id } = useParams();
+  const [copied, setCopied] = useState(false);
   const entry = entries.find(l => l.id === id);
+
+  const copyCode = (code: string) => {
+    navigator.clipboard.writeText(code).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
   
   if (!entry) return <div className="min-h-screen flex items-center justify-center text-fg-muted font-medium">Reference not found. <Link to="/" className="text-accent ml-2 hover:underline">Return Home</Link></div>;
   
@@ -313,10 +321,13 @@ export const ReferenceViewer = () => {
                 <div className="bg-slate-950 rounded-2xl overflow-hidden border border-slate-800">
                   <div className="bg-slate-900 px-4 py-2 border-b border-slate-800 flex justify-between items-center">
                     <span className="text-[10px] font-bold text-fg-muted uppercase tracking-widest">{entry.codeSnippet.language}</span>
-                    <div className="flex gap-1.5">
-                      <div className="w-2 h-2 rounded-full bg-slate-700"></div>
-                      <div className="w-2 h-2 rounded-full bg-slate-700"></div>
-                    </div>
+                    <button
+                      type="button"
+                      onClick={() => copyCode(entry.codeSnippet!.code)}
+                      className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-[10px] font-semibold text-slate-400 hover:text-slate-200 hover:bg-slate-800 transition-colors"
+                    >
+                      {copied ? <><Check size={11} className="text-emerald-400" /> Copied!</> : <><Copy size={11} /> Copy</>}
+                    </button>
                   </div>
                   <pre className="p-6 overflow-x-auto">
                     <code className="text-sm text-primary-300 font-mono">{entry.codeSnippet.code}</code>
@@ -329,22 +340,27 @@ export const ReferenceViewer = () => {
 
         {/* Sidebar Column */}
         <div className="space-y-8">
-          {/* Visual Reference Preview */}
-          {DemoComponent && (
-            <div className="sticky top-24 space-y-8">
+          <div className="sticky top-24 space-y-8">
+            {/* Visual Reference Preview */}
+            {DemoComponent ? (
               <div className="bg-surface-raised rounded-2xl overflow-hidden shadow-xl border border-border">
                 <div className="bg-surface border-b border-border px-4 py-3 flex items-center justify-between">
-                   <span className="text-[10px] font-bold text-fg-faint uppercase tracking-widest flex items-center gap-2">
-                     <Sparkles size={12} className="text-primary-500"/> Visual Reference
-                   </span>
+                  <span className="text-[10px] font-bold text-fg-faint uppercase tracking-widest flex items-center gap-2">
+                    <Sparkles size={12} className="text-primary-500" /> Visual Reference
+                  </span>
                 </div>
                 <div className="p-1 bg-surface">
-                    <DemoComponent />
+                  <DemoComponent />
                 </div>
               </div>
+            ) : entry.interactiveComponent ? (
+              <div className="bg-surface-raised rounded-2xl p-6 border border-border text-center">
+                <span className="text-[11px] text-fg-faint">Preview not available</span>
+              </div>
+            ) : null}
 
-              {/* Tradeoffs & Pitfalls */}
-              <div className="space-y-6">
+            {/* Tradeoffs & Pitfalls */}
+            <div className="space-y-6">
                 {entry.perfImpact && (
                   <div className="bg-surface-raised rounded-2xl p-6 border border-border shadow-sm">
                     <h3 className="text-fg font-bold mb-4 flex items-center gap-2 text-sm uppercase tracking-widest">
@@ -433,10 +449,8 @@ export const ReferenceViewer = () => {
                 </div>
               )}
             </div>
-          )}
+          </div>
         </div>
       </div>
-
-    </div>
   );
 };
