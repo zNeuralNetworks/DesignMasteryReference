@@ -79,6 +79,7 @@ export const button_design: ReferenceEntry = {
   relatedEntryIds: ["hicks-law", "micro-interactions", "form-validation-ux"],
   tags: ["button looks weak", "CTA ignored", "button hierarchy", "fix buttons", "primary button"],
   intentTags: ["increase-emphasis", "improve-feedback"],
+  contentStatus: 'hardened',
   content: `# Button Design
 
 ## Hierarchy: The One-Primary Rule

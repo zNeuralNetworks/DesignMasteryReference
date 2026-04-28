@@ -61,6 +61,7 @@ export const neumorphism: ReferenceEntry = {
   relatedEntryIds: ['glassmorphism', 'dark-mode-design', 'color-rule'],
   interactiveComponent: "Neumorphism",
   tags: ["CSS","Visual Design","Shadows"],
+  contentStatus: 'draft',
   content: `
 
 # Neumorphism

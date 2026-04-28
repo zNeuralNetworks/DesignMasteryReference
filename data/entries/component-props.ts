@@ -61,6 +61,7 @@ export const component_props: ReferenceEntry = {
   relatedEntryIds: ['atomic-design', 'design-tokens'],
   interactiveComponent: "ComponentPropsDemo",
   tags: ["React","Props","Scalability"],
+  contentStatus: 'draft',
   content: `
 
 # Configurable Components

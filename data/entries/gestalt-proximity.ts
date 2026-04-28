@@ -60,18 +60,40 @@ export const gestalt_proximity: ReferenceEntry = {
   relatedEntryIds: ['bento-grids', 'typography-scale', 'gestalt-common-region'],
   interactiveComponent: "GestaltProximityDemo",
   tags: ["Psychology","Layout","Visual Design","spacing","whitespace","cluttered","grouping","fix spacing","elements feel disconnected","visual noise"],
+  contentStatus: 'hardened',
   content: `
 
 # The Law of Proximity
 
-The human brain seeks patterns. The strongest grouping mechanism is **Proximity**: things that are close to each other are related.
+The human brain is a pattern-matching machine. Of all the Gestalt principles, Proximity is the strongest grouping cue — stronger than shared color, similar shape, or explicit borders.
 
-### UI Application
-*   **Whitespace**: You don't need borders to separate content. Simply increasing margin/padding between two groups is enough to tell the user they are separate.
-*   **Form Labels**: A label should be closer to its input field than to the input field above it.
+**Rule**: Things that are physically close to each other are perceived as belonging to the same group.
 
-> If you have to use a line to separate content, your whitespace is likely incorrect.
-    
+### Why this matters in UI
+
+Every form, card, and navigation section is an exercise in proximity management. When a label sits equidistant between two inputs, the user's brain cannot determine which input it belongs to. When a "Delete" button floats near a "Save" button with no gap, a misclick becomes a product incident.
+
+### The 2× Rule
+
+The space between unrelated groups should be at least twice the space within a related group. This ratio creates a clear visual hierarchy without requiring any borders, backgrounds, or dividers.
+
+    Within a card:    8px between elements
+    Between cards:   24px minimum (3× the internal spacing)
+    Between sections: 48px or more
+
+### Application patterns
+
+**Form design** — Label directly above its input (4px gap). Inputs in the same group share 8px gaps. Separate form sections with 24–32px.
+
+**Navigation** — Group related nav items with 4–8px gaps. Separate distinct sections (primary nav vs. user menu) with 24px or a visual divider.
+
+**Cards** — Title, body, and action within a card use tight spacing (8–12px). The space between cards signals that the content resets.
+
+### The border test
+
+If you are reaching for a horizontal rule or a dividing border between sections, ask first: could more whitespace do this job instead? Borders add visual noise. Whitespace is free. Most borders in UI designs are compensating for broken proximity.
+
+> Squint at your layout. If you can still identify the distinct groups, your proximity is correct. If it looks like a wall of content, increase the between-group spacing first.
 `,
   intentTags: ["fix-alignment", "reduce-cognitive-load"],
 };

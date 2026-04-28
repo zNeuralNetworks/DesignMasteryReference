@@ -71,6 +71,7 @@ export const line_length: ReferenceEntry = {
   relatedEntryIds: ["typography-scale", "content-width-containers"],
   tags: ["text too wide", "hard to read", "line too long", "readability", "improve readability", "measure", "prose width"],
   intentTags: ["improve-readability", "fix-alignment"],
+  contentStatus: 'hardened',
   content: `# Line Length
 
 ## The 66-Character Rule

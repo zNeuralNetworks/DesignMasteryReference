@@ -61,6 +61,7 @@ export const constructive_feedback: ReferenceEntry = {
   relatedEntryIds: ['confidence-checks', 'adaptive-scaffolding', 'toast-notifications'],
   interactiveComponent: "MistakeAnalysisDemo",
   tags: ["EdTech","Content Design","Pedagogy"],
+  contentStatus: 'hardened',
   content: `
 
 # Feedback that Teaches

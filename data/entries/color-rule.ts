@@ -60,6 +60,7 @@ export const color_rule: ReferenceEntry = {
   relatedEntryIds: ['typography-scale', 'design-tokens', 'gradient-mesh'],
   interactiveComponent: "ColorRuleDemo",
   tags: ["Visual Design","Colors","UI","color system","too many colors","colors feel random","fix colors","no color consistency","clashing colors"],
+  contentStatus: 'draft',
   content: `
 
 # Balancing Colors

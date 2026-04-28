@@ -61,6 +61,7 @@ export const debounce_throttle: ReferenceEntry = {
   relatedEntryIds: ['web-vitals', 'skeleton-screens', 'optimistic-ui'],
   interactiveComponent: "DebounceDemo",
   tags: ["JavaScript","Optimization","Logic"],
+  contentStatus: 'draft',
   content: `
 
 # Rate Limiting Events

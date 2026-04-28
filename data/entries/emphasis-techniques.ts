@@ -66,6 +66,7 @@ export const emphasis_techniques: ReferenceEntry = {
   relatedEntryIds: ['visual-weight', 'type-hierarchy', 'white-space', 'color-rule'],
   tags: ["emphasis", "visual emphasis", "highlight", "CTA design", "bold text", "call to action", "make it stand out"],
   intentTags: ["increase-emphasis", "improve-aesthetics"],
+  contentStatus: 'hardened',
   content: `
 # Emphasis Techniques
 

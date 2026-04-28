@@ -65,6 +65,7 @@ export const search_patterns: ReferenceEntry = {
   relatedEntryIds: ['command-palettes', 'filtering-sorting-ui', 'empty-states', 'dropdown-select'],
   tags: ["search UX", "search patterns", "autocomplete", "search results", "zero results state", "search design"],
   intentTags: ["reduce-cognitive-load", "improve-feedback"],
+  contentStatus: 'hardened',
   content: `
 # Search UX Patterns
 

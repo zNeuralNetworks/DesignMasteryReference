@@ -64,6 +64,7 @@ export const elevation_shadows: ReferenceEntry = {
   relatedEntryIds: ['z-index-stacking', 'design-tokens', 'dark-mode-design', 'modal-dialog'],
   tags: ["elevation", "shadows", "box-shadow", "depth", "card design", "z-axis", "layering"],
   intentTags: ["improve-aesthetics", "improve-feedback"],
+  contentStatus: 'hardened',
   content: `
 # Elevation & Shadows
 

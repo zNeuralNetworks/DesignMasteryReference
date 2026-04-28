@@ -1,4 +1,7 @@
-# DesignMastery Reference: Product Design Document (PDD)
+# DesignMastery Reference: Product Design Document (PDD) [SUPERSEDED]
+
+> **STATUS: SUPERSEDED** — This is the original v1.0 PDD from 2026-04-14. It is preserved for historical reference.
+> The current authoritative PDD is `docs/PDD.md` (v1.3.0, updated 2026-04-28).
 
 **Version**: Reference System v1.0  
 **Internal Name**: DesignMasteryReference

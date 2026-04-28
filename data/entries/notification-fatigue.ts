@@ -19,7 +19,11 @@ export const notification_fatigue: ReferenceEntry = {
     "Default notification floods: Sending notifications by default (vs. opt-in) trains users to disable all.",
     "Blast notifications: Sending multiple types simultaneously (notification + email + SMS) feels like spam."
   ],
-  whenToUse: [],
+  whenToUse: [
+    "Sending time-sensitive alerts that require immediate user action",
+    "Notifying about direct user interactions (reply, mention, assignment)",
+    "Surfacing critical system events (errors, payment failures, security alerts)",
+  ],
   whenNotToUse: [
     "Never use excessive notifications as a engagement metric.",
     "Never send notifications without a clear, actionable reason.",
@@ -59,6 +63,7 @@ export const notification_fatigue: ReferenceEntry = {
   relatedEntryIds: ['toast-notifications', 'micro-interactions', 'deceptive-patterns'],
   interactiveComponent: "ToastDemo",
   tags: ["Anti-Pattern","Interaction","Permissions","Trust","too many notifications","notification spam","users ignore alerts","over-requesting permissions","permission fatigue"],
+  contentStatus: 'hardened',
   content: `
 
 # Notification Fatigue

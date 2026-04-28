@@ -65,6 +65,7 @@ export const dropdown_select: ReferenceEntry = {
   relatedEntryIds: ['form-validation-ux', 'command-palettes', 'modal-dialog', 'tabs-navigation'],
   tags: ["dropdown", "select", "combobox", "multi-select", "custom dropdown", "form elements"],
   intentTags: ["reduce-cognitive-load", "fix-accessibility"],
+  contentStatus: 'hardened',
   content: `
 # Dropdown & Select Patterns
 

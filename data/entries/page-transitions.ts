@@ -64,6 +64,7 @@ export const page_transitions: ReferenceEntry = {
   relatedEntryIds: ['micro-interactions', 'fluid-motion', 'motion-accessibility', 'skeleton-screens'],
   tags: ["page transitions", "route transitions", "navigation animation", "view transitions", "mobile transitions"],
   intentTags: ["improve-feedback", "improve-aesthetics"],
+  contentStatus: 'hardened',
   content: `
 # Page Transitions
 

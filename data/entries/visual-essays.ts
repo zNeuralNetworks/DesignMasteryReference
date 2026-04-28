@@ -61,6 +61,7 @@ export const visual_essays: ReferenceEntry = {
   relatedEntryIds: ['cognitive-chunking', 'case-study-imprint', 'micro-interactions'],
   interactiveComponent: "VisualEssay",
   tags: ["EdTech","Storytelling","Micro-learning","Psychology"],
+  contentStatus: 'hardened',
   content: `
 
 # The Rise of the Visual Essay

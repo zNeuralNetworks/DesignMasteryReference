@@ -61,6 +61,7 @@ export const goal_setting_ui: ReferenceEntry = {
   relatedEntryIds: ['habit-streaks', 'mastery-paths', 'celebration-rewards'],
   interactiveComponent: "GoalSettingDemo",
   tags: ["EdTech","Psychology","Retention"],
+  contentStatus: 'hardened',
   content: `
 
 # The Power of Commitment

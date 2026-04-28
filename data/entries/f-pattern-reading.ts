@@ -63,6 +63,7 @@ export const f_pattern_reading: ReferenceEntry = {
   relatedEntryIds: ['serial-position-effect', 'visual-weight', 'type-hierarchy', 'white-space'],
   tags: ["F-pattern", "reading patterns", "eye tracking", "scanning behavior", "information scent", "content hierarchy"],
   intentTags: ["improve-readability", "increase-emphasis"],
+  contentStatus: 'hardened',
   content: `
 # F-Pattern & Reading Patterns
 

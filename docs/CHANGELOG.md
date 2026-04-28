@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file. Format: `[v
 
 ---
 
+## [1.4.0] - 2026-04-22
+
+### Added
+- **Solve/Explore Mode Separation**: Hard mode separation on `ReferenceLibrary.tsx` — Solve (default, surgical) and Explore (secondary, ambient). Mode persisted to `localStorage`. Solve mode: `FixGuideRow` first, `SolveCard` format (quickTake + top 3 checklist + "Apply →"), symptom-oriented search placeholder. Explore mode: `ThemeGalleryRow` first, original visual preview cards.
+- **GCP Cloud Build + Cloud Run deployment config**: `cloudbuild.yaml` and Cloud Run service config committed to repo. App is ready to deploy; first deploy tracked in TGR-90.
+- **Interactive code dependency graph**: `docs/code-graph.html` — static HTML file visualising the codebase module dependency graph.
+- **CLAUDE.md**: Project instructions file for Claude Code, including Linear workflow, architecture map, dev commands, and core constraints.
+
+### Changed
+- **`ReferenceLibrary.tsx`**: `mode: 'solve' | 'explore'` state added. Mode toggle added to page header alongside Grid/List toggle. `ThemeGalleryRow` hidden in Solve mode; `FixGuideRow` hidden in Explore mode. New `SolveCard` component replaces `StaticVisual` preview in Solve mode.
+- **`.gitignore`**: Added rules to ignore local AI tool config directories (`.claude/`, `.codex/`, `.gemini/`) and editor configs.
+
+### Verification Steps
+- Default load: Solve mode active, FixGuideRow visible first, ThemeGallery absent
+- Toggle to Explore: ThemeGalleryRow appears, FixGuideRow hidden, original visual cards shown
+- `localStorage` persists mode across refresh
+- `npm run build` → clean compile
+
+---
+
 ## [1.3.0] - 2026-04-18
 
 ### Added

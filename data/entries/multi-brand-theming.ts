@@ -64,6 +64,7 @@ export const multi_brand_theming: ReferenceEntry = {
   relatedEntryIds: ['design-tokens', 'dark-mode-design', 'color-rule', 'component-props'],
   tags: ["multi-brand", "white label", "theming", "design tokens", "brand theming", "token architecture"],
   intentTags: ["improve-aesthetics", "improve-performance"],
+  contentStatus: 'hardened',
   content: `
 # Multi-Brand Theming
 

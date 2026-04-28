@@ -61,6 +61,7 @@ export const variable_fonts: ReferenceEntry = {
   relatedEntryIds: ['typography-scale', 'design-tokens'],
   interactiveComponent: "VariableFonts",
   tags: ["Typography","Performance","Design","font weight","responsive typography","fix typography","text looks flat","no contrast in text"],
+  contentStatus: 'draft',
   content: `
 
 # Variable Fonts

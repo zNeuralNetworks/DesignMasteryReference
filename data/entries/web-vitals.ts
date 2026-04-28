@@ -59,6 +59,7 @@ export const web_vitals: ReferenceEntry = {
   relatedEntryIds: ['performance-tuning', 'debounce-throttle', 'virtualization'],
   interactiveComponent: "WebVitalsDemo",
   tags: ["Optimization","Web Vitals","CSS"],
+  contentStatus: 'hardened',
   content: `
 
 # Cumulative Layout Shift (CLS)

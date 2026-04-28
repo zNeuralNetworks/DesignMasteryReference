@@ -61,6 +61,7 @@ export const theme_swiss_polarity: ReferenceEntry = {
   relatedEntryIds: ['theme-bioluminescent', 'typography-scale', 'color-rule'],
   interactiveComponent: "SwissPolarityDemo",
   tags: ["Visual Design","Brutalism","Layout","Theming"],
+  contentStatus: 'hardened',
   content: `
 
 # Swiss Polarity (Neo-Brutalism)

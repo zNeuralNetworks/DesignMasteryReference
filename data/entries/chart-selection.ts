@@ -65,6 +65,7 @@ export const chart_selection: ReferenceEntry = {
   relatedEntryIds: ['data-visualization-principles', 'dashboard-layout-patterns', 'number-formatting', 'data-table-patterns'],
   tags: ["chart selection", "data visualization", "chart types", "bar chart", "line chart", "pie chart", "dashboard charts"],
   intentTags: ["reduce-cognitive-load", "improve-readability"],
+  contentStatus: 'hardened',
   content: `
 # Chart Selection
 

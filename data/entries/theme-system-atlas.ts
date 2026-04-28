@@ -74,6 +74,7 @@ export const theme_system_atlas: ReferenceEntry = {
   relatedEntryIds: ['theme-quiet-luxury', 'theme-operator-console', 'typography-scale', 'progressive-disclosure'],
   interactiveComponent: "SystemAtlasDemo",
   tags: ["Visual Design", "Documentation", "Typography", "Theming", "Reference", "Knowledge Base", "Systems"],
+  contentStatus: 'hardened',
   content: `
 
 # System Atlas

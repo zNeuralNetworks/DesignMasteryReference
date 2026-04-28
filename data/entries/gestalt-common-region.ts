@@ -61,6 +61,7 @@ export const gestalt_common_region: ReferenceEntry = {
   relatedEntryIds: ['cognitive-chunking', 'typography-scale', 'gestalt-proximity'],
   interactiveComponent: "GestaltCommonRegionDemo",
   tags: ["Psychology","Layout","UI","grouping","visual separation","card layout","fix layout","items feel unrelated","no visual structure"],
+  contentStatus: 'hardened',
   content: `
 
 # Common Region

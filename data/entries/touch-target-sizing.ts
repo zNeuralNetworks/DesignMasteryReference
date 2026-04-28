@@ -61,6 +61,7 @@ export const touch_target_sizing: ReferenceEntry = {
   relatedEntryIds: ['fitts-law', 'thumb-zone', 'mobile-first-design', 'button-design'],
   tags: ["touch targets", "buttons too small", "hard to tap", "mobile buttons", "tap area", "44px", "fix mobile", "accessibility mobile"],
   intentTags: ["fix-accessibility", "fix-alignment"],
+  contentStatus: 'hardened',
   content: `
 # Touch Target Sizing
 

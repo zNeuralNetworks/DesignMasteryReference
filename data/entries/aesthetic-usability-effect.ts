@@ -61,6 +61,7 @@ export const aesthetic_usability_effect: ReferenceEntry = {
   relatedEntryIds: ['empty-states', 'micro-interactions', 'visual-weight', 'onboarding-tours'],
   tags: ["aesthetic usability", "visual polish", "first impressions", "beautiful design", "trust", "design quality"],
   intentTags: ["improve-aesthetics", "improve-feedback"],
+  contentStatus: 'hardened',
   content: `
 # Aesthetic-Usability Effect
 

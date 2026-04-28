@@ -59,6 +59,7 @@ export const mystery_meat_navigation: ReferenceEntry = {
   relatedEntryIds: ['scroll-jacking', 'deceptive-patterns', 'hicks-law'],
   interactiveComponent: "MysteryNavigationDemo",
   tags: ["UX","Bad Design","Accessibility","confusing navigation","icon only","unlabeled buttons","fix navigation","users get lost","nav makes no sense"],
+  contentStatus: 'flagship',
   content: `
 
 # Mystery Meat Navigation

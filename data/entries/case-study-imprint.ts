@@ -61,6 +61,7 @@ export const case_study_imprint: ReferenceEntry = {
   relatedEntryIds: ['case-study-duolingo', 'case-study-linear', 'visual-essays'],
   interactiveComponent: "ImprintTap",
   tags: ["EdTech","Gestures","Mobile","Visual Design"],
+  contentStatus: 'flagship',
   content: `
 
 # Imprint: The Visual Essay

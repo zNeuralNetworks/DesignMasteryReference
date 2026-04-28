@@ -65,6 +65,7 @@ export const sidebar_layouts: ReferenceEntry = {
   relatedEntryIds: ['css-grid-layouts', 'flexbox-patterns', 'mystery-meat-navigation', 'progressive-disclosure'],
   tags: ["sidebar layout", "navigation layout", "dashboard layout", "collapsible sidebar", "rail navigation", "fix layout"],
   intentTags: ["fix-alignment", "reduce-cognitive-load"],
+  contentStatus: 'hardened',
   content: `
 # Sidebar Layout Patterns
 

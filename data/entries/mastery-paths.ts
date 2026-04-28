@@ -61,6 +61,7 @@ export const mastery_paths: ReferenceEntry = {
   relatedEntryIds: ['adaptive-scaffolding', 'habit-streaks', 'goal-setting-ui'],
   interactiveComponent: "MasteryPath",
   tags: ["EdTech","Gamification","Retention"],
+  contentStatus: 'hardened',
   content: `
 
 # Visualizing Progress

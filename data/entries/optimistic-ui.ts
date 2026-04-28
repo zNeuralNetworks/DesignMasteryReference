@@ -62,6 +62,7 @@ export const optimistic_ui: ReferenceEntry = {
   relatedEntryIds: ['toast-notifications', 'micro-interactions', 'performance-tuning'],
   interactiveComponent: "OptimisticUIDemo",
   tags: ["Performance","UX","State Management","app feels slow","waiting for server","laggy UI","fix perceived performance","button clicks feel delayed"],
+  contentStatus: 'hardened',
   content: `
 
 # Faking Speed

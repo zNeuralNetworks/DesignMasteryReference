@@ -61,6 +61,7 @@ export const case_study_duolingo: ReferenceEntry = {
   relatedEntryIds: ['case-study-imprint', 'case-study-linear', 'peak-end-rule'],
   interactiveComponent: "DuolingoMascot",
   tags: ["Gamification","Emotion","Retention","Mascots"],
+  contentStatus: 'flagship',
   content: `
 
 # Duolingo: Weaponized Emotion

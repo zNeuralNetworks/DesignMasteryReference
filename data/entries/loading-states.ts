@@ -64,6 +64,7 @@ export const loading_states: ReferenceEntry = {
   relatedEntryIds: ['skeleton-screens', 'optimistic-ui', 'error-states', 'doherty-threshold'],
   tags: ["loading states", "loading spinner", "skeleton loader", "progress bar", "async loading", "loading UX"],
   intentTags: ["improve-feedback", "improve-performance"],
+  contentStatus: 'hardened',
   content: `
 # Loading States
 

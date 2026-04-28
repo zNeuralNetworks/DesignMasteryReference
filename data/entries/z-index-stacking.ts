@@ -59,6 +59,7 @@ export const z_index_stacking: ReferenceEntry = {
   relatedEntryIds: ['flexbox-patterns', 'css-grid-layouts', 'focus-management'],
   tags: ["z-index", "stacking context", "tooltip behind modal", "dropdown clipped", "layering", "z-index not working", "overlay bug"],
   intentTags: ["fix-alignment"],
+  contentStatus: 'hardened',
   content: `
 # Z-Index & Stacking Contexts
 

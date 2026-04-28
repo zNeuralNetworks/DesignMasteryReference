@@ -61,6 +61,7 @@ export const glassmorphism: ReferenceEntry = {
   relatedEntryIds: ['neumorphism', 'dark-mode-design', 'gradient-mesh'],
   interactiveComponent: "Glassmorphism",
   tags: ["CSS","Tailwind","Visual Design"],
+  contentStatus: 'hardened',
   content: `
 
 # Glassmorphism

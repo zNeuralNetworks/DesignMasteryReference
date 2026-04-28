@@ -61,6 +61,7 @@ export const onboarding_tours: ReferenceEntry = {
   relatedEntryIds: ['progressive-disclosure', 'adaptive-scaffolding', 'empty-states'],
   interactiveComponent: "Onboarding",
   tags: ["Onboarding","UX","Product Growth"],
+  contentStatus: 'draft',
   content: `
 
 # Feature Tours

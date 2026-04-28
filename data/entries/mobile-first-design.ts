@@ -62,6 +62,7 @@ export const mobile_first_design: ReferenceEntry = {
   relatedEntryIds: ['breakpoint-strategy', 'touch-target-sizing', 'fluid-adaptive-layouts', 'thumb-zone'],
   tags: ["mobile-first", "responsive design", "fix mobile", "mobile layout", "doesn't work on small screen", "mobile UX"],
   intentTags: ["fix-alignment", "improve-readability"],
+  contentStatus: 'hardened',
   content: `
 # Mobile-First Design
 

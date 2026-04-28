@@ -64,6 +64,7 @@ export const keyboard_navigation: ReferenceEntry = {
   relatedEntryIds: ['focus-management', 'aria-live-regions', 'modal-dialog', 'command-palettes'],
   tags: ["keyboard navigation", "keyboard accessibility", "Tab order", "focus indicator", "WCAG keyboard", "keyboard shortcuts"],
   intentTags: ["fix-accessibility"],
+  contentStatus: 'hardened',
   content: `
 # Keyboard Navigation
 

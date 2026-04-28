@@ -61,6 +61,7 @@ export const hicks_law: ReferenceEntry = {
   relatedEntryIds: ['serial-position-effect', 'fitts-law', 'gestalt-proximity'],
   interactiveComponent: "HicksLawDemo",
   tags: ["Psychology","UX Research","Conversion","too many options","choice overload","decision fatigue","overwhelming interface","fix navigation","simplify choices","analysis paralysis"],
+  contentStatus: 'draft',
   content: `
 
 # Cognitive Load & Decision Making

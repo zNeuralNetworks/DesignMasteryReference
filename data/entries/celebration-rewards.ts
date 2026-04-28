@@ -61,6 +61,7 @@ export const celebration_rewards: ReferenceEntry = {
   relatedEntryIds: ['gamified-leaderboards', 'goal-setting-ui', 'case-study-duolingo'],
   interactiveComponent: "CelebrationDemo",
   tags: ["EdTech","Gamification","Delight"],
+  contentStatus: 'hardened',
   content: `
 
 # The Peak-End Rule

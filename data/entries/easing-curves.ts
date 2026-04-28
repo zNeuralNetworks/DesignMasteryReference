@@ -62,6 +62,7 @@ export const easing_curves: ReferenceEntry = {
   relatedEntryIds: ['micro-interactions', 'fluid-motion', 'page-transitions', 'motion-accessibility'],
   tags: ["easing", "animation curves", "cubic-bezier", "transitions", "ease-out", "spring animation", "motion design"],
   intentTags: ["improve-aesthetics", "improve-feedback"],
+  contentStatus: 'hardened',
   content: `
 # Easing Curves
 

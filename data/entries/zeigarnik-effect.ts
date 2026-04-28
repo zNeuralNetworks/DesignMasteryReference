@@ -64,6 +64,7 @@ export const zeigarnik_effect: ReferenceEntry = {
   relatedEntryIds: ['habit-streaks', 'onboarding-tours', 'adaptive-scaffolding', 'goal-setting-ui'],
   tags: ["Zeigarnik effect", "progress", "completion", "onboarding completion", "profile completion", "progress bar"],
   intentTags: ["improve-feedback", "reduce-cognitive-load"],
+  contentStatus: 'hardened',
   content: `
 # Zeigarnik Effect
 

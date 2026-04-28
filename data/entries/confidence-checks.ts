@@ -61,6 +61,7 @@ export const confidence_checks: ReferenceEntry = {
   relatedEntryIds: ['constructive-feedback', 'adaptive-scaffolding', 'mastery-paths'],
   interactiveComponent: "ConfidenceDemo",
   tags: ["EdTech","Metacognition","Assessment"],
+  contentStatus: 'hardened',
   content: `
 
 # Metacognition in UI

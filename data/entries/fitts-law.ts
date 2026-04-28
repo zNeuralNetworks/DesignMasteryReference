@@ -61,6 +61,7 @@ export const fitts_law: ReferenceEntry = {
   relatedEntryIds: ['hicks-law', 'serial-position-effect', 'swipe-gestures'],
   interactiveComponent: "FittsLawDemo",
   tags: ["Psychology","UX","Mobile","buttons too small","hard to tap","small click targets","fix touch targets","mobile usability","tap accuracy"],
+  contentStatus: 'draft',
   content: `
 
 # Target Acquisition

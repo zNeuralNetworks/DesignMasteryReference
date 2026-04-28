@@ -64,6 +64,7 @@ export const data_visualization_principles: ReferenceEntry = {
   relatedEntryIds: ['chart-selection', 'dashboard-layout-patterns', 'number-formatting', 'data-table-patterns'],
   tags: ["data visualization", "chart design", "data-ink ratio", "chart junk", "Tufte", "visualization principles"],
   intentTags: ["improve-readability", "reduce-cognitive-load"],
+  contentStatus: 'hardened',
   content: `
 # Data Visualization Principles
 

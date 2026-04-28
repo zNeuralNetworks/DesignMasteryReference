@@ -56,6 +56,7 @@ export const command_palettes: ReferenceEntry = {
   checklist: ["Verified keyboard accessibility", "Tested fuzzy search accuracy", "Checked for shortcut conflicts"],
   relatedEntryIds: ["progressive-disclosure", "mystery-meat-navigation"],
   tags: ["UX","Productivity","Keyboard","Navigation"],
+  contentStatus: 'hardened',
   content: `
 # The CMD+K Revolution
 

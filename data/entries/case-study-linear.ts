@@ -61,6 +61,7 @@ export const case_study_linear: ReferenceEntry = {
   relatedEntryIds: ['case-study-airbnb', 'case-study-duolingo', 'optimistic-ui'],
   interactiveComponent: "LinearCommandPalette",
   tags: ["SaaS","Performance","Keyboard","Shortcuts"],
+  contentStatus: 'flagship',
   content: `
 
 # Linear: Designed for Flow

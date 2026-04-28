@@ -60,6 +60,7 @@ export const typography_scale: ReferenceEntry = {
   relatedEntryIds: ['color-rule', 'gestalt-proximity', 'bento-grids'],
   interactiveComponent: "TypographyDemo",
   tags: ["Fonts","Design","Readability","readability","hierarchy","font scale","text legibility","hard to read","messy text","inconsistent sizes","fix typography"],
+  contentStatus: 'draft',
   content: `
 
 # Typographic Hierarchy

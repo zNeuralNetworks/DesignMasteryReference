@@ -61,6 +61,7 @@ export const type_hierarchy: ReferenceEntry = {
   relatedEntryIds: ['typography-scale', 'serial-position-effect', 'visual-weight', 'emphasis-techniques'],
   tags: ["typographic hierarchy", "text hierarchy", "headings", "typography feels flat", "nothing stands out", "font weight", "improve readability"],
   intentTags: ["increase-emphasis", "improve-readability"],
+  contentStatus: 'hardened',
   content: `
 # Typographic Hierarchy
 

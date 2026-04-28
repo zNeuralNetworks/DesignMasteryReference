@@ -65,6 +65,7 @@ export const error_states: ReferenceEntry = {
   relatedEntryIds: ['form-validation-ux', 'empty-states', 'toast-notifications', 'offline-sync-states'],
   tags: ["error states", "error messages", "form errors", "error handling UX", "failure states", "recovery UX"],
   intentTags: ["improve-feedback", "reduce-cognitive-load"],
+  contentStatus: 'hardened',
   content: `
 # Error States
 

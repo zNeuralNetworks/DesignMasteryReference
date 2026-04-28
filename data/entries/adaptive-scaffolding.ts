@@ -61,6 +61,7 @@ export const adaptive_scaffolding: ReferenceEntry = {
   relatedEntryIds: ['onboarding-tours', 'cognitive-chunking', 'mastery-paths'],
   interactiveComponent: "ScaffoldingDemo",
   tags: ["EdTech","Feedback","Interaction"],
+  contentStatus: 'hardened',
   content: `
 
 # Just-in-Time Help

@@ -59,6 +59,7 @@ export const scroll_jacking: ReferenceEntry = {
   relatedEntryIds: ['mystery-meat-navigation', 'deceptive-patterns', 'micro-interactions'],
   interactiveComponent: "ScrollJackingDemo",
   tags: ["UX","Performance","Bad Design","broken scroll","scroll feels wrong","scroll override","scroll hijacking","fix scroll","janky scrolling"],
+  contentStatus: 'hardened',
   content: `
 
 # Scroll Jacking

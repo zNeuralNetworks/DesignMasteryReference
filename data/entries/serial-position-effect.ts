@@ -60,6 +60,7 @@ export const serial_position_effect: ReferenceEntry = {
   relatedEntryIds: ['hicks-law', 'fitts-law', 'gestalt-proximity'],
   interactiveComponent: "SerialPositionDemo",
   tags: ["Psychology","Navigation","Memory"],
+  contentStatus: 'draft',
   content: `
 
 # Primacy & Recency

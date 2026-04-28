@@ -61,6 +61,7 @@ export const file_upload: ReferenceEntry = {
   relatedEntryIds: ['progressive-disclosure', 'empty-states', 'toast-notifications'],
   interactiveComponent: "FileUpload",
   tags: ["Forms","Interaction","UX"],
+  contentStatus: 'draft',
   content: `
 
 # Drag & Drop Zones

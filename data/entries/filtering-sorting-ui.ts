@@ -65,6 +65,7 @@ export const filtering_sorting_ui: ReferenceEntry = {
   relatedEntryIds: ['data-table-patterns', 'search-patterns', 'pagination-patterns', 'empty-states'],
   tags: ["filtering", "sorting", "filter UI", "active filters", "column sort", "faceted search", "data filtering"],
   intentTags: ["reduce-cognitive-load", "improve-feedback"],
+  contentStatus: 'hardened',
   content: `
 # Filtering & Sorting UI
 

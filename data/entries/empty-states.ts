@@ -61,17 +61,35 @@ export const empty_states: ReferenceEntry = {
   relatedEntryIds: ['toast-notifications', 'progressive-disclosure', 'onboarding-tours'],
   interactiveComponent: "EmptyState",
   tags: ["UX","Onboarding","Illustration","empty page","blank state","nothing to show","fix empty state","users confused on first load"],
+  contentStatus: 'hardened',
   content: `
 
 # The "Empty" Opportunity
 
-An empty state is what users see when there is no data to display. It is often the first impression.
+An empty state is what users see when there is no data to display. It is often the very first impression a new user gets of a feature. Treat it as a product moment, not a placeholder.
 
-### Don't leave it blank
-A blank screen implies an error. Good empty states should:
-1.  **Educate**: Explain *what* should be here.
-2.  **Encourage**: Tell the user *how* to add data.
-    
+### Three types of empty state
+
+**First-run empty** — The user has never created any data. This is a critical onboarding moment. Provide a clear explanation of the value this feature delivers, a primary CTA, and optionally sample data to lower the activation barrier.
+
+**User-cleared empty** — The user finished a task (inbox zero, completed all tasks). Celebrate it with positive reinforcement: "You're all caught up! 🎉". This is a reward state, not a failure state.
+
+**No-results empty** — A search or filter returned zero results. Give the user an escape hatch: clear the filter, broaden the search, or suggest related content.
+
+### Anatomy of a good empty state
+*   **Illustration** — Optional but powerful. Keep it relevant to the feature, not generic.
+*   **Headline** — State the current situation in plain language: "No projects yet"
+*   **Body copy** — Explain the value without assuming the user already knows it
+*   **Primary CTA** — One action, clearly labeled ("Create your first project")
+*   **Secondary escape** — A link to docs or a related feature
+
+### The Dead-End trap
+The most common empty state failure is the Dead End: an empty state that explains the absence but provides no action. Every empty state should answer: *"What can I do right now?"*
+
+> Design the empty state before you design the full state. It forces you to articulate the value proposition of the feature in one sentence.
+
+### Ghost UI pattern
+For complex features, consider rendering a faded, non-interactive version of what the data *will* look like. This lowers the mental barrier to understanding and makes the CTA feel concrete rather than abstract.
 `,
   intentTags: ["improve-feedback", "improve-aesthetics"],
 };

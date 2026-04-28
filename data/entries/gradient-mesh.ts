@@ -61,6 +61,7 @@ export const gradient_mesh: ReferenceEntry = {
   relatedEntryIds: ['glassmorphism', 'color-rule', 'theme-bioluminescent'],
   interactiveComponent: "GradientMeshDemo",
   tags: ["Visual Design","CSS","Animation"],
+  contentStatus: 'hardened',
   content: `
 
 # Aurora Backgrounds

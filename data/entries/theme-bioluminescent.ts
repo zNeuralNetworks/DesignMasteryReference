@@ -61,6 +61,7 @@ export const theme_bioluminescent: ReferenceEntry = {
   relatedEntryIds: ['theme-swiss-polarity', 'glassmorphism', 'gradient-mesh', 'color-rule'],
   interactiveComponent: "BioluminescentDemo",
   tags: ["Visual Design","Dark Mode","CSS","Theming"],
+  contentStatus: 'hardened',
   content: `
 
 # Bioluminescent Design

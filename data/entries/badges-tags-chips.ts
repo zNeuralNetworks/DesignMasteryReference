@@ -66,6 +66,7 @@ export const badges_tags_chips: ReferenceEntry = {
   relatedEntryIds: ['toast-notifications', 'dropdown-select', 'form-validation-ux', 'data-table-patterns'],
   tags: ["badges", "tags", "chips", "status indicators", "filter chips", "labels", "component design"],
   intentTags: ["improve-feedback", "reduce-cognitive-load"],
+  contentStatus: 'hardened',
   content: `
 # Badges, Tags & Chips
 

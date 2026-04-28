@@ -61,6 +61,7 @@ export const gamified_leaderboards: ReferenceEntry = {
   relatedEntryIds: ['peak-end-rule', 'goal-setting-ui', 'case-study-duolingo'],
   interactiveComponent: "Leaderboard",
   tags: ["Gamification","EdTech","Social"],
+  contentStatus: 'draft',
   content: `
 
 # Social Motivation

@@ -61,6 +61,7 @@ export const contextual_glossary: ReferenceEntry = {
   relatedEntryIds: ['mystery-meat-navigation', 'progressive-disclosure', 'onboarding-tours'],
   interactiveComponent: "GlossaryDemo",
   tags: ["EdTech","UX","Accessibility"],
+  contentStatus: 'hardened',
   content: `
 
 # Contextual Definitions

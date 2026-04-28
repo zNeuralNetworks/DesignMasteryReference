@@ -65,6 +65,7 @@ export const pagination_patterns: ReferenceEntry = {
   relatedEntryIds: ['data-table-patterns', 'virtualization', 'skeleton-screens', 'empty-states'],
   tags: ["pagination", "infinite scroll", "load more", "page navigation", "data table pagination", "large lists"],
   intentTags: ["reduce-cognitive-load", "improve-performance"],
+  contentStatus: 'hardened',
   content: `
 # Pagination Patterns
 

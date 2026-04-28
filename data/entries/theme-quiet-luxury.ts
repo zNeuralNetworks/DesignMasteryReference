@@ -74,6 +74,7 @@ export const theme_quiet_luxury: ReferenceEntry = {
   relatedEntryIds: ['theme-swiss-polarity', 'variable-fonts', 'typography-scale', 'color-rule'],
   interactiveComponent: "QuietLuxuryDemo",
   tags: ["Visual Design", "Editorial", "Typography", "Theming", "Premium", "Minimal"],
+  contentStatus: 'hardened',
   content: `
 
 # Quiet Luxury Editorial

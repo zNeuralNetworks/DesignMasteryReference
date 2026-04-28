@@ -62,6 +62,7 @@ export const atomic_design: ReferenceEntry = {
   relatedEntryIds: ['design-tokens', 'component-props'],
   interactiveComponent: "AtomicDesignDemo",
   tags: ["Architecture","Scalability","Components"],
+  contentStatus: 'hardened',
   content: `
 
 # Atomic Design

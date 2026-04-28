@@ -60,6 +60,7 @@ export const progressive_disclosure: ReferenceEntry = {
   relatedEntryIds: ['onboarding-tours', 'empty-states', 'hicks-law'],
   interactiveComponent: "ProgressiveDisclosure",
   tags: ["UX","Forms","Interaction","form too long","overwhelming form","cluttered form","fix forms","too much information","show less upfront"],
+  contentStatus: 'hardened',
   content: `
 
 # Progressive Disclosure

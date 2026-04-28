@@ -60,6 +60,7 @@ export const color_blindness: ReferenceEntry = {
   relatedEntryIds: ['focus-management', 'color-rule', 'dark-mode-design'],
   interactiveComponent: "ColorBlindnessDemo",
   tags: ["Accessibility","Inclusion","Visual Design"],
+  contentStatus: 'hardened',
   content: `
 
 # Beyond Color

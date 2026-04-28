@@ -64,6 +64,7 @@ export const dashboard_layout_patterns: ReferenceEntry = {
   relatedEntryIds: ['chart-selection', 'data-table-patterns', 'filtering-sorting-ui', 'bento-grids', 'skeleton-screens'],
   tags: ["dashboard", "dashboard layout", "KPI", "data dashboard", "analytics", "B2B dashboard", "dashboard design"],
   intentTags: ["reduce-cognitive-load", "improve-readability"],
+  contentStatus: 'hardened',
   content: `
 # Dashboard Layout Patterns
 

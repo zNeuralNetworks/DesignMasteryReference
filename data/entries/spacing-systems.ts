@@ -65,6 +65,7 @@ export const spacing_systems: ReferenceEntry = {
   relatedEntryIds: ['design-tokens', 'typography-scale', 'bento-grids'],
   tags: ["spacing", "whitespace", "8px grid", "rhythm", "layout", "fix spacing", "elements feel disconnected", "no visual structure", "whitespace", "spacing scale", "tokens", "padding", "margins"],
   intentTags: ["fix-alignment", "improve-aesthetics"],
+  contentStatus: 'flagship',
   content: `
 # Spacing Systems
 

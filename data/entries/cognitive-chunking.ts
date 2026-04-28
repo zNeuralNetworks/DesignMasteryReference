@@ -61,6 +61,7 @@ export const cognitive_chunking: ReferenceEntry = {
   relatedEntryIds: ['gestalt-proximity', 'gestalt-common-region', 'serial-position-effect'],
   interactiveComponent: "ChunkingDemo",
   tags: ["EdTech","Content Design","UX"],
+  contentStatus: 'hardened',
   content: `
 
 # Breaking Down Walls of Text

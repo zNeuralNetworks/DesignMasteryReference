@@ -62,6 +62,7 @@ export const doherty_threshold: ReferenceEntry = {
   relatedEntryIds: ['skeleton-screens', 'optimistic-ui', 'web-vitals', 'performance-tuning'],
   tags: ["Doherty threshold", "response time", "perceived performance", "400ms", "loading performance", "flow state"],
   intentTags: ["improve-performance", "improve-feedback"],
+  contentStatus: 'hardened',
   content: `
 # Doherty Threshold
 

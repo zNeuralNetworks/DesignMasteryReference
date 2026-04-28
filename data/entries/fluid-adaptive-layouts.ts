@@ -62,6 +62,7 @@ export const fluid_adaptive_layouts: ReferenceEntry = {
   relatedEntryIds: ['breakpoint-strategy', 'mobile-first-design', 'css-grid-layouts', 'responsive-typography'],
   tags: ["fluid layout", "adaptive layout", "responsive grid", "layout scales", "fix mobile", "flexible layout"],
   intentTags: ["fix-alignment", "improve-readability"],
+  contentStatus: 'hardened',
   content: `
 # Fluid & Adaptive Layouts
 

@@ -61,6 +61,7 @@ export const white_space: ReferenceEntry = {
   relatedEntryIds: ['gestalt-proximity', 'spacing-systems', 'visual-weight', 'type-hierarchy'],
   tags: ["white space", "spacing", "cluttered UI", "breathing room", "padding", "visual noise", "margin"],
   intentTags: ["fix-alignment", "reduce-cognitive-load", "improve-aesthetics"],
+  contentStatus: 'hardened',
   content: `
 # White Space & Breathing Room
 

@@ -65,6 +65,7 @@ export const responsive_images: ReferenceEntry = {
   relatedEntryIds: ['web-vitals', 'performance-tuning', 'mobile-first-design', 'fluid-adaptive-layouts'],
   tags: ["responsive images", "srcset", "image optimization", "slow images", "LCP", "layout shift", "fix performance"],
   intentTags: ["improve-performance", "fix-accessibility"],
+  contentStatus: 'hardened',
   content: `
 # Responsive Images
 

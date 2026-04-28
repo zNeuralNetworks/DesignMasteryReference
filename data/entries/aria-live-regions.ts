@@ -69,6 +69,7 @@ export const aria_live_regions: ReferenceEntry = {
   relatedEntryIds: ['focus-management', 'color-blindness', 'toast-notifications'],
   interactiveComponent: "FocusDemo",
   tags: ["Accessibility","ARIA","Screen Reader","dynamic content","announcements","live regions","SPA accessibility"],
+  contentStatus: 'hardened',
   content: `
 
 # ARIA Live Regions

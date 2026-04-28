@@ -65,6 +65,7 @@ export const content_width_containers: ReferenceEntry = {
   relatedEntryIds: ['typography-scale', 'spacing-systems', 'flexbox-patterns'],
   tags: ["max-width", "container", "line length", "reading width", "prose width", "text too wide", "hard to read", "content feels stretched", "line too long", "centering", "margin auto", "65ch"],
   intentTags: ["improve-readability", "fix-alignment"],
+  contentStatus: 'flagship',
   content: `
 # Content Width & Containers
 

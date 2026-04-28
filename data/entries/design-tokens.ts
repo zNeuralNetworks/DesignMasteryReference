@@ -61,6 +61,7 @@ export const design_tokens: ReferenceEntry = {
   relatedEntryIds: ['component-props', 'color-rule', 'typography-scale'],
   interactiveComponent: "DesignTokensDemo",
   tags: ["Architecture","Theming","Variables"],
+  contentStatus: 'draft',
   content: `
 
 # Design Tokens

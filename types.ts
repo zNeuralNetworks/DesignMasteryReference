@@ -44,12 +44,13 @@ export type UseContext =
   | 'assessment' 
   | 'survey' 
   | 'social' 
-  | 'psychology' 
-  | 'product-growth' 
-  | 'gaming' 
-  | 'portfolio' 
-  | 'accessibility' 
-  | 'big-data';
+  | 'psychology'
+  | 'product-growth'
+  | 'gaming'
+  | 'portfolio'
+  | 'accessibility'
+  | 'big-data'
+  | 'data';
 
 export interface ReferenceEntry {
   id: string;

@@ -33,11 +33,6 @@ export const von_restorff_effect: ReferenceEntry = {
     { pro: "Guides attention with zero user effort — pre-attentive processing, no thought required", con: "If users expect isolation (e.g., 'recommended' badges on every product), they learn to ignore it" },
     { pro: "Works across all modalities: color, size, motion, position", con: "Isolation creates hierarchy whether you intend it or not — accidental isolation is misleading" },
   ],
-  failurModes: [
-    "Too many isolated elements: three 'highlighted' plans in a pricing table — all lose isolation effect",
-    "Isolation for decoration: bright colored badges that don't indicate importance train users to ignore color",
-    "Wrong attribute isolated: making the cheapest plan the visual standout instead of the recommended one",
-  ],
   failureModes: [
     "Too many isolated elements: three 'highlighted' plans in a pricing table — all lose isolation effect",
     "Isolation for decoration: bright colored badges that don't indicate importance train users to ignore color",
@@ -67,6 +62,7 @@ export const von_restorff_effect: ReferenceEntry = {
   relatedEntryIds: ['visual-weight', 'emphasis-techniques', 'serial-position-effect', 'gestalt-proximity'],
   tags: ["Von Restorff", "isolation effect", "visual distinction", "pricing design", "recommended plan", "attention"],
   intentTags: ["increase-emphasis", "improve-aesthetics"],
+  contentStatus: 'hardened',
   content: `
 # Von Restorff Effect
 

@@ -63,6 +63,7 @@ export const color_harmony: ReferenceEntry = {
   relatedEntryIds: ['color-rule', 'semantic-color-system', 'dark-mode-design', 'gradient-mesh'],
   tags: ["color harmony", "complementary colors", "analogous colors", "color palette", "color wheel", "color theory"],
   intentTags: ["improve-aesthetics", "fix-accessibility"],
+  contentStatus: 'hardened',
   content: `
 # Color Harmony
 

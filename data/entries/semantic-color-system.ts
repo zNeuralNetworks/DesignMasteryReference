@@ -63,6 +63,7 @@ export const semantic_color_system: ReferenceEntry = {
   relatedEntryIds: ['design-tokens', 'multi-brand-theming', 'dark-mode-design', 'color-rule'],
   tags: ["semantic colors", "color system", "design tokens", "color roles", "brand colors", "success warning error"],
   intentTags: ["improve-aesthetics", "improve-performance"],
+  contentStatus: 'hardened',
   content: `
 # Semantic Color System
 

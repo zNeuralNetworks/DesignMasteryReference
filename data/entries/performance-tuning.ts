@@ -61,16 +61,55 @@ export const performance_tuning: ReferenceEntry = {
   relatedEntryIds: ['debounce-throttle', 'web-vitals', 'virtualization'],
   interactiveComponent: "Performance",
   tags: ["Optimization","Rendering","React","slow render","jank","frame drops","fix performance","React too slow","re-renders","sluggish UI"],
+  contentStatus: 'hardened',
   content: `
 
 # Rendering Performance
 
-A beautiful UI is useless if it's slow.
+Every frame the browser renders goes through up to four stages: **JavaScript → Style → Layout → Paint → Composite**. Each stage is a potential bottleneck. Skipping unnecessary stages is the single biggest lever for perceived smoothness.
 
-### Key Concepts
-*   **Reflow vs Repaint**: Changing layout properties (width, left) causes Reflow (expensive). Changing cosmetic properties (color, opacity, transform) causes Repaint (cheaper).
-*   **Compositing**: Using \`transform: translate()\` moves the element to its own layer on the GPU, avoiding layout recalculations.
-    
+### The rendering pipeline
+
+**Layout (Reflow)** — Triggered by changing geometric properties: \`width\`, \`height\`, \`top\`, \`left\`, \`margin\`, \`padding\`. Expensive because the browser must recalculate every affected element's position. Changing the width of a flex container can reflow the entire page.
+
+**Paint (Repaint)** — Triggered by changing visual properties that don't affect geometry: \`color\`, \`background-color\`, \`border-color\`, \`box-shadow\`. Cheaper than layout, but still forces the CPU to repaint affected pixels.
+
+**Composite** — Triggered by \`transform\` and \`opacity\` only. These properties operate on GPU layers and bypass both layout and paint. This is the target for all animations.
+
+### The golden rule of animation
+
+Animate only \`transform\` and \`opacity\`. These two properties are composited directly on the GPU and never trigger layout or paint. Animating \`width\`, \`height\`, \`top\`, or \`left\` causes layout thrashing on every frame.
+
+\`\`\`css
+/* Bad — causes reflow every frame */
+.panel { transition: height 300ms ease; }
+
+/* Good — composited, no reflow */
+.panel { transition: transform 300ms ease; transform: scaleY(0); }
+\`\`\`
+
+### Layout thrashing
+
+Reading layout properties (\`.offsetHeight\`, \`.getBoundingClientRect()\`) forces the browser to flush any pending style changes and recalculate layout immediately. Doing this in a loop — read, write, read, write — thrashes the rendering pipeline.
+
+**Fix**: Batch all reads first, then all writes. Or use \`requestAnimationFrame\` to defer writes to the next frame boundary.
+
+### will-change
+
+\`\`\`css
+.animated-card { will-change: transform; }
+\`\`\`
+
+Promotes the element to its own compositor layer *before* the animation starts, eliminating the layer-promotion cost mid-animation. Only apply \`will-change\` to elements that genuinely animate — over-use exhausts GPU memory.
+
+### Measuring, not guessing
+
+Open Chrome DevTools → Performance tab → Record a 5-second interaction. Look for:
+- **Long Tasks** (>50ms on the main thread) — blocking interaction
+- **Layout Shift** (CLS) — unexpected reflows during user interaction
+- **Frame drops** below 60fps in the Frames track
+
+Fix the highest-impact bottleneck, measure again. Never optimize without a before/after comparison.
 `,
   intentTags: ["improve-performance"],
 };

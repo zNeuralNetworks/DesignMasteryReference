@@ -65,6 +65,7 @@ export const tooltip_popover: ReferenceEntry = {
   relatedEntryIds: ['modal-dialog', 'progressive-disclosure', 'focus-management', 'dropdown-select'],
   tags: ["tooltip", "popover", "hover state", "overlay patterns", "contextual help", "floating UI"],
   intentTags: ["improve-feedback", "reduce-cognitive-load"],
+  contentStatus: 'hardened',
   content: `
 # Tooltips & Popovers
 

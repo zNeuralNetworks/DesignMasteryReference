@@ -1,73 +1,102 @@
 # Content Strategy & Audit: DesignMastery Reference
 
-This document outlines the current state of content and provides a roadmap for hardening existing entries and expanding the library with high-leverage professional patterns.
+This document outlines the current state of content and provides a roadmap for hardening existing entries and expanding the library.
+
+**Last updated:** 2026-04-28
 
 ---
 
 ## 1. Current State Audit
-The library currently contains **57 entries**. All entries in `data/entries/` are fully fleshed out with high confidence scores (85–98) and complete field coverage across mechanism, tradeoffs, failureModes, a11ySpecs, implementationNotes, and interactive demos.
 
-> **Note:** A prior version of this doc stated ~80% of entries were in a "Migrated Placeholder" state. That reflected the state of `data/lessons/` — a now-deleted parallel directory of 54 stub files that was never wired into the app. The active `data/entries/` library has been production-quality since v1.0.0.
+The library currently contains **121 entries** across 11 domains. All entries in `data/entries/` are structurally complete (pass `npm run validate:entries`), but content depth varies significantly.
 
 ### 1.1 Editorial Tiers
+
 Entries are differentiated by the optional `contentStatus` field:
-- `flagship`: Showcase entries with interactive demos, rich content, and cross-references (e.g., *Optimistic UI*, *Hick's Law*, *Case Study: Linear*)
+- `flagship`: Showcase entries with interactive demos, rich content, and cross-references
 - `hardened`: Fully spec-complete, verified for accuracy, no gaps
 - `draft`: Newly added or awaiting a depth pass (default when unset)
 
-**Priority for `flagship` designation:** entries with `confidenceScore >= 95` and an assigned `interactiveComponent`.
+**Current status:** No entry has `contentStatus` set. Assigning tiers is tracked in TGR-91.
+
+**Known draft-quality entries** (truncated content sections): `empty-states`, `gestalt-proximity`, `dark-mode-design`, `performance-tuning`.
+
+**Flagship-quality candidates** (confidenceScore ≥ 95 + interactiveComponent): `spacing-systems`, `mystery-meat-navigation`, `form-validation-ux`.
 
 ---
 
 ## 2. Hardening Roadmap (High Priority)
-The following entries should be prioritized for deep-dive content updates:
 
-1.  **Hick's Law:** Add specific logarithmic decision-time data and "Choice Overload" failure modes.
-2.  **Gestalt Principles:** Add specific spacing/margin specs (e.g., the 2x rule for grouping).
-3.  **Skeleton Screens:** Add "Flicker" failure modes and "Minimum Loading Time" implementation notes.
-4.  **Design Tokens:** Add naming convention specs (Category-Type-Item-Subitem).
-5.  **Web Vitals:** Add specific LCP/FID/CLS targets and "Field vs Lab" data tradeoffs.
+The following entries are prioritised for deep-dive content updates (TGR-91):
+
+1. **Hick's Law** — Add logarithmic decision-time data and "Choice Overload" failure modes
+2. **Gestalt Principles** — Add specific spacing/margin specs (e.g., the 2x rule for grouping)
+3. **Skeleton Screens** — Add "Flicker" failure modes and "Minimum Loading Time" implementation notes
+4. **Design Tokens** — Add naming convention specs (Category-Type-Item-Subitem)
+5. **Web Vitals** — Add specific LCP/FID/CLS targets and "Field vs Lab" data tradeoffs
+6. **Empty States** — Expand truncated content; add codeSnippet
+7. **Dark Mode Design** — Expand truncated content; add CSS variable codeSnippet
+8. **Performance Tuning** — Expand truncated content; add reflow vs. repaint examples
 
 ---
 
 ## 3. New Content Opportunities
 
 ### 3.1 Interaction (Advanced Patterns)
-*   **Command Palettes (The CMD+K Pattern):** Analysis of the "Omnisearch" trend (Linear, Slack, Raycast).
-*   **Multi-Select & Batch Actions:** UX for managing large datasets (Shift-click, Marquee select).
-*   **Infinite Scroll vs. Pagination:** Decision matrix for content discovery vs. item retrieval.
+
+| Entry | Status |
+|---|---|
+| Command Palettes (CMD+K pattern) | ✅ Shipped (`command-palettes.ts`) |
+| Multi-Select & Batch Actions | ⬜ Not yet added |
+| Infinite Scroll vs. Pagination | ⚠️ Partial — `pagination-patterns.ts` exists; no dedicated comparison entry |
 
 ### 3.2 Psychology (Decision Support)
-*   **Peak-End Rule:** Designing for the most intense and final moments of a user journey.
-*   **Zeigarnik Effect:** Using incomplete tasks to drive engagement (e.g., profile completion bars).
-*   **Von Restorff Effect:** Using isolation to drive attention to primary CTAs.
+
+| Entry | Status |
+|---|---|
+| Peak-End Rule | ✅ Shipped (`peak-end-rule.ts`) |
+| Zeigarnik Effect | ✅ Shipped (`zeigarnik-effect.ts`) |
+| Von Restorff Effect | ✅ Shipped (`von-restorff-effect.ts`) |
 
 ### 3.3 Accessibility (Technical Specs)
-*   **Skip Links:** Implementation specs for keyboard-only users.
-*   **Focus Traps:** How to manage focus in modals and slide-overs correctly.
-*   **Cognitive Load A11y:** Designing for users with ADHD or dyslexia.
+
+| Entry | Status |
+|---|---|
+| Skip Links | ⚠️ Partial — `keyboard-navigation.ts` covers related territory; no dedicated entry |
+| Focus Traps (modal/slide-over focus management) | ⚠️ Partial — `focus-management.ts` exists; focus traps not explicitly covered |
+| Cognitive Load A11y (ADHD, dyslexia) | ⬜ Not yet added |
 
 ### 3.4 Systems (Architectural)
-*   **Multi-Brand Design Systems:** Strategies for theming across distinct brand identities.
-*   **Component Lifecycle:** Managing deprecation and versioning in a shared library.
-*   **The "Headless" Pattern:** Tradeoffs of using Radix/Headless UI vs. building from scratch.
+
+| Entry | Status |
+|---|---|
+| Multi-Brand Design Systems | ✅ Shipped (`multi-brand-theming.ts`) |
+| Component Lifecycle (deprecation, versioning) | ⬜ Not yet added |
+| Headless Component Pattern (Radix/Headless UI vs. custom) | ⬜ Not yet added |
 
 ### 3.5 Anti-Patterns (Risk Management)
-*   **Deceptive Patterns (Dark Patterns):** Analysis of "Forced Continuity" and "Sneak into Basket."
-*   **Modal Overload:** The psychological cost of "Pop-up Fatigue."
-*   **Infinite Scroll Fatigue:** When "More Content" becomes a usability barrier.
+
+| Entry | Status |
+|---|---|
+| Deceptive Patterns (Dark Patterns) | ✅ Shipped (`deceptive-patterns.ts`) |
+| Modal Overload / Pop-up Fatigue | ⚠️ Partial — `modal-dialog.ts` covers modal UX; overload not explicitly framed as anti-pattern |
+| Infinite Scroll Fatigue | ⬜ Not yet added |
+| Notification Fatigue | ✅ Shipped (`notification-fatigue.ts`) |
 
 ---
 
-## 4. Decision Support Tools (Feature Ideas)
-Beyond static entries, the app could benefit from interactive "Calculators":
-*   **Decision Time Calculator:** Input number of choices to see the Hick's Law impact.
-*   **A11y Checklist Generator:** Select a component type (e.g., "Modal") to get a custom A11y spec sheet.
-*   **Perf Budget Estimator:** Calculate the impact of adding heavy visual patterns (e.g., Glassmorphism) on TTI.
+## 4. Decision Support Tools (Future Feature Ideas)
+
+- **Decision Time Calculator** — Input number of choices to see Hick's Law impact (TGR-125 scope)
+- **A11y Checklist Generator** — Select a component type to get a custom A11y spec sheet
+- **Perf Budget Estimator** — Calculate impact of heavy visual patterns on TTI
 
 ---
 
 ## 5. Content Style Guide
-*   **Tone:** Senior-to-Senior. No "What is a button?" content.
-*   **Density:** Use bullet points, bold text, and tables. No long paragraphs.
-*   **Actionable:** Every entry must answer: "What should I do in my code/Figma right now?"
+
+- **Tone:** Senior-to-Senior. No "What is a button?" content.
+- **Density:** Bullet points, bold text, tables. No long paragraphs.
+- **Actionable:** Every entry must answer: "What should I do in my code/Figma right now?"
+- **quickTake standard:** Metric-driven or failure-specific ("50%+ form abandonment") — not abstract principle statements ("proximity is a grouping mechanism")
+- **Checklist standard:** Non-obvious, testable items — not generic ("Verified accessibility")

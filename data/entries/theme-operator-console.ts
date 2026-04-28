@@ -71,6 +71,7 @@ export const theme_operator_console: ReferenceEntry = {
   relatedEntryIds: ['theme-technical-blueprint', 'dark-mode-design', 'data-table-patterns', 'color-rule'],
   interactiveComponent: "OperatorConsoleDemo",
   tags: ["Visual Design", "Dark Mode", "Terminal", "Theming", "Data Dense", "Dashboard", "devtools"],
+  contentStatus: 'hardened',
   content: `
 
 # Operator Console

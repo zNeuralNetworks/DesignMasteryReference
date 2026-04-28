@@ -61,6 +61,7 @@ export const swipe_gestures: ReferenceEntry = {
   relatedEntryIds: ['thumb-zone', 'micro-interactions', 'fitts-law'],
   interactiveComponent: "SwipeAction",
   tags: ["Mobile","Gestures","Touch"],
+  contentStatus: 'draft',
   content: `
 
 # Gestural Interaction

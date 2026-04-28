@@ -33,12 +33,6 @@ export const drag_drop_patterns: ReferenceEntry = {
     { pro: "Direct manipulation feels powerful and satisfying for power users", con: "Complex to implement correctly — HTML5 DnD API is notoriously unreliable on mobile" },
     { pro: "Intuitive for spatial reorganization (kanban, file systems)", con: "Discoverable only if affordance is visible — many users never try dragging" },
   ],
-  failurModes: [
-    "No drag affordance: users don't know items can be dragged",
-    "No keyboard alternative: fails WCAG 2.1.1 keyboard accessibility",
-    "No undo: misplaced item with no way to recover",
-    "Mobile drag broken: touch events handled differently than mouse — often drops in wrong location",
-  ],
   failureModes: [
     "No drag affordance: users don't know items can be dragged",
     "No keyboard alternative: fails WCAG 2.1.1 keyboard accessibility",
@@ -73,6 +67,7 @@ export const drag_drop_patterns: ReferenceEntry = {
   relatedEntryIds: ['undo-patterns', 'swipe-gestures', 'keyboard-navigation', 'optimistic-ui'],
   tags: ["drag and drop", "drag reorder", "DnD", "kanban", "sortable list", "file drop", "drag affordance"],
   intentTags: ["improve-feedback", "fix-accessibility"],
+  contentStatus: 'flagship',
   content: `
 # Drag & Drop Patterns
 

@@ -68,6 +68,7 @@ export const form_validation_ux: ReferenceEntry = {
   relatedEntryIds: ['progressive-disclosure', 'empty-states', 'toast-notifications'],
   interactiveComponent: "DebounceDemo",
   tags: ["Interaction","Forms","UX Design","fix forms","form too long","confusing error messages","form validation","validation errors","error messaging"],
+  contentStatus: 'hardened',
   content: `
 
 # Form Validation UX

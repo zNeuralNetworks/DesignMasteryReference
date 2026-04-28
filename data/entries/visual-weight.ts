@@ -63,6 +63,7 @@ export const visual_weight: ReferenceEntry = {
   relatedEntryIds: ['type-hierarchy', 'white-space', 'gestalt-proximity', 'emphasis-techniques'],
   tags: ["visual weight", "visual hierarchy", "attention", "CTA design", "contrast", "emphasis", "design balance"],
   intentTags: ["increase-emphasis", "improve-aesthetics", "reduce-cognitive-load"],
+  contentStatus: 'hardened',
   content: `
 # Visual Weight
 

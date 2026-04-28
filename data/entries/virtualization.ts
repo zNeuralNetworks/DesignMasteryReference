@@ -61,6 +61,7 @@ export const virtualization: ReferenceEntry = {
   relatedEntryIds: ['web-vitals', 'debounce-throttle', 'performance-tuning'],
   interactiveComponent: "VirtualizationDemo",
   tags: ["React","Big Data","Scalability"],
+  contentStatus: 'draft',
   content: `
 
 # Windowing / Virtualization

@@ -68,6 +68,7 @@ export const jakobs_law: ReferenceEntry = {
   relatedEntryIds: ["hicks-law", "mystery-meat-navigation", "progressive-disclosure"],
   tags: ["Jakob's Law", "convention", "familiar patterns", "don't reinvent the wheel", "user expectations", "mental models", "learnability"],
   intentTags: ["reduce-cognitive-load", "improve-feedback"],
+  contentStatus: 'draft',
   content: `# Jakob's Law
 
 ## What It Is

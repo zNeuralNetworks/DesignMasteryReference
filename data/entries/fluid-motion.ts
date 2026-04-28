@@ -61,6 +61,7 @@ export const fluid_motion: ReferenceEntry = {
   relatedEntryIds: ['scroll-animations', 'micro-interactions'],
   interactiveComponent: "FluidMotion",
   tags: ["Framer Motion","Animation"],
+  contentStatus: 'hardened',
   content: `
 
 # Fluid Motion

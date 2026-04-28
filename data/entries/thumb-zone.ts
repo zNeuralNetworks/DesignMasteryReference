@@ -61,6 +61,7 @@ export const thumb_zone: ReferenceEntry = {
   relatedEntryIds: ['fitts-law', 'swipe-gestures', 'micro-interactions'],
   interactiveComponent: "ThumbZoneDemo",
   tags: ["Mobile","Responsive","Touch"],
+  contentStatus: 'draft',
   content: `
 
 # Reachability

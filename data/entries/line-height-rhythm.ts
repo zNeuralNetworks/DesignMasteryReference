@@ -72,6 +72,7 @@ export const line_height_rhythm: ReferenceEntry = {
   relatedEntryIds: ["typography-scale", "spacing-systems"],
   tags: ["text feels cramped", "spacing between lines", "typography rhythm", "text hard to read", "leading", "vertical rhythm"],
   intentTags: ["improve-readability", "improve-aesthetics"],
+  contentStatus: 'flagship',
   content: `# Line Height & Vertical Rhythm
 
 ## Why Unitless Line-Height Is Non-Negotiable

@@ -59,6 +59,7 @@ export const breakpoint_strategy: ReferenceEntry = {
   relatedEntryIds: ['mobile-first-design', 'fluid-adaptive-layouts', 'css-grid-layouts', 'responsive-images'],
   tags: ["breakpoints", "responsive design", "layout breaks on tablet", "responsive breakpoints", "media queries", "fix mobile"],
   intentTags: ["fix-alignment"],
+  contentStatus: 'hardened',
   content: `
 # Breakpoint Strategy
 

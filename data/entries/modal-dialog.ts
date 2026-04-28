@@ -82,6 +82,7 @@ export const modal_dialog: ReferenceEntry = {
   relatedEntryIds: ["focus-management", "progressive-disclosure", "hicks-law"],
   tags: ["modal UX", "dialog patterns", "modal accessibility", "focus trap", "overlay"],
   intentTags: ["reduce-cognitive-load", "fix-accessibility"],
+  contentStatus: 'hardened',
   content: `# Modal & Dialog Patterns
 
 ## When to Use a Modal vs. Alternatives

@@ -61,6 +61,7 @@ export const skeleton_screens: ReferenceEntry = {
   relatedEntryIds: ['empty-states', 'toast-notifications', 'performance-tuning'],
   interactiveComponent: "SkeletonLoader",
   tags: ["UX","Performance","Loading States","loading feels slow","blank screen","perceived performance","fix loading","app feels slow","spinner fatigue"],
+  contentStatus: 'hardened',
   content: `
 
 # Perceived Performance

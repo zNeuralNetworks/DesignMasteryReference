@@ -72,6 +72,7 @@ export const font_pairing: ReferenceEntry = {
   relatedEntryIds: ["typography-scale", "variable-fonts"],
   tags: ["font pairing", "fonts look bad together", "too many fonts", "typography feels off", "typeface selection", "web fonts"],
   intentTags: ["improve-aesthetics", "improve-readability"],
+  contentStatus: 'hardened',
   content: `# Font Pairing
 
 ## The Core Rule: Maximum Two Families

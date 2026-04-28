@@ -65,6 +65,7 @@ export const tabs_navigation: ReferenceEntry = {
   relatedEntryIds: ['sidebar-layouts', 'progressive-disclosure', 'modal-dialog', 'command-palettes'],
   tags: ["tabs", "navigation", "tabbed content", "tab component", "SaaS navigation", "settings tabs"],
   intentTags: ["reduce-cognitive-load", "improve-readability"],
+  contentStatus: 'hardened',
   content: `
 # Tabs & Navigation Patterns
 

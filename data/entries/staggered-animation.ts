@@ -65,6 +65,7 @@ export const staggered_animation: ReferenceEntry = {
   relatedEntryIds: ['scroll-animations', 'page-transitions', 'easing-curves', 'motion-accessibility'],
   tags: ["stagger animation", "list animation", "cascade animation", "Framer Motion stagger", "entrance animation"],
   intentTags: ["improve-aesthetics", "improve-feedback"],
+  contentStatus: 'hardened',
   content: `
 # Staggered Animation
 

@@ -61,6 +61,7 @@ export const responsive_typography: ReferenceEntry = {
   relatedEntryIds: ['typography-scale', 'variable-fonts', 'mobile-first-design', 'line-length'],
   tags: ["responsive typography", "fluid type", "clamp()", "font scaling", "mobile typography", "font too small on mobile"],
   intentTags: ["improve-readability", "fix-accessibility"],
+  contentStatus: 'hardened',
   content: `
 # Responsive Typography
 

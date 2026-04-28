@@ -61,6 +61,7 @@ export const toast_notifications: ReferenceEntry = {
   relatedEntryIds: ['skeleton-screens', 'micro-interactions', 'optimistic-ui'],
   interactiveComponent: "Toast",
   tags: ["Feedback","UX","Components"],
+  contentStatus: 'draft',
   content: `
 
 # Toasts & Snackbars

@@ -61,6 +61,7 @@ export const habit_streaks: ReferenceEntry = {
   relatedEntryIds: ['peak-end-rule', 'gamified-leaderboards', 'goal-setting-ui'],
   interactiveComponent: "StreakDemo",
   tags: ["EdTech","Gamification","Retention"],
+  contentStatus: 'hardened',
   content: `
 
 # Designing for Consistency

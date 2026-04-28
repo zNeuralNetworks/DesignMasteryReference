@@ -61,6 +61,7 @@ export const motion_accessibility: ReferenceEntry = {
   relatedEntryIds: ['scroll-animations', 'scroll-jacking', 'fluid-motion', 'page-transitions', 'easing-curves'],
   tags: ["motion accessibility", "prefers-reduced-motion", "vestibular", "animation accessibility", "WCAG motion"],
   intentTags: ["fix-accessibility"],
+  contentStatus: 'hardened',
   content: `
 # Motion Accessibility
 

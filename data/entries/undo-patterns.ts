@@ -66,6 +66,7 @@ export const undo_patterns: ReferenceEntry = {
   relatedEntryIds: ['confirmation-patterns', 'optimistic-ui', 'toast-notifications', 'error-states'],
   tags: ["undo", "undo pattern", "undo toast", "Cmd+Z", "delete undo", "reversible actions", "soft delete"],
   intentTags: ["improve-feedback", "reduce-cognitive-load"],
+  contentStatus: 'flagship',
   content: `
 # Undo Patterns
 

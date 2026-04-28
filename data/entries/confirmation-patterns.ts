@@ -67,6 +67,7 @@ export const confirmation_patterns: ReferenceEntry = {
   relatedEntryIds: ['undo-patterns', 'modal-dialog', 'error-states', 'toast-notifications'],
   tags: ["confirmation dialog", "delete confirmation", "destructive actions", "confirm modal", "undo", "irreversible"],
   intentTags: ["improve-feedback", "reduce-cognitive-load"],
+  contentStatus: 'flagship',
   content: `
 # Confirmation Patterns
 

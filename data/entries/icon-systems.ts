@@ -65,6 +65,7 @@ export const icon_systems: ReferenceEntry = {
   relatedEntryIds: ['mystery-meat-navigation', 'design-tokens', 'component-props', 'badges-tags-chips'],
   tags: ["icon system", "icons", "SVG icons", "icon library", "icon sizing", "Lucide", "Heroicons"],
   intentTags: ["improve-readability", "improve-aesthetics"],
+  contentStatus: 'hardened',
   content: `
 # Icon Systems
 

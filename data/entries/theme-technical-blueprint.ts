@@ -74,6 +74,7 @@ export const theme_technical_blueprint: ReferenceEntry = {
   relatedEntryIds: ['theme-operator-console', 'dark-mode-design', 'glassmorphism', 'color-rule'],
   interactiveComponent: "TechnicalBlueprintDemo",
   tags: ["Visual Design", "Dark Mode", "Engineering", "Theming", "CAD", "Blueprint", "devtools"],
+  contentStatus: 'hardened',
   content: `
 
 # Technical Blueprint

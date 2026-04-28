@@ -65,6 +65,7 @@ export const offline_sync_states: ReferenceEntry = {
   relatedEntryIds: ['optimistic-ui', 'error-states', 'loading-states', 'toast-notifications'],
   tags: ["offline", "sync state", "local-first", "offline mode", "connectivity", "background sync"],
   intentTags: ["improve-feedback", "improve-performance"],
+  contentStatus: 'hardened',
   content: `
 # Offline & Sync States
 

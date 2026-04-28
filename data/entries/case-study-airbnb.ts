@@ -61,6 +61,7 @@ export const case_study_airbnb: ReferenceEntry = {
   relatedEntryIds: ['case-study-linear', 'case-study-duolingo', 'progressive-disclosure'],
   interactiveComponent: "AirbnbMapToggle",
   tags: ["Marketplace","Maps","Trust","Layout"],
+  contentStatus: 'flagship',
   content: `
 
 # Airbnb: The Trust Interface

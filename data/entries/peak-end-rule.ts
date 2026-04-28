@@ -56,6 +56,7 @@ export const peak_end_rule: ReferenceEntry = {
   interactiveComponent: "CelebrationDemo",
   relatedEntryIds: ["celebration-rewards", "habit-streaks"],
   tags: ["Psychology","UX Design","Retention"],
+  contentStatus: 'hardened',
   content: `
 # Designing for Memory
 

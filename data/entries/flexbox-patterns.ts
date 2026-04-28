@@ -66,6 +66,7 @@ export const flexbox_patterns: ReferenceEntry = {
   relatedEntryIds: ['bento-grids', 'spacing-systems', 'css-grid-layouts'],
   tags: ["flexbox", "alignment", "layout", "centering", "alignment broken", "layout not centering", "items not wrapping", "fix layout", "flex-direction", "justify-content", "align-items", "gap", "flex-wrap"],
   intentTags: ["fix-alignment", "improve-aesthetics"],
+  contentStatus: 'flagship',
   content: `
 # Flexbox Patterns
 

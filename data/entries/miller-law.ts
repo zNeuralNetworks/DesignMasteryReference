@@ -64,6 +64,7 @@ export const miller_law: ReferenceEntry = {
   relatedEntryIds: ['hicks-law', 'cognitive-chunking', 'progressive-disclosure', 'serial-position-effect'],
   interactiveComponent: "ChunkingDemo",
   tags: ["Psychology","Cognitive Load","Memory","working memory","7 plus or minus 2","chunking","too much information"],
+  contentStatus: 'hardened',
   content: `
 
 # Working Memory Limits

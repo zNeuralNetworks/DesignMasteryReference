@@ -60,6 +60,7 @@ export const focus_management: ReferenceEntry = {
   relatedEntryIds: ['color-blindness', 'dark-mode-design'],
   interactiveComponent: "FocusDemo",
   tags: ["A11y","Keyboard","CSS"],
+  contentStatus: 'draft',
   content: `
 
 # Keyboard Navigation

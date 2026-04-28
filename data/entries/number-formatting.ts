@@ -63,6 +63,7 @@ export const number_formatting: ReferenceEntry = {
   relatedEntryIds: ['data-table-patterns', 'chart-selection', 'dashboard-layout-patterns', 'data-visualization-principles'],
   tags: ["number formatting", "data tables", "currency", "large numbers", "tabular numbers", "dashboard numbers"],
   intentTags: ["improve-readability", "increase-density"],
+  contentStatus: 'hardened',
   content: `
 # Number Formatting
 

@@ -61,16 +61,62 @@ export const dark_mode_design: ReferenceEntry = {
   relatedEntryIds: ['color-rule', 'color-blindness'],
   interactiveComponent: "DarkMode",
   tags: ["Accessibility","Theming","Colors","dark mode","light mode","fix dark mode","eye strain","low contrast","dark theme looks bad"],
+  contentStatus: 'hardened',
   content: `
 
 # Designing for the Dark
 
-Dark mode isn't just about swapping white for black. It requires careful color calibration to ensure accessibility and comfort.
+Dark mode is not an inversion of light mode. Inverting a light palette — flipping hex values or reversing the Tailwind shade scale — produces vibrating colors, broken elevation, and failed contrast. Each surface, elevation, and semantic color must be reconsidered from first principles.
 
-### Key Rules
-1.  **Avoid Pure Black**: Use dark greys (e.g., \`#121212\`) to reduce eye strain and smearing on OLED screens.
-2.  **Desaturate Colors**: Bright accent colors vibrate against dark backgrounds. Lower the saturation or use lighter pastel tones.
-    
+### The darkness spectrum
+
+Pure black (\`#000000\`) causes two problems on OLED displays: *smearing* (bright text on pure black creates a comet-tail artifact on some screens) and *flat elevation* (you lose the ability to communicate depth via surface lightness). Start with a base around \`#0f0f0f\` to \`#1a1a1a\` and build upward.
+
+Tailwind's \`slate-950\` / \`slate-900\` / \`slate-800\` scale works well as a starting point. Reserve lighter grays for elevated surfaces (modals, dropdowns, tooltips).
+
+### Elevation in dark mode
+
+In light mode, elevation is signaled by shadows. In dark mode, shadows are invisible. Instead, use *surface lightness* to convey elevation:
+
+| Layer         | Approximate tone |
+| ------------- | ---------------- |
+| Page base     | slate-950        |
+| Card surface  | slate-900        |
+| Modal / sheet | slate-800        |
+| Tooltip       | slate-700        |
+
+### Color desaturation
+
+High-saturation accent colors (a vivid \`blue-600\` for instance) "glow" against dark backgrounds and cause eye fatigue. In dark mode, shift accents toward lighter, less saturated values: \`blue-400\` reads clearly without vibrating.
+
+### Semantic color recalibration
+
+Error red, success green, and warning amber must all be retested for contrast on dark surfaces. The WCAG AA 4.5:1 requirement applies equally. Use a contrast checker — never eyeball it.
+
+### CSS implementation
+
+\`\`\`css
+:root {
+  --bg-base: #111318;
+  --bg-surface: #1c1f26;
+  --bg-elevated: #252830;
+  --text-primary: #e8eaed;
+  --text-muted: #9aa0ab;
+  --border: rgba(255,255,255,0.08);
+}
+\`\`\`
+
+Prefer semantic tokens over raw color values. Switching themes becomes a token swap, not a component rewrite.
+
+### System preference detection
+
+\`\`\`css
+@media (prefers-color-scheme: dark) {
+  :root { /* dark token overrides */ }
+}
+\`\`\`
+
+Also expose a manual toggle — some users in bright environments want light mode even if their OS is set to dark.
 `,
   intentTags: ["improve-aesthetics", "fix-accessibility"],
 };

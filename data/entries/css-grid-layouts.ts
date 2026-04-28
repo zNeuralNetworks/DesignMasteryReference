@@ -66,6 +66,7 @@ export const css_grid_layouts: ReferenceEntry = {
   relatedEntryIds: ['bento-grids', 'flexbox-patterns', 'spacing-systems'],
   tags: ["css grid", "grid layout", "columns", "responsive", "fr units", "fix layout", "grid layout", "dashboard looks cluttered", "responsive columns", "auto-fill", "auto-fit", "template areas"],
   intentTags: ["fix-alignment", "improve-aesthetics"],
+  contentStatus: 'flagship',
   content: `
 # CSS Grid Layouts
 

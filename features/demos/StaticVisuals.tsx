@@ -611,7 +611,7 @@ const SystemAtlasDemo = () => (
 );
 
 const TechnicalBlueprintDemo = () => (
-    <Container className="bg-[#002855] border-white/10" style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px)', backgroundSize: '16px 16px' }}>
+    <Container className="bg-[#002855] border-white/10 [background-image:radial-gradient(rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:16px_16px]">
         <div className="w-full space-y-1.5">
             <div className="border border-dashed border-white/20 p-2">
                 <span className="text-[9px] font-mono uppercase tracking-widest text-[#9ec8ff]">COMPONENT: Button</span>

@@ -61,6 +61,7 @@ export const edtech_flashcards: ReferenceEntry = {
   relatedEntryIds: ['cognitive-chunking', 'mastery-paths', 'adaptive-scaffolding'],
   interactiveComponent: "FlashcardDemo",
   tags: ["Gamification","EdTech"],
+  contentStatus: 'draft',
   content: `
 
 # Designing for Learning

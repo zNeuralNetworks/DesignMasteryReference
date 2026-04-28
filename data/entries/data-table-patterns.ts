@@ -80,6 +80,7 @@ export const data_table_patterns: ReferenceEntry = {
   relatedEntryIds: ['virtualization', 'progressive-disclosure', 'skeleton-screens', 'empty-states'],
   interactiveComponent: "VirtualizationDemo",
   tags: ["Interaction","B2B","Data Dense","tables","dashboard","sorting and filtering","fix layout","dashboard looks cluttered","bulk actions"],
+  contentStatus: 'hardened',
   content: `
 
 # Data Table Patterns

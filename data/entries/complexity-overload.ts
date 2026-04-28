@@ -19,7 +19,11 @@ export const complexity_overload: ReferenceEntry = {
     "Mixed feature and settings controls create context switching (e.g., 'Save', 'Cancel', 'Reset', 'Advanced', 'Help' all in the same row).",
     "Lack of defaults means the user must make a decision for every field, even optional ones."
   ],
-  whenToUse: [],
+  whenToUse: [
+    "Auditing an existing UI that users report as overwhelming or hard to learn",
+    "Designing feature-rich tools where progressive disclosure is needed",
+    "Evaluating whether a feature set should be split into separate surfaces",
+  ],
   whenNotToUse: [
     "Never expose all features/options at the same hierarchical level.",
     "Never force the user to decide on optional fields with no defaults.",
@@ -60,6 +64,7 @@ export const complexity_overload: ReferenceEntry = {
   relatedEntryIds: ['hicks-law', 'progressive-disclosure', 'cognitive-chunking'],
   interactiveComponent: "HicksLawDemo",
   tags: ["Anti-Pattern","Interaction","Cognitive Load","too many options","choice overload","overwhelming interface","decision fatigue","analysis paralysis"],
+  contentStatus: 'hardened',
   content: `
 
 # Complexity Overload

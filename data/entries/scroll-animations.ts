@@ -61,6 +61,7 @@ export const scroll_animations: ReferenceEntry = {
   relatedEntryIds: ['micro-interactions', 'fluid-motion', 'scroll-jacking'],
   interactiveComponent: "ScrollAnimation",
   tags: ["Interaction Design","Scrollytelling"],
+  contentStatus: 'hardened',
   content: `
 
 # Scroll-Linked Animations

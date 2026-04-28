@@ -61,6 +61,7 @@ export const micro_interactions: ReferenceEntry = {
   relatedEntryIds: ['scroll-animations', 'toast-notifications', 'fluid-motion'],
   interactiveComponent: "MicroInteraction",
   tags: ["Animation","UX","Feedback","feels unresponsive","no feedback","UI feels dead","fix interactions","missing hover states","no visual response"],
+  contentStatus: 'hardened',
   content: `
 
 # Micro-interactions

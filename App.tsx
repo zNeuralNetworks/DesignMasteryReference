@@ -37,6 +37,8 @@ export default function App() {
             <Route path="/" element={<ReferenceLibrary />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/compare/:id1/:id2" element={<ComparisonPage />} />
+            <Route path="/compare/:id1/:id2/:id3" element={<ComparisonPage />} />
+            <Route path="/compare/:id1/:id2/:id3/:id4" element={<ComparisonPage />} />
             <Route path="/reference/:id" element={<ReferenceViewer />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/ebook" element={<EbookGenerator />} />

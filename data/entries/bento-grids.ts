@@ -61,6 +61,7 @@ export const bento_grids: ReferenceEntry = {
   relatedEntryIds: ['gestalt-common-region', 'gestalt-proximity', 'cognitive-chunking'],
   interactiveComponent: "BentoGrid",
   tags: ["Layout","CSS Grid","Modern UI","grid layout","card layout","fix layout","dashboard layout","content arrangement","modular layout"],
+  contentStatus: 'hardened',
   content: `
 
 # Bento Box Layouts

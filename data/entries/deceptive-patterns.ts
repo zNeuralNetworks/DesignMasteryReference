@@ -52,6 +52,7 @@ export const deceptive_patterns: ReferenceEntry = {
   checklist: ["Removed confirmshaming copy", "Verified easy cancellation path", "Checked for hidden costs"],
   relatedEntryIds: ["mystery-meat-navigation", "scroll-jacking"],
   tags: ["Ethics","UX Design","Legal","Anti-Pattern","dark patterns","manipulative UI","forced consent","tricky UX","unethical design","hidden charges"],
+  contentStatus: 'hardened',
   content: `
 # The Cost of Deception
 
