@@ -52,13 +52,6 @@ Internal tools for system management.
 
 ---
 
-## 5. `/services` - Logic & API Services
-External integrations and shared logic.
-*   `gemini.ts`: Integration with the Google Gemini API.
-*   `prompts.ts`: System instructions and persona definitions for the AI Assistant.
-
----
-
 ## 6. Architectural Principles
 1.  **Feature Isolation:** Keep UI, logic, and types related to a specific feature within its `/features` subdirectory.
 2.  **Data-Driven UI:** The UI should react dynamically to the `ReferenceEntry` schema. Adding a new field to `types.ts` should ideally only require updates in the Viewer and Library.
