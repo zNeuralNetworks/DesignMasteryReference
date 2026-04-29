@@ -71,14 +71,11 @@ const DOMAIN_LABELS: Record<string, string> = {
   responsiveness: 'Responsive', data: 'Data', tokens: 'Tokens',
 };
 
-const FIX_COLORS: Record<string, { card: string; icon: string; badge: string }> = {
-  violet:  { card: 'bg-violet-50/40 border-violet-100/60 hover:border-violet-200',    icon: 'text-violet-500',  badge: 'bg-violet-100/60 text-violet-600'  },
-  blue:    { card: 'bg-blue-50/40 border-blue-100/60 hover:border-blue-200',          icon: 'text-blue-500',    badge: 'bg-blue-100/60 text-blue-600'    },
-  teal:    { card: 'bg-teal-50/40 border-teal-100/60 hover:border-teal-200',          icon: 'text-teal-500',    badge: 'bg-teal-100/60 text-teal-600'    },
-  amber:   { card: 'bg-amber-50/40 border-amber-100/60 hover:border-amber-200',       icon: 'text-amber-500',   badge: 'bg-amber-100/60 text-amber-600'   },
-  rose:    { card: 'bg-rose-50/40 border-rose-100/60 hover:border-rose-200',          icon: 'text-rose-500',    badge: 'bg-rose-100/60 text-rose-600'    },
-  emerald: { card: 'bg-emerald-50/40 border-emerald-100/60 hover:border-emerald-200', icon: 'text-emerald-500', badge: 'bg-emerald-100/60 text-emerald-600' },
-};
+const FIX_COLORS = (n: 1 | 2 | 3 | 4 | 5 | 6) => ({
+  card:  `cat-card-${n} border hover:brightness-[0.97] transition-all`,
+  icon:  `cat-icon-${n}`,
+  badge: `cat-icon-${n}`,
+});
 
 // ── FiltersPopover ──────────────────────────────────────────────────────────
 
@@ -245,7 +242,7 @@ const FixGuideRow = ({
       <div className="flex gap-3 overflow-x-auto scrollbar-hide pb-1">
         {fixGuides.map((guide) => {
           const Icon = FIX_ICONS[guide.icon] || Gauge;
-          const c = FIX_COLORS[guide.color];
+          const c = FIX_COLORS(guide.category);
           const isActive = activeGuideId === guide.id;
           return (
             <button
@@ -461,7 +458,7 @@ export const ReferenceLibrary = () => {
 
         <div className="flex items-center gap-3">
           {/* Mode toggle */}
-          <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl">
+          <div className="flex items-center gap-1 bg-surface p-1 rounded-xl border border-border/40">
             <Tooltip content="Find a fix fast — problem-first, action-shaped entries" side="bottom">
               <button
                 onClick={() => setMode('solve')}
@@ -483,11 +480,11 @@ export const ReferenceLibrary = () => {
           {/* View toggle */}
           <Annotation
             title="Segmented Control"
-            body="The active pill uses bg-surface-raised + shadow-sm while the track stays bg-slate-100 — the shadow creates an elevation difference that communicates mutual exclusivity without a dropdown."
+            body="The active pill uses bg-surface-raised + shadow-sm while the track uses bg-surface + border — the shadow creates an elevation difference that communicates mutual exclusivity without a dropdown."
             entryId="micro-interactions"
             side="bottom"
           >
-            <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl">
+            <div className="flex items-center gap-1 bg-surface p-1 rounded-xl border border-border/40">
               <Tooltip content="Grid view" side="bottom">
                 <button
                   onClick={() => setViewMode('grid')}
@@ -512,21 +509,6 @@ export const ReferenceLibrary = () => {
       {/* Theme gallery — Explore mode only */}
       {mode === 'explore' && <ThemeGalleryRow />}
 
-      {/* Hero search — Solve mode only, appears above Fix Guides */}
-      {mode === 'solve' && (
-        <button
-          type="button"
-          onClick={() => { setPaletteOpen(true); setActiveFixGuide(null); }}
-          className="w-full flex items-center gap-3 bg-surface-raised border border-border rounded-2xl px-4 py-3 mb-5 text-left shadow-sm hover:shadow-md hover:border-fg/20 transition-all"
-        >
-          <Search size={16} className="text-fg-faint flex-shrink-0" />
-          <span className="text-[15px] text-fg-faint flex-1">
-            Describe the problem: 'spacing feels off', 'hierarchy unclear'…
-          </span>
-          <kbd className="text-[11px] font-medium text-fg-faint bg-surface px-1.5 py-0.5 rounded border border-border flex-shrink-0">⌘K</kbd>
-        </button>
-      )}
-
       {/* Fix guides — Solve mode only */}
       {mode === 'solve' && (
         <Annotation
@@ -542,7 +524,7 @@ export const ReferenceLibrary = () => {
 
       {/* Active fix guide checklist banner */}
       {activeFixGuide && (() => {
-        const c = FIX_COLORS[activeFixGuide.color];
+        const c = FIX_COLORS(activeFixGuide.category);
         const Icon = FIX_ICONS[activeFixGuide.icon] || Gauge;
         return (
           <div className={`mb-5 rounded-2xl border p-4 ${c.card}`}>

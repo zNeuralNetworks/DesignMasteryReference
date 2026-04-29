@@ -87,6 +87,40 @@
   --fg-faint:      var(--slate-400);
   --accent:        var(--primary-600);
   --accent-bg:     var(--primary-50);
+
+  /* Backdrop token — sticky surfaces that need translucency */
+  --surface-overlay: rgba(245, 245, 247, 0.85);
+
+  /* Category color tokens — Fix Guide cards, theme-aware */
+  --cat-1-bg:     rgba(237, 233, 254, 0.45);
+  --cat-1-border: rgba(221, 214, 254, 0.65);
+  --cat-1-icon:   #6d28d9;
+  --cat-1-badge:  rgba(221, 214, 254, 0.7);
+
+  --cat-2-bg:     rgba(219, 234, 254, 0.45);
+  --cat-2-border: rgba(191, 219, 254, 0.65);
+  --cat-2-icon:   #1d4ed8;
+  --cat-2-badge:  rgba(191, 219, 254, 0.7);
+
+  --cat-3-bg:     rgba(204, 251, 241, 0.45);
+  --cat-3-border: rgba(153, 246, 228, 0.65);
+  --cat-3-icon:   #0f766e;
+  --cat-3-badge:  rgba(153, 246, 228, 0.7);
+
+  --cat-4-bg:     rgba(254, 243, 199, 0.45);
+  --cat-4-border: rgba(253, 230, 138, 0.65);
+  --cat-4-icon:   #b45309;
+  --cat-4-badge:  rgba(253, 230, 138, 0.7);
+
+  --cat-5-bg:     rgba(255, 228, 230, 0.45);
+  --cat-5-border: rgba(254, 205, 211, 0.65);
+  --cat-5-icon:   #be123c;
+  --cat-5-badge:  rgba(254, 205, 211, 0.7);
+
+  --cat-6-bg:     rgba(209, 250, 229, 0.45);
+  --cat-6-border: rgba(167, 243, 208, 0.65);
+  --cat-6-icon:   #065f46;
+  --cat-6-badge:  rgba(167, 243, 208, 0.7);
 }
 
 /* Bioluminescent Theme (Deep Navy & Cyan) */
@@ -117,12 +151,43 @@
 
   --surface:        #050810;
   --surface-raised: #0a1628;
+  --surface-overlay: rgba(5, 8, 16, 0.88);
   --border:         #0f2540;
   --fg:             #e0f2fe;
   --fg-muted:       #7dd3fc;
   --fg-faint:       #38bdf8;
   --accent:         #06b6d4;
   --accent-bg:      #0f2540;
+
+  --cat-1-bg:     rgba(109, 40, 217, 0.18);
+  --cat-1-border: rgba(139, 92, 246, 0.28);
+  --cat-1-icon:   #a78bfa;
+  --cat-1-badge:  rgba(109, 40, 217, 0.28);
+
+  --cat-2-bg:     rgba(29, 78, 216, 0.18);
+  --cat-2-border: rgba(96, 165, 250, 0.28);
+  --cat-2-icon:   #93c5fd;
+  --cat-2-badge:  rgba(29, 78, 216, 0.28);
+
+  --cat-3-bg:     rgba(15, 118, 110, 0.18);
+  --cat-3-border: rgba(45, 212, 191, 0.28);
+  --cat-3-icon:   #5eead4;
+  --cat-3-badge:  rgba(15, 118, 110, 0.28);
+
+  --cat-4-bg:     rgba(180, 83, 9, 0.18);
+  --cat-4-border: rgba(251, 191, 36, 0.28);
+  --cat-4-icon:   #fcd34d;
+  --cat-4-badge:  rgba(180, 83, 9, 0.28);
+
+  --cat-5-bg:     rgba(190, 18, 60, 0.18);
+  --cat-5-border: rgba(251, 113, 133, 0.28);
+  --cat-5-icon:   #fda4af;
+  --cat-5-badge:  rgba(190, 18, 60, 0.28);
+
+  --cat-6-bg:     rgba(6, 95, 70, 0.18);
+  --cat-6-border: rgba(52, 211, 153, 0.28);
+  --cat-6-icon:   #6ee7b7;
+  --cat-6-badge:  rgba(6, 95, 70, 0.28);
 }
 
 /* Swiss Polarity (Neo-Brutalism) */
@@ -153,6 +218,7 @@
 
   --surface:        #ffffff;
   --surface-raised: #ffffff;
+  --surface-overlay: rgba(255, 255, 255, 0.88);
   --border:         #171717;
   --accent:         #dc2626;
   --accent-bg:      #fef2f2;
@@ -166,12 +232,43 @@
 .theme-operator-console {
   --surface:        #0d1117;
   --surface-raised: #161b22;
+  --surface-overlay: rgba(13, 17, 23, 0.88);
   --border:         #30363d;
   --fg:             #e6edf3;
   --fg-muted:       #8b949e;
   --fg-faint:       #6e7681;
   --accent:         #f59e0b;
   --accent-bg:      rgba(245, 158, 11, 0.12);
+
+  --cat-1-bg:     rgba(109, 40, 217, 0.18);
+  --cat-1-border: rgba(139, 92, 246, 0.28);
+  --cat-1-icon:   #a78bfa;
+  --cat-1-badge:  rgba(109, 40, 217, 0.28);
+
+  --cat-2-bg:     rgba(29, 78, 216, 0.18);
+  --cat-2-border: rgba(96, 165, 250, 0.28);
+  --cat-2-icon:   #93c5fd;
+  --cat-2-badge:  rgba(29, 78, 216, 0.28);
+
+  --cat-3-bg:     rgba(15, 118, 110, 0.18);
+  --cat-3-border: rgba(45, 212, 191, 0.28);
+  --cat-3-icon:   #5eead4;
+  --cat-3-badge:  rgba(15, 118, 110, 0.28);
+
+  --cat-4-bg:     rgba(180, 83, 9, 0.18);
+  --cat-4-border: rgba(251, 191, 36, 0.28);
+  --cat-4-icon:   #fcd34d;
+  --cat-4-badge:  rgba(180, 83, 9, 0.28);
+
+  --cat-5-bg:     rgba(190, 18, 60, 0.18);
+  --cat-5-border: rgba(251, 113, 133, 0.28);
+  --cat-5-icon:   #fda4af;
+  --cat-5-badge:  rgba(190, 18, 60, 0.28);
+
+  --cat-6-bg:     rgba(6, 95, 70, 0.18);
+  --cat-6-border: rgba(52, 211, 153, 0.28);
+  --cat-6-icon:   #6ee7b7;
+  --cat-6-badge:  rgba(6, 95, 70, 0.28);
 }
 
 .theme-operator-console * {
@@ -183,6 +280,7 @@
 .theme-quiet-luxury {
   --surface:        #faf7f2;
   --surface-raised: #ffffff;
+  --surface-overlay: rgba(250, 247, 242, 0.88);
   --border:         #e7e5e4;
   --fg:             #1a1611;
   --fg-muted:       #78716c;
@@ -195,6 +293,7 @@
 .theme-system-atlas {
   --surface:        #fafafa;
   --surface-raised: #ffffff;
+  --surface-overlay: rgba(250, 250, 250, 0.88);
   --border:         #e4e4e7;
   --fg:             #18181b;
   --fg-muted:       #71717a;
@@ -207,18 +306,108 @@
 .theme-technical-blueprint {
   --surface:        #002855;
   --surface-raised: #003366;
+  --surface-overlay: rgba(0, 40, 85, 0.9);
   --border:         rgba(255, 255, 255, 0.15);
   --fg:             #ffffff;
   --fg-muted:       #9ec8ff;
   --fg-faint:       rgba(255, 255, 255, 0.35);
   --accent:         #9ec8ff;
   --accent-bg:      rgba(158, 200, 255, 0.1);
+
+  --cat-1-bg:     rgba(139, 92, 246, 0.2);
+  --cat-1-border: rgba(167, 139, 250, 0.3);
+  --cat-1-icon:   #c4b5fd;
+  --cat-1-badge:  rgba(139, 92, 246, 0.3);
+
+  --cat-2-bg:     rgba(59, 130, 246, 0.2);
+  --cat-2-border: rgba(147, 197, 253, 0.3);
+  --cat-2-icon:   #bfdbfe;
+  --cat-2-badge:  rgba(59, 130, 246, 0.3);
+
+  --cat-3-bg:     rgba(20, 184, 166, 0.2);
+  --cat-3-border: rgba(94, 234, 212, 0.3);
+  --cat-3-icon:   #99f6e4;
+  --cat-3-badge:  rgba(20, 184, 166, 0.3);
+
+  --cat-4-bg:     rgba(245, 158, 11, 0.2);
+  --cat-4-border: rgba(252, 211, 77, 0.3);
+  --cat-4-icon:   #fde68a;
+  --cat-4-badge:  rgba(245, 158, 11, 0.3);
+
+  --cat-5-bg:     rgba(244, 63, 94, 0.2);
+  --cat-5-border: rgba(253, 164, 175, 0.3);
+  --cat-5-icon:   #fecdd3;
+  --cat-5-badge:  rgba(244, 63, 94, 0.3);
+
+  --cat-6-bg:     rgba(16, 185, 129, 0.2);
+  --cat-6-border: rgba(110, 231, 183, 0.3);
+  --cat-6-icon:   #a7f3d0;
+  --cat-6-badge:  rgba(16, 185, 129, 0.3);
 }
 
 .theme-technical-blueprint body {
   background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
   background-size: 24px 24px;
 }
+
+/* OS dark mode — activates only when no explicit theme class is applied */
+@media (prefers-color-scheme: dark) {
+  :root:not([class*="theme-"]) {
+    --surface:        #1d1d1f;
+    --surface-raised: #2c2c2e;
+    --surface-overlay: rgba(29, 29, 31, 0.88);
+    --border:         #3a3a3c;
+    --fg:             #f5f5f7;
+    --fg-muted:       #8e8e93;
+    --fg-faint:       #6e6e73;
+    --accent:         #007aff;
+    --accent-bg:      rgba(0, 122, 255, 0.12);
+
+    --cat-1-bg:     rgba(109, 40, 217, 0.18);
+    --cat-1-border: rgba(139, 92, 246, 0.28);
+    --cat-1-icon:   #a78bfa;
+    --cat-1-badge:  rgba(109, 40, 217, 0.28);
+
+    --cat-2-bg:     rgba(29, 78, 216, 0.18);
+    --cat-2-border: rgba(96, 165, 250, 0.28);
+    --cat-2-icon:   #93c5fd;
+    --cat-2-badge:  rgba(29, 78, 216, 0.28);
+
+    --cat-3-bg:     rgba(15, 118, 110, 0.18);
+    --cat-3-border: rgba(45, 212, 191, 0.28);
+    --cat-3-icon:   #5eead4;
+    --cat-3-badge:  rgba(15, 118, 110, 0.28);
+
+    --cat-4-bg:     rgba(180, 83, 9, 0.18);
+    --cat-4-border: rgba(251, 191, 36, 0.28);
+    --cat-4-icon:   #fcd34d;
+    --cat-4-badge:  rgba(180, 83, 9, 0.28);
+
+    --cat-5-bg:     rgba(190, 18, 60, 0.18);
+    --cat-5-border: rgba(251, 113, 133, 0.28);
+    --cat-5-icon:   #fda4af;
+    --cat-5-badge:  rgba(190, 18, 60, 0.28);
+
+    --cat-6-bg:     rgba(6, 95, 70, 0.18);
+    --cat-6-border: rgba(52, 211, 153, 0.28);
+    --cat-6-icon:   #6ee7b7;
+    --cat-6-badge:  rgba(6, 95, 70, 0.28);
+  }
+}
+
+/* Category card utility classes — consume --cat-* tokens */
+.cat-card-1 { background-color: var(--cat-1-bg); border-color: var(--cat-1-border); }
+.cat-card-2 { background-color: var(--cat-2-bg); border-color: var(--cat-2-border); }
+.cat-card-3 { background-color: var(--cat-3-bg); border-color: var(--cat-3-border); }
+.cat-card-4 { background-color: var(--cat-4-bg); border-color: var(--cat-4-border); }
+.cat-card-5 { background-color: var(--cat-5-bg); border-color: var(--cat-5-border); }
+.cat-card-6 { background-color: var(--cat-6-bg); border-color: var(--cat-6-border); }
+.cat-icon-1 { color: var(--cat-1-icon); background-color: var(--cat-1-badge); }
+.cat-icon-2 { color: var(--cat-2-icon); background-color: var(--cat-2-badge); }
+.cat-icon-3 { color: var(--cat-3-icon); background-color: var(--cat-3-badge); }
+.cat-icon-4 { color: var(--cat-4-icon); background-color: var(--cat-4-badge); }
+.cat-icon-5 { color: var(--cat-5-icon); background-color: var(--cat-5-badge); }
+.cat-icon-6 { color: var(--cat-6-icon); background-color: var(--cat-6-badge); }
 
 body {
   background-color: var(--slate-50);
