@@ -2,7 +2,7 @@ export interface FixGuide {
   id: string;
   title: string;
   icon: string;
-  color: string;
+  category: 1 | 2 | 3 | 4 | 5 | 6;
   problems: string[];
   quickChecklist: string[];
   relatedEntryIds: string[];
@@ -14,7 +14,7 @@ export const fixGuides: FixGuide[] = [
     id: 'fix-typography',
     title: 'Fix Typography',
     icon: 'Type',
-    color: 'violet',
+    category: 1,
     problems: [
       'text is hard to read',
       'everything looks the same size',
@@ -38,7 +38,7 @@ export const fixGuides: FixGuide[] = [
     id: 'fix-spacing',
     title: 'Fix Spacing',
     icon: 'LayoutGrid',
-    color: 'blue',
+    category: 2,
     problems: [
       'UI feels cluttered',
       'elements feel disconnected',
@@ -62,7 +62,7 @@ export const fixGuides: FixGuide[] = [
     id: 'fix-layout',
     title: 'Fix Layout',
     icon: 'Columns',
-    color: 'teal',
+    category: 3,
     problems: [
       'layout feels messy',
       'content is hard to scan',
@@ -86,7 +86,7 @@ export const fixGuides: FixGuide[] = [
     id: 'fix-navigation',
     title: 'Fix Navigation',
     icon: 'Compass',
-    color: 'amber',
+    category: 4,
     problems: [
       'users get lost',
       'nav makes no sense',
@@ -111,7 +111,7 @@ export const fixGuides: FixGuide[] = [
     id: 'fix-performance',
     title: 'Fix Performance',
     icon: 'Gauge',
-    color: 'rose',
+    category: 5,
     problems: [
       'app feels slow',
       'UI feels laggy',
@@ -136,7 +136,7 @@ export const fixGuides: FixGuide[] = [
     id: 'fix-forms',
     title: 'Fix Forms',
     icon: 'Type',
-    color: 'emerald',
+    category: 6,
     problems: [
       'form feels confusing',
       'users abandon the form',
@@ -159,7 +159,7 @@ export const fixGuides: FixGuide[] = [
     id: 'fix-color',
     title: 'Fix Color & Theme',
     icon: 'Palette',
-    color: 'violet',
+    category: 1,
     problems: [
       'palette feels random',
       'text is hard to read',
@@ -181,7 +181,7 @@ export const fixGuides: FixGuide[] = [
     id: 'fix-hierarchy',
     title: 'Fix Visual Hierarchy',
     icon: 'Layers',
-    color: 'blue',
+    category: 2,
     problems: [
       'nothing stands out',
       'everything looks the same weight',
@@ -203,7 +203,7 @@ export const fixGuides: FixGuide[] = [
     id: 'fix-motion',
     title: 'Fix Motion & Animation',
     icon: 'Zap',
-    color: 'teal',
+    category: 3,
     problems: [
       'animations feel janky',
       'transitions are too slow',
@@ -225,7 +225,7 @@ export const fixGuides: FixGuide[] = [
     id: 'fix-data',
     title: 'Fix Data Display',
     icon: 'Table2',
-    color: 'emerald',
+    category: 6,
     problems: [
       'table looks overwhelming',
       'data is hard to scan',

@@ -78,15 +78,47 @@
   --primary-900: #003580;
   --primary-950: #001A40;
 
-  /* Semantic tokens — reference these in themes, consume via Tailwind utilities */
-  --surface:       var(--slate-50);
-  --surface-raised: #ffffff;
-  --border:        var(--slate-200);
-  --fg:            var(--slate-900);
-  --fg-muted:      var(--slate-500);
-  --fg-faint:      var(--slate-400);
-  --accent:        var(--primary-600);
-  --accent-bg:     var(--primary-50);
+  /* Semantic tokens — Cinema Dark defaults */
+  --surface:         #0E0E10;
+  --surface-raised:  #18181C;
+  --surface-overlay: rgba(14, 14, 16, 0.85);
+  --border:          rgba(255, 255, 255, 0.08);
+  --fg:              #F0F0F5;
+  --fg-muted:        #8A8A99;
+  --fg-faint:        #52525E;
+  --accent:          #818CF8;
+  --accent-bg:       rgba(79, 70, 229, 0.12);
+
+  /* Category tokens — gem palette for dark cinema */
+  --cat-1-bg:     rgba(79, 70, 229, 0.10);
+  --cat-1-border: rgba(99, 102, 241, 0.22);
+  --cat-1-icon:   #818CF8;
+  --cat-1-badge:  rgba(99, 102, 241, 0.14);
+
+  --cat-2-bg:     rgba(37, 99, 235, 0.10);
+  --cat-2-border: rgba(59, 130, 246, 0.22);
+  --cat-2-icon:   #60A5FA;
+  --cat-2-badge:  rgba(59, 130, 246, 0.14);
+
+  --cat-3-bg:     rgba(5, 150, 105, 0.10);
+  --cat-3-border: rgba(16, 185, 129, 0.22);
+  --cat-3-icon:   #34D399;
+  --cat-3-badge:  rgba(16, 185, 129, 0.14);
+
+  --cat-4-bg:     rgba(217, 119, 6, 0.10);
+  --cat-4-border: rgba(245, 158, 11, 0.22);
+  --cat-4-icon:   #FCD34D;
+  --cat-4-badge:  rgba(245, 158, 11, 0.14);
+
+  --cat-5-bg:     rgba(225, 29, 72, 0.10);
+  --cat-5-border: rgba(244, 63, 94, 0.22);
+  --cat-5-icon:   #FB7185;
+  --cat-5-badge:  rgba(244, 63, 94, 0.14);
+
+  --cat-6-bg:     rgba(124, 58, 237, 0.10);
+  --cat-6-border: rgba(139, 92, 246, 0.22);
+  --cat-6-icon:   #A78BFA;
+  --cat-6-badge:  rgba(139, 92, 246, 0.14);
 }
 
 /* Bioluminescent Theme (Deep Navy & Cyan) */
@@ -115,14 +147,15 @@
   --primary-900: #164e63;
   --primary-950: #083344;
 
-  --surface:        #050810;
-  --surface-raised: #0a1628;
-  --border:         #0f2540;
-  --fg:             #e0f2fe;
-  --fg-muted:       #7dd3fc;
-  --fg-faint:       #38bdf8;
-  --accent:         #06b6d4;
-  --accent-bg:      #0f2540;
+  --surface:         #050810;
+  --surface-raised:  #0a1628;
+  --surface-overlay: rgba(5, 8, 16, 0.85);
+  --border:          #0f2540;
+  --fg:              #e0f2fe;
+  --fg-muted:        #7dd3fc;
+  --fg-faint:        #38bdf8;
+  --accent:          #06b6d4;
+  --accent-bg:       #0f2540;
 }
 
 /* Swiss Polarity (Neo-Brutalism) */
@@ -151,11 +184,20 @@
   --primary-900: #7f1d1d;
   --primary-950: #450a0a;
 
-  --surface:        #ffffff;
-  --surface-raised: #ffffff;
-  --border:         #171717;
-  --accent:         #dc2626;
-  --accent-bg:      #fef2f2;
+  --surface:         #ffffff;
+  --surface-raised:  #ffffff;
+  --surface-overlay: rgba(255, 255, 255, 0.85);
+  --border:          #171717;
+  --accent:          #dc2626;
+  --accent-bg:       #fef2f2;
+
+  /* Light gem overrides */
+  --cat-1-bg: rgba(79, 70, 229, 0.07); --cat-1-border: rgba(79, 70, 229, 0.18); --cat-1-icon: #3730A3; --cat-1-badge: rgba(79, 70, 229, 0.10);
+  --cat-2-bg: rgba(37, 99, 235, 0.07); --cat-2-border: rgba(37, 99, 235, 0.18); --cat-2-icon: #1E40AF; --cat-2-badge: rgba(37, 99, 235, 0.10);
+  --cat-3-bg: rgba(4, 120, 87, 0.07);  --cat-3-border: rgba(4, 120, 87, 0.18);  --cat-3-icon: #065F46; --cat-3-badge: rgba(4, 120, 87, 0.10);
+  --cat-4-bg: rgba(180, 83, 9, 0.07);  --cat-4-border: rgba(180, 83, 9, 0.18);  --cat-4-icon: #92400E; --cat-4-badge: rgba(180, 83, 9, 0.10);
+  --cat-5-bg: rgba(190, 18, 60, 0.07); --cat-5-border: rgba(190, 18, 60, 0.18); --cat-5-icon: #9F1239; --cat-5-badge: rgba(190, 18, 60, 0.10);
+  --cat-6-bg: rgba(109, 40, 217, 0.07); --cat-6-border: rgba(109, 40, 217, 0.18); --cat-6-icon: #5B21B6; --cat-6-badge: rgba(109, 40, 217, 0.10);
 }
 
 .theme-swiss * {
@@ -164,14 +206,15 @@
 
 /* Operator Console (Phosphor Terminal) */
 .theme-operator-console {
-  --surface:        #0d1117;
-  --surface-raised: #161b22;
-  --border:         #30363d;
-  --fg:             #e6edf3;
-  --fg-muted:       #8b949e;
-  --fg-faint:       #6e7681;
-  --accent:         #f59e0b;
-  --accent-bg:      rgba(245, 158, 11, 0.12);
+  --surface:         #0d1117;
+  --surface-raised:  #161b22;
+  --surface-overlay: rgba(13, 17, 23, 0.85);
+  --border:          #30363d;
+  --fg:              #e6edf3;
+  --fg-muted:        #8b949e;
+  --fg-faint:        #6e7681;
+  --accent:          #f59e0b;
+  --accent-bg:       rgba(245, 158, 11, 0.12);
 }
 
 .theme-operator-console * {
@@ -181,38 +224,57 @@
 
 /* Quiet Luxury (Warm Editorial) */
 .theme-quiet-luxury {
-  --surface:        #faf7f2;
-  --surface-raised: #ffffff;
-  --border:         #e7e5e4;
-  --fg:             #1a1611;
-  --fg-muted:       #78716c;
-  --fg-faint:       #a8a29e;
-  --accent:         #c2714f;
-  --accent-bg:      rgba(194, 113, 79, 0.08);
+  --surface:         #faf7f2;
+  --surface-raised:  #ffffff;
+  --surface-overlay: rgba(250, 247, 242, 0.85);
+  --border:          #e7e5e4;
+  --fg:              #1a1611;
+  --fg-muted:        #78716c;
+  --fg-faint:        #a8a29e;
+  --accent:          #c2714f;
+  --accent-bg:       rgba(194, 113, 79, 0.08);
+
+  /* Light gem overrides */
+  --cat-1-bg: rgba(79, 70, 229, 0.07); --cat-1-border: rgba(79, 70, 229, 0.18); --cat-1-icon: #3730A3; --cat-1-badge: rgba(79, 70, 229, 0.10);
+  --cat-2-bg: rgba(37, 99, 235, 0.07); --cat-2-border: rgba(37, 99, 235, 0.18); --cat-2-icon: #1E40AF; --cat-2-badge: rgba(37, 99, 235, 0.10);
+  --cat-3-bg: rgba(4, 120, 87, 0.07);  --cat-3-border: rgba(4, 120, 87, 0.18);  --cat-3-icon: #065F46; --cat-3-badge: rgba(4, 120, 87, 0.10);
+  --cat-4-bg: rgba(180, 83, 9, 0.07);  --cat-4-border: rgba(180, 83, 9, 0.18);  --cat-4-icon: #92400E; --cat-4-badge: rgba(180, 83, 9, 0.10);
+  --cat-5-bg: rgba(190, 18, 60, 0.07); --cat-5-border: rgba(190, 18, 60, 0.18); --cat-5-icon: #9F1239; --cat-5-badge: rgba(190, 18, 60, 0.10);
+  --cat-6-bg: rgba(109, 40, 217, 0.07); --cat-6-border: rgba(109, 40, 217, 0.18); --cat-6-icon: #5B21B6; --cat-6-badge: rgba(109, 40, 217, 0.10);
 }
 
 /* System Atlas (Cool Reference) */
 .theme-system-atlas {
-  --surface:        #fafafa;
-  --surface-raised: #ffffff;
-  --border:         #e4e4e7;
-  --fg:             #18181b;
-  --fg-muted:       #71717a;
-  --fg-faint:       #a1a1aa;
-  --accent:         #2563eb;
-  --accent-bg:      rgba(37, 99, 235, 0.06);
+  --surface:         #fafafa;
+  --surface-raised:  #ffffff;
+  --surface-overlay: rgba(250, 250, 250, 0.85);
+  --border:          #e4e4e7;
+  --fg:              #18181b;
+  --fg-muted:        #71717a;
+  --fg-faint:        #a1a1aa;
+  --accent:          #2563eb;
+  --accent-bg:       rgba(37, 99, 235, 0.06);
+
+  /* Light gem overrides */
+  --cat-1-bg: rgba(79, 70, 229, 0.07); --cat-1-border: rgba(79, 70, 229, 0.18); --cat-1-icon: #3730A3; --cat-1-badge: rgba(79, 70, 229, 0.10);
+  --cat-2-bg: rgba(37, 99, 235, 0.07); --cat-2-border: rgba(37, 99, 235, 0.18); --cat-2-icon: #1E40AF; --cat-2-badge: rgba(37, 99, 235, 0.10);
+  --cat-3-bg: rgba(4, 120, 87, 0.07);  --cat-3-border: rgba(4, 120, 87, 0.18);  --cat-3-icon: #065F46; --cat-3-badge: rgba(4, 120, 87, 0.10);
+  --cat-4-bg: rgba(180, 83, 9, 0.07);  --cat-4-border: rgba(180, 83, 9, 0.18);  --cat-4-icon: #92400E; --cat-4-badge: rgba(180, 83, 9, 0.10);
+  --cat-5-bg: rgba(190, 18, 60, 0.07); --cat-5-border: rgba(190, 18, 60, 0.18); --cat-5-icon: #9F1239; --cat-5-badge: rgba(190, 18, 60, 0.10);
+  --cat-6-bg: rgba(109, 40, 217, 0.07); --cat-6-border: rgba(109, 40, 217, 0.18); --cat-6-icon: #5B21B6; --cat-6-badge: rgba(109, 40, 217, 0.10);
 }
 
 /* Technical Blueprint (Engineering Draft) */
 .theme-technical-blueprint {
-  --surface:        #002855;
-  --surface-raised: #003366;
-  --border:         rgba(255, 255, 255, 0.15);
-  --fg:             #ffffff;
-  --fg-muted:       #9ec8ff;
-  --fg-faint:       rgba(255, 255, 255, 0.35);
-  --accent:         #9ec8ff;
-  --accent-bg:      rgba(158, 200, 255, 0.1);
+  --surface:         #002855;
+  --surface-raised:  #003366;
+  --surface-overlay: rgba(0, 40, 85, 0.85);
+  --border:          rgba(255, 255, 255, 0.15);
+  --fg:              #ffffff;
+  --fg-muted:        #9ec8ff;
+  --fg-faint:        rgba(255, 255, 255, 0.35);
+  --accent:          #9ec8ff;
+  --accent-bg:       rgba(158, 200, 255, 0.1);
 }
 
 .theme-technical-blueprint body {
@@ -221,17 +283,26 @@
 }
 
 body {
-  background-color: var(--slate-50);
-  color: var(--slate-900);
+  background-color: var(--surface);
+  color: var(--fg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
-.dark body {
-  background-color: var(--slate-950);
-  color: var(--slate-50);
-}
+/* Category card utility classes — consumed by .cat-card-N and .cat-icon-N */
+.cat-card-1 { background-color: var(--cat-1-bg); border-color: var(--cat-1-border); }
+.cat-icon-1 { color: var(--cat-1-icon); background-color: var(--cat-1-badge); }
+.cat-card-2 { background-color: var(--cat-2-bg); border-color: var(--cat-2-border); }
+.cat-icon-2 { color: var(--cat-2-icon); background-color: var(--cat-2-badge); }
+.cat-card-3 { background-color: var(--cat-3-bg); border-color: var(--cat-3-border); }
+.cat-icon-3 { color: var(--cat-3-icon); background-color: var(--cat-3-badge); }
+.cat-card-4 { background-color: var(--cat-4-bg); border-color: var(--cat-4-border); }
+.cat-icon-4 { color: var(--cat-4-icon); background-color: var(--cat-4-badge); }
+.cat-card-5 { background-color: var(--cat-5-bg); border-color: var(--cat-5-border); }
+.cat-icon-5 { color: var(--cat-5-icon); background-color: var(--cat-5-badge); }
+.cat-card-6 { background-color: var(--cat-6-bg); border-color: var(--cat-6-border); }
+.cat-icon-6 { color: var(--cat-6-icon); background-color: var(--cat-6-badge); }
 
 /* Scrollbar — subtle, Apple-like */
 ::-webkit-scrollbar {

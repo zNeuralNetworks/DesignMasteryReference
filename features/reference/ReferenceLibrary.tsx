@@ -17,7 +17,7 @@ import { Tooltip } from '@/components/Tooltip';
 import { THEMES, useTheme } from '@/contexts/ThemeContext';
 
 const StaticVisualLazy = lazy(() => import('@/features/demos/StaticVisuals').then(m => ({ default: m.StaticVisual })));
-const VisualPlaceholder = () => <div className="w-full h-full bg-slate-100 rounded-xl" />;
+const VisualPlaceholder = () => <div className="w-full h-full bg-surface-raised rounded-xl" />;
 const StaticVisual = (props: { type: string }) => (
   <Suspense fallback={<VisualPlaceholder />}>
     <StaticVisualLazy {...props} />
@@ -71,14 +71,11 @@ const DOMAIN_LABELS: Record<string, string> = {
   responsiveness: 'Responsive', data: 'Data', tokens: 'Tokens',
 };
 
-const FIX_COLORS: Record<string, { card: string; icon: string; badge: string }> = {
-  violet:  { card: 'bg-violet-50 border-violet-100 hover:border-violet-300',    icon: 'text-violet-600',  badge: 'bg-violet-100 text-violet-700'  },
-  blue:    { card: 'bg-blue-50 border-blue-100 hover:border-blue-300',          icon: 'text-blue-600',    badge: 'bg-blue-100 text-blue-700'    },
-  teal:    { card: 'bg-teal-50 border-teal-100 hover:border-teal-300',          icon: 'text-teal-600',    badge: 'bg-teal-100 text-teal-700'    },
-  amber:   { card: 'bg-amber-50 border-amber-100 hover:border-amber-300',       icon: 'text-amber-600',   badge: 'bg-amber-100 text-amber-700'   },
-  rose:    { card: 'bg-rose-50 border-rose-100 hover:border-rose-300',          icon: 'text-rose-600',    badge: 'bg-rose-100 text-rose-700'    },
-  emerald: { card: 'bg-emerald-50 border-emerald-100 hover:border-emerald-300', icon: 'text-emerald-600', badge: 'bg-emerald-100 text-emerald-700' },
-};
+const FIX_COLORS = (n: 1 | 2 | 3 | 4 | 5 | 6) => ({
+  card:  `cat-card-${n} border hover:brightness-[1.08] transition-all`,
+  icon:  `cat-icon-${n}`,
+  badge: `cat-icon-${n}`,
+});
 
 // ── FiltersPopover ──────────────────────────────────────────────────────────
 
@@ -244,7 +241,7 @@ const FixGuideRow = ({
     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
       {fixGuides.map((guide) => {
         const Icon = FIX_ICONS[guide.icon] || Gauge;
-        const c = FIX_COLORS[guide.color];
+        const c = FIX_COLORS(guide.category);
         const isActive = activeGuideId === guide.id;
         return (
           <button
@@ -426,11 +423,11 @@ export const ReferenceLibrary = () => {
         {/* View toggle */}
         <Annotation
           title="Segmented Control"
-          body="The active pill uses bg-surface-raised + shadow-sm while the track stays bg-slate-100 — the shadow creates an elevation difference that communicates mutual exclusivity without a dropdown."
+          body="The active pill uses bg-surface-raised + shadow-sm while the track stays bg-surface-raised/60 — the shadow creates an elevation difference that communicates mutual exclusivity without a dropdown."
           entryId="micro-interactions"
           side="bottom"
         >
-          <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl">
+          <div className="flex items-center gap-1 bg-surface-raised p-1 rounded-xl border border-border/40">
             <Tooltip content="Grid view" side="bottom">
               <button
                 onClick={() => setViewMode('grid')}
@@ -467,7 +464,7 @@ export const ReferenceLibrary = () => {
 
       {/* Active fix guide checklist banner */}
       {activeFixGuide && (() => {
-        const c = FIX_COLORS[activeFixGuide.color];
+        const c = FIX_COLORS(activeFixGuide.category);
         const Icon = FIX_ICONS[activeFixGuide.icon] || Gauge;
         return (
           <div className={`mb-5 rounded-2xl border p-4 ${c.card}`}>
@@ -609,7 +606,7 @@ export const ReferenceLibrary = () => {
       <div className="pt-8">
         {filteredEntries.length === 0 ? (
           <div className="py-24 text-center">
-            <div className="w-14 h-14 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-14 h-14 bg-surface-raised rounded-full flex items-center justify-center mx-auto mb-4">
               <Search size={22} className="text-fg-faint" />
             </div>
             <h3 className="text-[17px] font-semibold text-fg mb-1.5">No results</h3>
@@ -634,7 +631,7 @@ export const ReferenceLibrary = () => {
                 to={`/reference/${entry.id}`}
                 className="group flex flex-col bg-surface-raised rounded-2xl overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_28px_rgba(0,0,0,0.11)] transition-all duration-300 hover:-translate-y-0.5"
               >
-                <div className="aspect-[4/3] bg-surface flex items-center justify-center overflow-hidden p-4 group-hover:bg-slate-100/60 transition-colors">
+                <div className="aspect-[4/3] bg-surface flex items-center justify-center overflow-hidden p-4 group-hover:bg-surface-raised/60 transition-colors">
                   <div className="w-full h-full flex items-center justify-center scale-95 group-hover:scale-100 transition-transform duration-500">
                     <StaticVisual type={entry.interactiveComponent || entry.domain} />
                   </div>

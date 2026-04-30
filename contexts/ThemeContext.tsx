@@ -13,7 +13,7 @@ export interface ThemeMeta {
 }
 
 export const THEMES: ThemeMeta[] = [
-  { id: 'default',             label: 'Default',             tagline: 'Apple-inspired system UI',          cssClass: '',                          surface: '#F5F5F7', surfaceRaised: '#ffffff', accent: '#0071E3', fg: '#1D1D1F', entryId: '' },
+  { id: 'default',             label: 'Default',             tagline: 'Dark cinema, gem accents',          cssClass: '',                          surface: '#0E0E10', surfaceRaised: '#18181C', accent: '#818CF8', fg: '#F0F0F5', entryId: '' },
   { id: 'bioluminescent',      label: 'Bioluminescent',      tagline: 'Deep navy with cyan glow',          cssClass: 'theme-bioluminescent',      surface: '#050810', surfaceRaised: '#0a1628', accent: '#06b6d4', fg: '#e0f2fe', entryId: 'theme-bioluminescent' },
   { id: 'swiss',               label: 'Swiss Polarity',      tagline: 'Neo-brutalist high contrast',       cssClass: 'theme-swiss',               surface: '#ffffff', surfaceRaised: '#ffffff', accent: '#dc2626', fg: '#171717', entryId: 'theme-swiss-polarity' },
   { id: 'operator-console',    label: 'Operator Console',    tagline: 'Phosphor terminal, amber on black', cssClass: 'theme-operator-console',    surface: '#0d1117', surfaceRaised: '#161b22', accent: '#f59e0b', fg: '#e6edf3', entryId: 'theme-operator-console' },
