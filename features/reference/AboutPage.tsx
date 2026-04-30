@@ -207,27 +207,55 @@ export const AboutPage = () => {
             <p className="text-[13px] text-fg-muted mb-5 leading-relaxed">
               Two scales underpin the entire color system. All semantic tokens reference these primitives — components never consume raw hex values directly.
             </p>
-            <div className="grid grid-cols-2 gap-6 mb-6">
+            <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <p className="text-[11px] font-semibold text-fg-faint mb-3">Apple Neutral (Slate scale) — 11 steps</p>
-                <div className="grid grid-cols-4 gap-2">
+                <p className="text-[11px] font-semibold text-fg-faint mb-3">Apple Neutral (Slate) — 11 steps</p>
+                <div className="rounded-xl border border-border overflow-hidden">
                   {[
-                    { step: '50',  hex: '#F5F5F7', role: 'Surface' },
+                    { step: '50',  hex: '#F5F5F7', role: 'Page surface' },
+                    { step: '100', hex: '#E8E8ED', role: 'Hover surface' },
                     { step: '200', hex: '#D2D2D7', role: 'Border' },
+                    { step: '300', hex: '#B7B7BD', role: 'Strong border' },
+                    { step: '400', hex: '#8E8E93', role: 'Faint text' },
                     { step: '500', hex: '#6E6E73', role: 'Muted text' },
-                    { step: '900', hex: '#1D1D1F', role: 'Body text' },
-                  ].map(s => <ColorSwatch key={s.step} token={`slate-${s.step}`} hex={s.hex} role={s.role} />)}
+                    { step: '600', hex: '#48484A', role: 'Subdued' },
+                    { step: '700', hex: '#3A3A3C', role: 'Inverted border' },
+                    { step: '800', hex: '#2C2C2E', role: 'Dark raised surface' },
+                    { step: '900', hex: '#1D1D1F', role: 'Body text / dark surface' },
+                    { step: '950', hex: '#000000', role: 'Pure black' },
+                  ].map((s, i) => (
+                    <div key={s.step} className={`flex items-center gap-3 px-3 py-1.5 ${i % 2 === 0 ? 'bg-surface' : 'bg-surface-raised'}`}>
+                      <div className="w-5 h-5 rounded flex-shrink-0 border border-border/40" style={{ backgroundColor: s.hex }} />
+                      <span className="font-mono text-[10px] text-fg-faint w-8 flex-shrink-0">{s.step}</span>
+                      <span className="font-mono text-[10px] text-fg-muted flex-shrink-0">{s.hex}</span>
+                      <span className="text-[10px] text-fg-faint ml-auto">{s.role}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
               <div>
-                <p className="text-[11px] font-semibold text-fg-faint mb-3">Apple Blue (Primary scale) — 11 steps</p>
-                <div className="grid grid-cols-4 gap-2">
+                <p className="text-[11px] font-semibold text-fg-faint mb-3">Apple Blue (Primary) — 11 steps</p>
+                <div className="rounded-xl border border-border overflow-hidden">
                   {[
-                    { step: '50',  hex: '#F0F7FF', role: 'Accent bg' },
+                    { step: '50',  hex: '#F0F7FF', role: 'Accent bg tint' },
+                    { step: '100', hex: '#DCE9FF', role: 'Light accent bg' },
+                    { step: '200', hex: '#B4CFFF', role: 'Accent border' },
                     { step: '300', hex: '#7AAFFA', role: 'Hover ring' },
-                    { step: '600', hex: '#0071E3', role: 'Accent' },
-                    { step: '900', hex: '#003580', role: 'Deep' },
-                  ].map(s => <ColorSwatch key={s.step} token={`primary-${s.step}`} hex={s.hex} role={s.role} />)}
+                    { step: '400', hex: '#3E8FEF', role: 'Accent hover' },
+                    { step: '500', hex: '#007AFF', role: 'Apple blue' },
+                    { step: '600', hex: '#0071E3', role: 'Accent (default)' },
+                    { step: '700', hex: '#005EC9', role: 'Accent pressed' },
+                    { step: '800', hex: '#004AA8', role: 'Deep accent' },
+                    { step: '900', hex: '#003580', role: 'Darkest accent' },
+                    { step: '950', hex: '#001A40', role: 'Near black blue' },
+                  ].map((s, i) => (
+                    <div key={s.step} className={`flex items-center gap-3 px-3 py-1.5 ${i % 2 === 0 ? 'bg-surface' : 'bg-surface-raised'}`}>
+                      <div className="w-5 h-5 rounded flex-shrink-0 border border-border/40" style={{ backgroundColor: s.hex }} />
+                      <span className="font-mono text-[10px] text-fg-faint w-8 flex-shrink-0">{s.step}</span>
+                      <span className="font-mono text-[10px] text-fg-muted flex-shrink-0">{s.hex}</span>
+                      <span className="text-[10px] text-fg-faint ml-auto">{s.role}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -378,6 +406,39 @@ export const AboutPage = () => {
                     Three dark-surface named themes — <span className="font-medium text-fg">Bioluminescent</span> (deep navy + cyan), <span className="font-medium text-fg">Operator Console</span> (phosphor terminal), and <span className="font-medium text-fg">Technical Blueprint</span> (prussian blue). Each fully redefines all semantic tokens including category tokens.
                   </p>
                 </div>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <p className="text-[11px] font-semibold text-fg-faint mb-3">All 7 named themes</p>
+              <div className="rounded-xl border border-border overflow-hidden">
+                <div className="grid grid-cols-4 px-4 py-2 bg-surface border-b border-border">
+                  <span className="text-[10px] font-bold text-fg-faint uppercase tracking-wider">Theme</span>
+                  <span className="text-[10px] font-bold text-fg-faint uppercase tracking-wider">Surface</span>
+                  <span className="text-[10px] font-bold text-fg-faint uppercase tracking-wider">Type</span>
+                  <span className="text-[10px] font-bold text-fg-faint uppercase tracking-wider col-span-1">Character</span>
+                </div>
+                {[
+                  { name: 'Default',             surface: '#F5F5F7', hex: '#F5F5F7', type: 'Light',  char: 'Apple system neutral' },
+                  { name: 'Quiet Luxury',        surface: '#FAF7F2', hex: '#FAF7F2', type: 'Light',  char: 'Warm editorial' },
+                  { name: 'System Atlas',        surface: '#FAFAFA', hex: '#FAFAFA', type: 'Light',  char: 'Cool zinc reference' },
+                  { name: 'Swiss',               surface: '#FFFFFF', hex: '#FFFFFF', type: 'Light',  char: 'Neo-brutalism, red accent, zero border-radius' },
+                  { name: 'Bioluminescent',      surface: '#050810', hex: '#050810', type: 'Dark',   char: 'Deep navy + cyan glow' },
+                  { name: 'Operator Console',    surface: '#0D1117', hex: '#0D1117', type: 'Dark',   char: 'Phosphor terminal, monospace forced' },
+                  { name: 'Technical Blueprint', surface: '#002855', hex: '#002855', type: 'Dark',   char: 'Prussian blue, dot-grid background' },
+                ].map((t, i) => (
+                  <div key={t.name} className={`grid grid-cols-4 items-center px-4 py-2.5 ${i % 2 === 0 ? 'bg-surface-raised' : 'bg-surface'}`}>
+                    <span className="text-[12px] font-semibold text-fg">{t.name}</span>
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 rounded border border-border/60 flex-shrink-0" style={{ backgroundColor: t.hex }} />
+                      <span className="font-mono text-[10px] text-fg-muted">{t.surface}</span>
+                    </div>
+                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full w-fit ${t.type === 'Dark' ? 'bg-slate-800 text-slate-300' : 'bg-surface text-fg-faint border border-border'}`}>
+                      {t.type}
+                    </span>
+                    <span className="text-[11px] text-fg-muted">{t.char}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
