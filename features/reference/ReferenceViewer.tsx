@@ -9,10 +9,10 @@ import { ReferenceEntry, Verdict, UseContext } from '@/types';
 
 const VerdictHeader = ({ verdict, confidence }: { verdict: Verdict, confidence?: number }) => {
   const configs = {
-    recommended: { icon: ShieldCheck, color: 'text-emerald-600 bg-emerald-50 border-emerald-200', label: 'Recommended Pattern', desc: 'Industry standard with high reliability.' },
-    conditional: { icon: Info, color: 'text-amber-600 bg-amber-50 border-amber-200', label: 'Conditional Use', desc: 'Highly effective but only in specific contexts.' },
-    experimental: { icon: Sparkles, color: 'text-primary-600 bg-primary-50 border-primary-200', label: 'Experimental', desc: 'Emerging pattern with limited validation.' },
-    'anti-pattern': { icon: Ban, color: 'text-rose-600 bg-rose-50 border-rose-200', label: 'Anti-Pattern', desc: 'Avoid in professional production environments.' },
+    recommended: { icon: ShieldCheck, color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/25', label: 'Recommended Pattern', desc: 'Industry standard with high reliability.' },
+    conditional: { icon: Info, color: 'text-amber-400 bg-amber-500/10 border-amber-500/25', label: 'Conditional Use', desc: 'Highly effective but only in specific contexts.' },
+    experimental: { icon: Sparkles, color: 'text-accent bg-accent-bg border-accent/20', label: 'Experimental', desc: 'Emerging pattern with limited validation.' },
+    'anti-pattern': { icon: Ban, color: 'text-rose-400 bg-rose-500/10 border-rose-500/25', label: 'Anti-Pattern', desc: 'Avoid in professional production environments.' },
   };
   const config = configs[verdict];
   const Icon = config.icon;
@@ -128,18 +128,32 @@ export const ReferenceViewer = () => {
 
         <VerdictHeader verdict={entry.verdict} confidence={entry.confidenceScore} />
 
-        <div className="bg-fg p-8 rounded-3xl mb-8 shadow-[0_4px_24px_rgba(0,0,0,0.14)] relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-8 opacity-[0.07]">
+        <div className="bg-surface-raised border border-fg/[0.06] p-8 rounded-3xl mb-8 shadow-[0_4px_24px_rgba(0,0,0,0.14)] relative overflow-hidden">
+          <div className="absolute top-0 right-0 p-8 opacity-[0.04]">
             <Zap size={100} />
           </div>
-          <p className="text-[11px] font-semibold text-surface/50 uppercase tracking-widest mb-3 flex items-center gap-1.5">
+          <p className="text-[11px] font-semibold text-fg-faint uppercase tracking-widest mb-3 flex items-center gap-1.5">
             <Zap size={12} className="text-accent" /> The Bottom Line
           </p>
-          <p className="text-[19px] md:text-[22px] font-medium leading-relaxed relative z-10 text-surface">{entry.quickTake}</p>
+          <p className="text-[19px] md:text-[22px] font-medium leading-relaxed relative z-10 text-fg">{entry.quickTake}</p>
         </div>
 
         <SpecSummary entry={entry} />
       </motion.div>
+
+      {/* Visual Reference — full-width, first below header */}
+      {DemoComponent && (
+        <div className="bg-surface-raised rounded-2xl overflow-hidden shadow-xl border border-border mb-12">
+          <div className="bg-surface border-b border-border px-4 py-3 flex items-center justify-between">
+            <span className="text-[10px] font-bold text-fg-faint uppercase tracking-widest flex items-center gap-2">
+              <Sparkles size={12} className="text-accent" /> Visual Reference
+            </span>
+          </div>
+          <div className="p-4 bg-surface min-h-[280px] flex items-center justify-center">
+            <DemoComponent />
+          </div>
+        </div>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
         {/* Main Content Column */}
@@ -162,7 +176,7 @@ export const ReferenceViewer = () => {
               <div className="space-y-4">
                 {entry.mechanism.map((step, i) => (
                   <div key={i} className="flex gap-4">
-                    <div className="w-6 h-6 rounded-full bg-primary-100 text-primary-600 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">
+                    <div className="w-6 h-6 rounded-full bg-accent-bg text-accent flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">
                       {i + 1}
                     </div>
                     <p className="text-fg-muted font-medium">{step}</p>
@@ -174,26 +188,26 @@ export const ReferenceViewer = () => {
 
           {/* Usage Guidelines */}
           <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-emerald-50/50 rounded-2xl p-6 border border-emerald-100">
-              <h3 className="text-emerald-700 font-bold mb-4 flex items-center gap-2">
+            <div className="bg-emerald-500/[0.08] rounded-2xl p-6 border border-emerald-500/[0.20]">
+              <h3 className="text-emerald-400 font-bold mb-4 flex items-center gap-2">
                 <CheckCircle2 size={18} /> Use This When
               </h3>
               <ul className="space-y-2">
                 {entry.whenToUse.map((item, i) => (
-                  <li key={i} className="text-sm text-emerald-800 flex gap-2">
-                    <span className="text-emerald-400 mt-1">•</span> {item}
+                  <li key={i} className="text-sm text-fg-muted flex gap-2">
+                    <span className="text-emerald-500 mt-1">•</span> {item}
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="bg-rose-50/50 rounded-2xl p-6 border border-rose-100">
-              <h3 className="text-rose-700 font-bold mb-4 flex items-center gap-2">
+            <div className="bg-rose-500/[0.08] rounded-2xl p-6 border border-rose-500/[0.20]">
+              <h3 className="text-rose-400 font-bold mb-4 flex items-center gap-2">
                 <Ban size={18} /> Avoid When
               </h3>
               <ul className="space-y-2">
                 {entry.whenNotToUse.map((item, i) => (
-                  <li key={i} className="text-sm text-rose-800 flex gap-2">
-                    <span className="text-rose-400 mt-1">•</span> {item}
+                  <li key={i} className="text-sm text-fg-muted flex gap-2">
+                    <span className="text-rose-500 mt-1">•</span> {item}
                   </li>
                 ))}
               </ul>
@@ -230,7 +244,7 @@ export const ReferenceViewer = () => {
                     className="flex flex-col sm:flex-row sm:items-center justify-between p-6 bg-surface-raised border border-border rounded-2xl hover:border-accent/50 hover:shadow-md transition-all group"
                   >
                     <div className="mb-4 sm:mb-0">
-                      <span className="text-[10px] font-bold text-primary-600 uppercase tracking-widest mb-1 block">Alternative Entry</span>
+                      <span className="text-[10px] font-bold text-accent uppercase tracking-widest mb-1 block">Alternative Entry</span>
                       <h4 className="font-bold text-fg group-hover:text-accent transition-colors">{alt.entry?.title}</h4>
                     </div>
                     <div className="flex items-center gap-4">
@@ -241,7 +255,7 @@ export const ReferenceViewer = () => {
                       <Link 
                         to={`/compare/${entry.id}/${alt.entryId}`}
                         onClick={(e) => e.stopPropagation()}
-                        className="p-2 bg-surface text-fg-faint hover:text-accent hover:bg-primary-50 rounded-lg transition-all"
+                        className="p-2 bg-surface text-fg-faint hover:text-accent hover:bg-accent-bg rounded-lg transition-all"
                         title="Compare side-by-side"
                       >
                         <Scale size={18} />
@@ -276,7 +290,7 @@ export const ReferenceViewer = () => {
           )}
 
           {/* Detailed Content */}
-          <article className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-fg prose-p:text-fg-muted prose-a:text-accent prose-code:text-accent prose-code:bg-accent-bg prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:font-medium prose-pre:bg-fg prose-pre:text-surface">
+          <article className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-fg prose-p:text-fg-muted prose-a:text-accent prose-code:text-accent prose-code:bg-accent-bg prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:font-medium prose-pre:bg-surface-raised prose-pre:text-fg">
               {entry.content && entry.content.split('\n').map((line, i) => {
                   if (line.startsWith('# ')) return <h1 key={i} className="mb-6 mt-8">{line.replace('# ', '')}</h1>
                   if (line.startsWith('### ')) return <h3 key={i} className="mb-4 mt-8">{line.replace('### ', '')}</h3>
@@ -295,14 +309,14 @@ export const ReferenceViewer = () => {
               </h2>
               
               {entry.implementationNotes.length > 0 && (
-                <div className="bg-fg rounded-2xl p-8 text-surface/80">
-                  <h3 className="text-surface font-bold mb-4 flex items-center gap-2 text-sm uppercase tracking-widest">
-                    <Info size={16} className="text-primary-400" /> Technical Notes
+                <div className="bg-surface-raised border border-fg/[0.06] rounded-2xl p-8">
+                  <h3 className="text-fg-muted font-bold mb-4 flex items-center gap-2 text-sm uppercase tracking-widest">
+                    <Info size={16} className="text-accent" /> Technical Notes
                   </h3>
                   <ul className="space-y-3">
                     {entry.implementationNotes.map((note, i) => (
-                      <li key={i} className="text-sm flex gap-3">
-                        <span className="text-primary-500 mt-1">→</span> {note}
+                      <li key={i} className="text-sm text-fg-muted flex gap-3">
+                        <span className="text-accent mt-1">→</span> {note}
                       </li>
                     ))}
                   </ul>
@@ -329,20 +343,7 @@ export const ReferenceViewer = () => {
 
         {/* Sidebar Column */}
         <div className="space-y-8">
-          {/* Visual Reference Preview */}
-          {DemoComponent && (
-            <div className="sticky top-24 space-y-8">
-              <div className="bg-surface-raised rounded-2xl overflow-hidden shadow-xl border border-border">
-                <div className="bg-surface border-b border-border px-4 py-3 flex items-center justify-between">
-                   <span className="text-[10px] font-bold text-fg-faint uppercase tracking-widest flex items-center gap-2">
-                     <Sparkles size={12} className="text-primary-500"/> Visual Reference
-                   </span>
-                </div>
-                <div className="p-1 bg-surface">
-                    <DemoComponent />
-                </div>
-              </div>
-
+          <div className="sticky top-24 space-y-6">
               {/* Tradeoffs & Pitfalls */}
               <div className="space-y-6">
                 {entry.perfImpact && (
@@ -387,11 +388,11 @@ export const ReferenceViewer = () => {
                   <div className="space-y-4">
                     {entry.tradeoffs.map((item, i) => (
                       <div key={i} className="space-y-1">
-                        <div className="flex items-center gap-1.5 text-[10px] font-bold text-emerald-600">
+                        <div className="flex items-center gap-1.5 text-[10px] font-bold text-emerald-400">
                           <CheckCircle2 size={10} /> PRO
                         </div>
                         <p className="text-xs text-fg-muted mb-2">{item.pro}</p>
-                        <div className="flex items-center gap-1.5 text-[10px] font-bold text-rose-600">
+                        <div className="flex items-center gap-1.5 text-[10px] font-bold text-rose-400">
                           <Ban size={10} /> CON
                         </div>
                         <p className="text-xs text-fg-muted">{item.con}</p>
@@ -401,14 +402,14 @@ export const ReferenceViewer = () => {
                 </div>
 
                 {entry.commonPitfalls && entry.commonPitfalls.length > 0 && (
-                  <div className="bg-rose-50/30 rounded-2xl p-6 border border-rose-100 shadow-sm">
-                    <h3 className="text-rose-900 font-bold mb-4 flex items-center gap-2 text-sm uppercase tracking-widest">
-                      <ShieldAlert size={16} className="text-rose-500" /> Common Pitfalls
+                  <div className="bg-rose-500/[0.08] rounded-2xl p-6 border border-rose-500/[0.20] shadow-sm">
+                    <h3 className="text-rose-400 font-bold mb-4 flex items-center gap-2 text-sm uppercase tracking-widest">
+                      <ShieldAlert size={16} className="text-rose-400" /> Common Pitfalls
                     </h3>
                     <ul className="space-y-3">
                       {entry.commonPitfalls.map((item, i) => (
-                        <li key={i} className="text-xs text-rose-800 flex gap-2">
-                          <span className="text-rose-300 mt-0.5">•</span> {item}
+                        <li key={i} className="text-xs text-fg-muted flex gap-2">
+                          <span className="text-rose-500 mt-0.5">•</span> {item}
                         </li>
                       ))}
                     </ul>
@@ -418,25 +419,23 @@ export const ReferenceViewer = () => {
 
               {/* Checklist */}
               {entry.checklist && (
-                <div className="bg-fg rounded-2xl p-6 text-surface shadow-xl">
-                  <h3 className="text-accent font-bold mb-4 flex items-center gap-2 text-sm uppercase tracking-widest">
+                <div className="bg-surface-raised rounded-2xl p-6 border border-border shadow-xl">
+                  <h3 className="text-fg font-bold mb-4 flex items-center gap-2 text-sm uppercase tracking-widest">
                     <CheckCircle2 size={16} /> Reference Checklist
                   </h3>
                   <div className="space-y-3">
                     {entry.checklist.map((item, i) => (
                       <label key={i} className="flex items-start gap-3 cursor-pointer group">
                         <input type="checkbox" className="mt-1 rounded border-border bg-surface-raised text-accent focus:ring-accent" />
-                        <span className="text-xs text-surface/70 group-hover:text-surface transition-colors">{item}</span>
+                        <span className="text-xs text-fg-muted group-hover:text-fg transition-colors">{item}</span>
                       </label>
                     ))}
                   </div>
                 </div>
               )}
             </div>
-          )}
+          </div>
         </div>
       </div>
-
-    </div>
   );
 };

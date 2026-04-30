@@ -26,10 +26,10 @@ const StaticVisual = (props: { type: string }) => (
 
 const VerdictBadge = ({ verdict }: { verdict: Verdict }) => {
   const configs = {
-    recommended:    { icon: ShieldCheck, color: 'text-emerald-600 bg-emerald-50', label: 'Recommended',  tip: 'Industry standard — broadly safe to use' },
-    conditional:    { icon: Info,        color: 'text-amber-600 bg-amber-50',     label: 'Conditional',  tip: 'Effective only in specific contexts'     },
-    experimental:   { icon: Sparkles,    color: 'text-primary-600 bg-primary-50', label: 'Experimental', tip: 'Emerging pattern, use with caution'       },
-    'anti-pattern': { icon: Ban,         color: 'text-rose-600 bg-rose-50',       label: 'Anti-Pattern', tip: 'Avoid in production — known failure mode' },
+    recommended:    { icon: ShieldCheck, color: 'text-emerald-400 bg-emerald-500/10', label: 'Recommended',  tip: 'Industry standard — broadly safe to use' },
+    conditional:    { icon: Info,        color: 'text-amber-400 bg-amber-500/10',   label: 'Conditional',  tip: 'Effective only in specific contexts'     },
+    experimental:   { icon: Sparkles,    color: 'text-accent bg-accent-bg',         label: 'Experimental', tip: 'Emerging pattern, use with caution'       },
+    'anti-pattern': { icon: Ban,         color: 'text-rose-400 bg-rose-500/10',     label: 'Anti-Pattern', tip: 'Avoid in production — known failure mode' },
   };
   const { icon: Icon, color, label, tip } = configs[verdict];
   return (
@@ -123,10 +123,10 @@ const FiltersPopover = ({
   const hasActive = activeCount > 0;
 
   const vColors: Record<string, string> = {
-    recommended:    activeVerdict === 'recommended'    ? 'bg-emerald-500 text-white border-emerald-500'  : 'bg-surface-raised text-fg-faint border-border hover:border-emerald-300 hover:text-emerald-600',
-    conditional:    activeVerdict === 'conditional'    ? 'bg-amber-500 text-white border-amber-500'      : 'bg-surface-raised text-fg-faint border-border hover:border-amber-300 hover:text-amber-600',
-    experimental:   activeVerdict === 'experimental'   ? 'bg-primary-500 text-white border-primary-500'  : 'bg-surface-raised text-fg-faint border-border hover:border-primary-300 hover:text-primary-600',
-    'anti-pattern': activeVerdict === 'anti-pattern'   ? 'bg-rose-500 text-white border-rose-500'        : 'bg-surface-raised text-fg-faint border-border hover:border-rose-300 hover:text-rose-600',
+    recommended:    activeVerdict === 'recommended'    ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40'  : 'bg-surface-raised text-fg-faint border-border hover:border-emerald-500/40 hover:text-emerald-400',
+    conditional:    activeVerdict === 'conditional'    ? 'bg-amber-500/20 text-amber-400 border-amber-500/40'        : 'bg-surface-raised text-fg-faint border-border hover:border-amber-500/40 hover:text-amber-400',
+    experimental:   activeVerdict === 'experimental'   ? 'bg-accent-bg text-accent border-accent/40'               : 'bg-surface-raised text-fg-faint border-border hover:border-accent/40 hover:text-accent',
+    'anti-pattern': activeVerdict === 'anti-pattern'   ? 'bg-rose-500/20 text-rose-400 border-rose-500/40'          : 'bg-surface-raised text-fg-faint border-border hover:border-rose-500/40 hover:text-rose-400',
   };
 
   return (
@@ -189,8 +189,8 @@ const FiltersPopover = ({
                 onClick={() => setQuickFilter(quickFilter === value ? 'all' : value)}
                 className={`px-2.5 py-1 rounded-full text-[11px] font-medium border transition-all ${
                   quickFilter === value
-                    ? 'bg-rose-500 text-white border-rose-500'
-                    : 'bg-surface-raised text-fg-faint border-border hover:border-rose-300 hover:text-rose-600'
+                    ? 'bg-rose-500/20 text-rose-400 border-rose-500/40'
+                    : 'bg-surface-raised text-fg-faint border-border hover:border-rose-500/40 hover:text-rose-400'
                 }`}
               >
                 {label}
